@@ -1,0 +1,1 @@
+$(document).ready(function(){if(0<$("#ne_i_swiper").length){var i=new Swiper("#ne_i_swiper",{loop:!0,pagination:".ne_pagination",paginationClickable:!0});$(".ic_n_swpl").on("click",function(n){n.preventDefault(),i.swipePrev()}),$(".ic_n_swpr").on("click",function(n){n.preventDefault(),i.swipeNext()})}});
