@@ -3,7 +3,7 @@
 @section('content')
     <div class="login-main">
         <div class="login-top">
-            <span>巴迪人力后台管理系统</span>
+            <span>众辉车联后台管理系统</span>
             <span class="bg1"></span>
             <span class="bg2"></span>
         </div>

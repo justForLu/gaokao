@@ -29,6 +29,9 @@ class CategoryRepository extends BaseRepository
         if(isset($params['name']) && !empty($params['name'])){
             $where[] = ['name','LIKE','%'.$params['name'].'%'];
         }
+        if(isset($params['type']) && !empty($params['type'])){
+            $where[] = ['type','=',$params['type']];
+        }
 
         $count = $this->model->where($where)->count();
 

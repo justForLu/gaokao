@@ -2,13 +2,14 @@
 
 namespace App\Repositories\Admin;
 
+
 use App\Repositories\BaseRepository;
 
-class StayRepository extends BaseRepository
+class SchoolRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Stay';
+        return 'App\Models\Common\Category';
     }
 
     /**
@@ -21,25 +22,22 @@ class StayRepository extends BaseRepository
     {
         $page = isset($params['page']) && $params['page'] > 0 ? $params['page'] : 1;
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
-        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'id';
+        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'sort';
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
-        $with = isset($params['with']) && !empty($params['with']) ? $params['with'] : [];
 
         $where = [];
-        if(isset($params['username']) && !empty($params['username'])){
-            $where[] = ['username','=',$params['username']];
-        }
-        if(isset($params['area']) && !empty($params['area'])){
-            $where[] = ['area','=',$params['area']];
+        if(isset($params['name']) && !empty($params['name'])){
+            $where[] = ['name','LIKE','%'.$params['name'].'%'];
         }
 
         $count = $this->model->where($where)->count();
 
         $offset = ($page-1)*$limit;
-        $list = $this->model->select($field)->with($with)->where($where)
+        $list = $this->model->select($field)->where($where)
             ->orderBy($sortBy, $sortType)
             ->offset($offset)->limit($limit)->get()->toArray();
 
         return ['list' => $list,'count' => $count];
     }
+
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\ArticleEnum;
+use App\Enums\CategoryEnum;
 use App\Http\Requests\Admin\ArticleRequest;
+use App\Models\Common\Category;
 use App\Repositories\Admin\ArticleRepository as Article;
 use App\Repositories\Admin\LogRepository;
 use Illuminate\Http\Request;
@@ -29,7 +31,8 @@ class ArticleController extends BaseController
      */
     public function index()
     {
-        return view('admin.article.index');
+        $category = Category::select('id','name')->where('type',CategoryEnum::ARTICLE)->get();
+        return view('admin.article.index',compact('category'));
     }
 
     /**
@@ -46,8 +49,11 @@ class ArticleController extends BaseController
         $result = $this->article->getList($params);
         $list = $result['list'] ?? [];
         if($list){
+            //文章分类
+            $category_id = array_diff(array_unique(array_column($list,'category_id')),[0]);
+            $category_list = Category::whereIn('id',$category_id)->pluck('name','id');
             foreach ($list as &$v){
-                $v['type_name'] = ArticleEnum::getDesc($v['type']);
+                $v['category_name'] = $category_list[$v['category_id']] ?? '-';
             }
         }
 

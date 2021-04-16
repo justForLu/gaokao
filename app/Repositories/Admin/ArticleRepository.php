@@ -28,8 +28,8 @@ class ArticleRepository extends BaseRepository
         if(isset($params['title']) && !empty($params['title'])){
             $where[] = ['title','LIKE','%'.$params['title'].'%'];
         }
-        if(isset($params['type']) && !empty($params['type'])){
-            $where[] = ['type','=',$params['type']];
+        if(isset($params['category_id']) && !empty($params['category_id'])){
+            $where[] = ['category_id','=',$params['category_id']];
         }
 
         $count = $this->model->where($where)->count();
@@ -37,7 +37,7 @@ class ArticleRepository extends BaseRepository
         $offset = ($page-1)*$limit;
         $list = $this->model->select($field)->where($where)
             ->orderBy($sortBy, $sortType)
-            ->offset($offset)->limit($limit)->get();
+            ->offset($offset)->limit($limit)->get()->toArray();
 
         return ['list' => $list,'count' => $count];
     }

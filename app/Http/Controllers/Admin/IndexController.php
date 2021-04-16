@@ -3,16 +3,8 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Enums\BasicEnum;
-use App\Enums\BeanEnum;
 use App\Enums\BoolEnum;
-use App\Enums\RegionAgentEnum;
-use App\Enums\SpreadEnum;
-use App\Models\Common\BeanLog;
 use App\Models\Common\City;
-use App\Models\Common\Device;
-use App\Models\Common\DeviceFee;
-use App\Models\Common\RegionAgent;
-use App\Models\Common\Spread;
 use App\Models\Common\User;
 use Illuminate\Support\Facades\DB;
 
@@ -37,40 +29,22 @@ class IndexController extends BaseController
         $last_month1 = strtotime($last_month.'-01 00:00:00');
         $last_month2 = strtotime(date('Y-m').'-01 00:00:00') - 1;
         //用户总数
-        $user_count = User::where('delete_time',0)->where('is_robot',BoolEnum::NO)->count();
+        $user_count = User::where('delete_time',0)->count();
         //今日注册用户总数
-        $user_today = User::where('delete_time',0)->where('is_robot',BoolEnum::NO)
-            ->where('create_time','>=',$today1)->where('create_time','<=',$today2)->count();
+        $user_today = User::where('delete_time',0)->where('create_time','>=',$today1)
+            ->where('create_time','<=',$today2)->count();
         //昨日注册用户数量
-        $user_yesterday = User::where('delete_time',0)->where('is_robot',BoolEnum::NO)
-            ->where('create_time','>=',$yesterday1)->where('create_time','<=',$yesterday2)->count();
+        $user_yesterday = User::where('delete_time',0)->where('create_time','>=',$yesterday1)
+            ->where('create_time','<=',$yesterday2)->count();
         //上月注册用户数量
-        $user_last_month = User::where('delete_time',0)->where('is_robot',BoolEnum::NO)
-            ->where('create_time','>=',$last_month1)->where('create_time','<=',$last_month2)->count();
-        //今日平台玉豆收益
-        $bean_today = BeanLog::where('type',BeanEnum::ROB)
-            ->where('create_time','>=',$today1)->where('create_time','<=',$today2)->sum('bean');
-        $bean_today = $bean_today < 0 ? -1*$bean_today : $bean_today;
-        //昨日平台玉豆收益
-        $bean_yesterday = BeanLog::where('type',BeanEnum::ROB)
-            ->where('create_time','>=',$yesterday1)->where('create_time','<=',$yesterday2)->sum('bean');
-        $bean_yesterday = $bean_yesterday < 0 ? -1*$bean_yesterday : $bean_yesterday;
-        //上月玉豆收益
-        $bean_last_month = BeanLog::where('type',BeanEnum::ROB)
-            ->where('create_time','>=',$last_month1)->where('create_time','<=',$last_month2)->sum('bean');
-        //平台玉豆总收益
-        $bean_total = BeanLog::where('type',BeanEnum::ROB)->sum('bean');
-        $bean_total = $bean_total < 0 ? -1*$bean_total : $bean_total;
+        $user_last_month = User::where('delete_time',0)->where('create_time','>=',$last_month1)
+            ->where('create_time','<=',$last_month2)->count();
 
         $data = [
             'user_count' => $user_count,
             'user_today' => $user_today,
             'user_yesterday' => $user_yesterday,
             'user_last_month' => $user_last_month,
-            'bean_total' => $bean_total,
-            'bean_today' => $bean_today,
-            'bean_yesterday' => $bean_yesterday,
-            'bean_last_month' => $bean_last_month,
         ];
         return view('admin.index.homepage',compact('data'));
     }

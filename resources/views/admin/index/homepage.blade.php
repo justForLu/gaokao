@@ -46,54 +46,6 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    总收益
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-
-                    <p class="layuiadmin-big-font">{{$data['bean_total']}}</p>
-                    <p>平台总玉豆收益</p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    今日收益
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-
-                    <p class="layuiadmin-big-font">{{$data['bean_today']}}</p>
-                    <p>今日平台玉豆收益</p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    昨日收益
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-
-                    <p class="layuiadmin-big-font">{{$data['bean_yesterday']}}</p>
-                    <p>昨日平台玉豆收益</p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">
-                    上月收益
-                </div>
-                <div class="layui-card-body layuiadmin-card-list">
-
-                    <p class="layuiadmin-big-font">{{$data['bean_last_month']}}</p>
-                    <p>上月平台玉豆收益</p>
-                </div>
-            </div>
-        </div>
         <div class="layui-col-sm12">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-sm12">

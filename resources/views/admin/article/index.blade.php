@@ -12,6 +12,19 @@
                     </div>
                 </div>
                 <div class="layui-inline">
+                    <label class="layui-form-label">文章分类</label>
+                    <div class="layui-input-block">
+                        <select name="category_id">
+                            <option value="0">请选择文章分类</option>
+                            @if(!empty($category))
+                                @foreach($category as $v)
+                                    <option value="{{$v['id']}}">{{$v['name']}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="admin-article-table-search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
@@ -66,7 +79,7 @@
                     {checkbox: true, fixed: true},
                     {field:'id', width:120, title: 'ID', sort: true},
                     {field:'title', title: '文章标题',edit:'text'},
-                    {field:'type_name', width:160, title: '类型'},
+                    {field:'category_name', width:160, title: '文章分类'},
                     {field:'status',  width:160, title: '状态',templet: '#article-table-switchTpl', unresize: true},
                     {field:'sort',  width:120, title: '排序'},
                     {fixed: 'right', title:'操作', toolbar: '#admin-article-table-bar', width:150}

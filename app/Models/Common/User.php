@@ -14,8 +14,8 @@ class User extends Authenticatable
     // 用户
     protected $table = 'user';
 
-    protected $fillable = ['id','openid','username','password','salt','head_img','real_name','id_card','nickname','province',
-        'city','area','address','mobile','email','money','status','login_time','login_ip','login_times','account_name',
+    protected $fillable = ['id','openid','username','password','salt','head_img','real_name','nickname','province',
+        'city','area','address','mobile','email','status','login_time','login_ip','login_times','account_name',
         'account_no','bank_name','role_id','agent_id','business_id','stay_id'];
 
 

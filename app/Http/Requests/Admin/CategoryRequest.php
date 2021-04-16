@@ -25,7 +25,6 @@ class CategoryRequest extends Request
     {
         return [
             'name' => 'required',
-            'image' => 'required'
         ];
     }
 
@@ -36,7 +35,6 @@ class CategoryRequest extends Request
     {
         return  [
             'name.required' => '请输入分类名称',
-            'image.required' => '请上传图片',
         ];
     }
 

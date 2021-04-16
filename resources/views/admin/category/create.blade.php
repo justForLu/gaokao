@@ -10,22 +10,16 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required-star">*</span>分类图片</label>
-            <div class="layui-input-block">
-                <div class="layui-upload">
-                    <button type="button" class="layui-btn" id="category-upload-normal">上传图片</button>
-                    <div class="layui-upload-list">
-                        <img class="layui-upload-img" id="category-upload-normal-img" style="width: 150px; height: 150px;">
-                        <p id="test-upload-demoText"></p>
-                    </div>
-                    <input type="hidden" name="image" value="" id="category_image_path">
-                </div>
+            <label class="layui-form-label">分类类型</label>
+            <div class="layui-input-inline">
+                {{\App\Enums\CategoryEnum::enumSelect(\App\Enums\CategoryEnum::ARTICLE,false,'type')}}
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">排序</label>
             <div class="layui-input-block">
                 <input type="text" name="sort" placeholder="请输入排序" value="0" autocomplete="off" class="layui-input">
+                <div class="layui-form-mid layui-word-aux">排序越大越靠前</div>
             </div>
         </div>
         <div class="layui-form-item">

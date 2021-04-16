@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
-    /**
-     * @var Category
-     */
     protected $category;
     protected $log;
 
@@ -73,7 +70,7 @@ class CategoryController extends BaseController
 
         $data = [
             'name' => $params['name'] ?? '',
-            'image' => $params['image'] ?? '',
+            'type' => $params['type'] ?? 0,
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
             'create_time' => time()
@@ -123,7 +120,7 @@ class CategoryController extends BaseController
 
         $data = [
             'name' => $params['name'] ?? '',
-            'image' => $params['image'] ?? '',
+            'type' => $params['type'] ?? 0,
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
             'update_time' => time()

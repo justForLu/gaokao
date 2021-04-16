@@ -6,10 +6,10 @@ use App\Models\Base;
 
 class Category extends Base
 {
-    // 商品分类表
+    // 分类表
     protected $table = 'category';
 
-    protected $fillable = ['name','image','status','sort'];
+    protected $fillable = ['name','image','type','status','sort'];
 
 
 

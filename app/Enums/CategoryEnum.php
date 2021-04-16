@@ -5,12 +5,12 @@ namespace App\Enums;
 /**
  * @method static BaseEnum ENUM()
  */
-class ArticleEnum extends BaseEnum {
+class CategoryEnum extends BaseEnum {
 
-    const MAJOR = 1;
+    const ARTICLE = 1;
 
     static $desc = array(
-        'NOTICE'=>'平台公告',
+        'ARTICLE'=>'文章',
     );
 
 }

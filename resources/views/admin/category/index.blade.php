@@ -12,6 +12,12 @@
                     </div>
                 </div>
                 <div class="layui-inline">
+                    <label class="layui-form-label">类型</label>
+                    <div class="layui-input-block">
+                        {{\App\Enums\CategoryEnum::enumSelect(\App\Enums\CategoryEnum::ARTICLE,'请选择分类类型','type')}}
+                    </div>
+                </div>
+                <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="admin-category-table-search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
@@ -65,6 +71,13 @@
                 cols: [[
                     {field:'id', width:80, title: 'ID', sort: true},
                     {field:'name', title: '分类标题', edit:'text'},
+                    {field:'type', title: '分类类型',templet:function (d) {
+                            if (d.type == 1) {
+                                return '<span style="color:#008000;">文章</span>'
+                            }else{
+                                return '<span style="color:#999999;">-</span>'
+                            }
+                        }},
                     {field:'sort', title: '排序'},
                     {field:'status', title: '状态',templet: '#category-table-switchTpl', unresize: true},
                     {fixed: 'right', title:'操作', toolbar: '#admin-category-table-bar', width:150}
@@ -122,7 +135,7 @@
                         type: 2,
                         title: '编辑分类',
                         content: 'category/'+id+'/edit',
-                        area: ['600px', '630px'],
+                        area: ['400px', '430px'],
                         btn: ['确定', '取消'],
                         yes: function(index, layero){
                             var iframeWindow = window['layui-layer-iframe'+ index],
@@ -166,7 +179,7 @@
                             type: 2,
                             title: '添加分类',
                             content: 'category/create',
-                            area: ['600px', '630px'],
+                            area: ['400px', '430px'],
                             btn: ['确定', '取消'],
                             yes: function(index, layero){
                                 var iframeWindow = window['layui-layer-iframe'+ index],
