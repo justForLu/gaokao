@@ -30,7 +30,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     Route::post('/login', 'LoginController@login');
     Route::get('/logout', 'LoginController@logout');
     Route::get('/getImg/{id}/{w?}/{h?}', ['as' => 'getImg', 'uses' => 'FileController@getImg']);
-    Route::get('/index/user_spread','IndexController@userSpreadSta');
     Route::post('/file/uploadPic','FileController@uploadPic');
     Route::post('/file/editUploadPic','FileController@editUploadPic');
     Route::post('/file/uploadFile','FileController@uploadFile');
