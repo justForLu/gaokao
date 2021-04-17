@@ -9,7 +9,7 @@ class ScoreRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Category';
+        return 'App\Models\Common\Score';
     }
 
     /**
@@ -22,12 +22,15 @@ class ScoreRepository extends BaseRepository
     {
         $page = isset($params['page']) && $params['page'] > 0 ? $params['page'] : 1;
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
-        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'sort';
+        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'id';
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
 
         $where = [];
-        if(isset($params['name']) && !empty($params['name'])){
-            $where[] = ['name','LIKE','%'.$params['name'].'%'];
+        if(isset($params['province']) && !empty($params['province'])){
+            $where[] = ['province','=',$params['province']];
+        }
+        if(isset($params['year']) && !empty($params['year'])){
+            $where[] = ['year','=',$params['year']];
         }
 
         $count = $this->model->where($where)->count();

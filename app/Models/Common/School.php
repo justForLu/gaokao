@@ -9,7 +9,7 @@ class School extends Base
     // 高校
     protected $table = 'school';
 
-    protected $fillable = ['name','province','city','area'];
+    protected $fillable = ['name','province','city','area','sort','status'];
 
 
 }

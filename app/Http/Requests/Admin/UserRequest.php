@@ -24,11 +24,7 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required',
-            'password' => 'required',
-            'mobile' => 'required',
-            'real_name' => 'required',
-            'nickname' => 'required',
+
         ];
     }
 
@@ -38,11 +34,7 @@ class UserRequest extends Request
     public function messages()
     {
         return  [
-            'username.required' => '请输入用户名',
-            'password.required' => '请输入密码',
-            'mobile.required' => '请输入手机号',
-            'real_name.required' => '请输入真实姓名',
-            'nickname.required' => '请输入昵称',
+
         ];
     }
 

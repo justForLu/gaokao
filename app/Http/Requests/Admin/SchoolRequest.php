@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class FeedbackRequest extends Request
+class SchoolRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class FeedbackRequest extends Request
     public function rules()
     {
         return [
-            'key_word' => 'required',
-            'content' => 'required'
+            'name' => 'required',
+            'province' => 'required',
+            'city' => 'required',
         ];
     }
 
@@ -35,8 +36,9 @@ class FeedbackRequest extends Request
     public function messages()
     {
         return  [
-            'key_word.required' => '请输入关键词',
-            'content.required' => '请输入自动回复内容'
+            'name.required' => '请输入高校名称',
+            'province.required' => '请选择省份',
+            'city.required' => '请选择城市',
         ];
     }
 

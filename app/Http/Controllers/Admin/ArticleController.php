@@ -69,7 +69,8 @@ class ArticleController extends BaseController
      */
     public function create(Request $request)
     {
-        return view('admin.article.create');
+        $category = Category::select('id','name')->where('type',CategoryEnum::ARTICLE)->get();
+        return view('admin.article.create',compact('category'));
     }
 
     /**
@@ -85,7 +86,8 @@ class ArticleController extends BaseController
 
         $data = [
             'title' => $params['title'] ?? '',
-            'type' => $params['type'] ?? 0,
+            'category_id' => $params['category_id'] ?? 0,
+            'introduce' => $params['introduce'] ?? '',
             'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'status' => $params['status'] ?? 0,
             'sort' => $params['sort'],
@@ -121,8 +123,9 @@ class ArticleController extends BaseController
         $data = $this->article->find($id);
 
         $data->content = htmlspecialchars_decode($data->content);
+        $category = Category::select('id','name')->where('type',CategoryEnum::ARTICLE)->get();
 
-        return view('admin.article.edit', compact('data'));
+        return view('admin.article.edit', compact('data','category'));
     }
 
     /**
@@ -139,7 +142,8 @@ class ArticleController extends BaseController
 
         $data = [
             'title' => $params['title'] ?? '',
-            'type' => $params['type'] ?? 0,
+            'category_id' => $params['category_id'] ?? 0,
+            'introduce' => $params['introduce'] ?? '',
             'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'status' => $params['status'] ?? 0,
             'sort' => $params['sort'],

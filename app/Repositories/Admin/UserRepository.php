@@ -23,7 +23,6 @@ class UserRepository extends BaseRepository
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
         $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'id';
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
-        $with = isset($params['with']) && !empty($params['with']) ? $params['with'] : [];
 
         $where = [];
         if(isset($params['username']) && !empty($params['username'])){
@@ -34,9 +33,6 @@ class UserRepository extends BaseRepository
         }
         if(isset($params['email']) && !empty($params['email'])){
             $where[] = ['email','=',$params['email']];
-        }
-        if(isset($params['real_name']) && !empty($params['real_name'])){
-            $where[] = ['real_name','=',$params['real_name']];
         }
         if(isset($params['nickname']) && !empty($params['nickname'])){
             $where[] = ['nickname','=',$params['nickname']];
@@ -50,11 +46,14 @@ class UserRepository extends BaseRepository
         if(isset($params['area']) && !empty($params['area'])){
             $where[] = ['area','=',$params['area']];
         }
+        if(isset($params['status']) && !empty($params['status'])){
+            $where[] = ['status','=',$params['status']];
+        }
 
         $count = $this->model->where($where)->count();
 
         $offset = ($page-1)*$limit;
-        $list = $this->model->select($field)->with($with)->where($where)
+        $list = $this->model->select($field)->where($where)
             ->orderBy($sortBy, $sortType)
             ->offset($offset)->limit($limit)->get()->toArray();
 

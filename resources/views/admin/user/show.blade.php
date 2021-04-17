@@ -9,9 +9,6 @@
                         color: #666;
                         width: 120px;
                     }
-                    #look-user-info div.layui-word-aux {
-
-                    }
                     #look-user-info div.head-img {
                         width: 65px;
                         height: 65px;
@@ -41,71 +38,29 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">真实姓名：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->real_name}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
                                 <label class="layui-form-label">昵称：</label>
                                 <div class="layui-input-inline">
                                     <div class="layui-form-mid layui-word-aux">{{$data->nickname}}</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">省市县：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->province_city}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">详细地址：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->address}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label">手机号：</label>
                                 <div class="layui-input-inline">
                                     <div class="layui-form-mid layui-word-aux">{{$data->mobile}}</div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label">邮箱：</label>
                                 <div class="layui-input-inline">
                                     <div class="layui-form-mid layui-word-aux">{{$data->email}}</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">汽油余额：</label>
+                                <label class="layui-form-label">登陆次数：</label>
                                 <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->gasoline_money}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">柴油余额：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->diesel_money}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">邀请码：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->invite_code}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">登录次数：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->login_times}}</div>
+                                    <div class="layui-form-mid layui-word-aux">{{$data->login_time}}</div>
                                 </div>
                             </div>
                         </div>
@@ -120,49 +75,6 @@
                                 <label class="layui-form-label">上次登录IP：</label>
                                 <div class="layui-input-inline">
                                     <div class="layui-form-mid layui-word-aux">{{$data->login_ip}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">支付宝账号：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->alipay}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">支付宝账号昵称：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->alipay_name}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">银行名称：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->bank_name}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">开户行支行：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->bank_branch}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">持卡人姓名：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->account_name}}</div>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">卡号：</label>
-                                <div class="layui-input-inline">
-                                    <div class="layui-form-mid layui-word-aux">{{$data->account_no}}</div>
                                 </div>
                             </div>
                         </div>

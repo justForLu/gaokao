@@ -14,8 +14,20 @@
                 <label class="layui-form-label">文章类型</label>
                 <div class="layui-input-inline">
                     <div class="layui-input-inline">
-                        {{\App\Enums\ArticleEnum::enumSelect(\App\Enums\ArticleEnum::ZHONG,false,'type')}}
+                        @if(!empty($category))
+                            <select name="category_id">
+                                @foreach($category as $v)
+                                    <option value="{{$v['id']}}">{{$v['name']}}</option>
+                                @endforeach
+                            </select>
+                        @endif
                     </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">文章简介</label>
+                <div class="layui-input-block">
+                    <textarea name="introduce" placeholder="请输入文章简介" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -27,7 +39,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-inline">
-                    {{\App\Enums\BasicEnum::enumSelect(\App\Enums\BasicEnum::ACTIVE,false,'status')}}
+                    {{\App\Enums\BasicEnum::enumRadio(\App\Enums\BasicEnum::ACTIVE,'status')}}
                 </div>
             </div>
             <div class="layui-form-item" style="width: 90%; margin: 0px auto; background-color: #ffffff;">

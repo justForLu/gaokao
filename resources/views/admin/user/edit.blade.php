@@ -18,40 +18,15 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required-star">*</span>会员等级</label>
-            <div class="layui-input-block">
-                <select name="grade">
-                    <option value="0">普通会员</option>
-                    @if($grade)
-                        @foreach($grade as $v)
-                            <option value="{{$v['id']}}" @if($data->grade == $v['id']) selected @endif>{{$v['name']}}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label"><span class="required-star">*</span>手机号</label>
             <div class="layui-input-block">
                 <input type="text" name="mobile" placeholder="请输入手机号" value="{{$data->mobile}}" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="required-star">*</span>真实姓名</label>
-            <div class="layui-input-block">
-                <input type="text" name="real_name" placeholder="请输入真实姓名" value="{{$data->real_name}}" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label"><span class="required-star">*</span>昵称</label>
             <div class="layui-input-block">
                 <input type="text" name="nickname" placeholder="请输入昵称" value="{{$data->nickname}}" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">是否机器人</label>
-            <div class="layui-input-block">
-                {{\App\Enums\BoolEnum::enumRadio($data->is_robot,'is_robot')}}
             </div>
         </div>
         <div class="layui-form-item">

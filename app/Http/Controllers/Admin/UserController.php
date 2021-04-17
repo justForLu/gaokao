@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\BasicEnum;
 use App\Http\Requests\Admin\UserRequest;
-use App\Models\Common\City;
 use App\Repositories\Admin\UserRepository as User;
 use App\Repositories\Admin\CityRepository;
 use App\Repositories\Admin\LogRepository;
@@ -51,12 +50,12 @@ class UserController extends BaseController
 
         if($list){
             foreach ($list as &$v){
-                $v['status_name'] = BasicEnum::getDesc($v['status']);
                 $v['login_time'] = $v['login_time'] > 0 ? date('Y-m-d H:i:s', $v['login_time']) : '-';
                 $v['create_time'] = date('Y-m-d H:i:s', strtotime($v['create_time']));
 
                 unset($v['password']);
                 unset($v['salt']);
+                unset($v['openid']);
             }
         }
         return $this->ajaxData($list,$result['count'],'OK');
@@ -91,25 +90,10 @@ class UserController extends BaseController
     public function show($id)
     {
         $data = $this->user->find($id);
-        //处理省市县
-        $region_ids = [$data->province, $data->city, $data->area];
-        $region_ids = array_diff(array_unique($region_ids),[0]);
-        $region_list = [];
-        if($region_ids){
-            $region_list = City::whereIn('id', $region_ids)->pluck('title','id');
-        }
-        $province_name = $region_list[$data->province] ?? '';
-        $city_name = $region_list[$data->city] ?? '';
-        $area_name = $region_list[$data->area] ?? '';
 
-        $data->province_city = $province_name.'-'.$city_name.'-'.$area_name;
-
-        //处理登录时间
-        if($data->login_time){
-            $data->login_time = date('Y-m-d H:i:s', $data->login_time);
-        }else{
-            $data->login_time = '';
-        }
+        //处理时间
+        $data->login_time = $data->login_time > 0 ? date('Y-m-d H:i:s', $data->login_time) : '-';
+        $data->create_time = $data->create_time > 0 ? date('Y-m-d H:i:s', $data->create_time) : '-';
 
         return view('admin.user.show', compact('data'));
     }
@@ -151,9 +135,6 @@ class UserController extends BaseController
         }
         if(isset($params['mobile']) && !empty($params['mobile'])){
             $data['mobile'] = $params['mobile'];
-        }
-        if(isset($params['real_name']) && !empty($params['real_name'])){
-            $data['real_name'] = $params['real_name'];
         }
         if(isset($params['nickname']) && !empty($params['nickname'])){
             $data['nickname'] = $params['nickname'];

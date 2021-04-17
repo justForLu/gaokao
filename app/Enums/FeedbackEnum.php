@@ -8,14 +8,11 @@ namespace App\Enums;
 class FeedbackEnum extends BaseEnum {
 
     // 意见反馈状态
-
-    const HANDLE = 1;
-    const DOING = 2;
-    const DONE = 3;
+    const NO = 0;
+    const DONE = 1;
 
     static $desc = array(
-        'HANDLE' => '待处理',
-        'DOING' => '处理中',
-        'DONE' => '处理完成',
+        'NO' => '待处理',
+        'DONE' => '已处理',
     );
 }

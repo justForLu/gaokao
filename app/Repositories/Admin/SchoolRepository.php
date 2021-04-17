@@ -9,7 +9,7 @@ class SchoolRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Category';
+        return 'App\Models\Common\School';
     }
 
     /**
@@ -28,6 +28,12 @@ class SchoolRepository extends BaseRepository
         $where = [];
         if(isset($params['name']) && !empty($params['name'])){
             $where[] = ['name','LIKE','%'.$params['name'].'%'];
+        }
+        if(isset($params['province']) && !empty($params['province'])){
+            $where[] = ['province','=',$params['province']];
+        }
+        if(isset($params['city']) && !empty($params['city'])){
+            $where[] = ['city','=',$params['city']];
         }
 
         $count = $this->model->where($where)->count();

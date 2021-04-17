@@ -23,7 +23,7 @@ class LogController extends BaseController
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
@@ -34,7 +34,8 @@ class LogController extends BaseController
      * Show the form for creating a new resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function getList(Request $request)
     {

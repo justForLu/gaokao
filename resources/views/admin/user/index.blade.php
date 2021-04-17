@@ -24,16 +24,15 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">真实姓名</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="real_name" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
                     <label class="layui-form-label">昵称</label>
                     <div class="layui-input-block">
                         <input type="text" name="nickname" placeholder="请输入昵称" autocomplete="off" class="layui-input">
                     </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        {{\App\Enums\BasicEnum::enumSelect(false,'请选择状态','status')}}
                 </div>
                 <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="admin-user-table-search">
@@ -50,22 +49,12 @@
                 <input type="checkbox" lay-skin="switch" lay-text="正常|冻结" lay-filter="user-table-freeze"
                        value="@{{ d.id }}" @{{ d.is_freeze === 0 ? 'checked' : '' }}>
             </script>
-            <script type="text/html" id="admin-user-table-toolbar">
-                <div class="layui-btn-container">
-                    @can('user.create')
-                    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
-                    @endcan
-                </div>
-            </script>
             <script type="text/html" id="admin-user-table-bar">
                 @can('user.show')
                 <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="show"><i class="fa fa-search"></i>查看</a>
                 @endcan
                 @can('user.edit')
                 <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="fa fa-search"></i>编辑</a>
-                @endcan
-                @can('user.recharge')
-                <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="recharge"><i class="fa fa-jpy"></i>充值玉豆</a>
                 @endcan
             </script>
         </div>
@@ -86,34 +75,26 @@
             table.render({
                 elem: '#admin-user-table',
                 url: 'user/get_list',
-                toolbar: '#admin-user-table-toolbar',
                 autoSort: false,
                 title: '用户列表',
                 cols: [[
                     {field:'id', width:80, title: 'ID'},
-                    {field:'username', width:160,  title: '用户名'},
-                    {field:'mobile', width:160, title: '手机号'},
-                    {field:'real_name', width:120,  title: '真实姓名'},
-                    {field:'nickname', width:160, title: '昵称'},
-                    {field:'parent_name', width:160, title: '推荐人用户名'},
-                    {field:'direct_num', width:160, title: '直推数量'},
-                    {field:'team_num', width:160, title: '团队数量'},
-                    {field:'grade_name', width:160, title: '会员等级'},
-                    {field:'bean', width:160, title: '玉豆数量'},
-                    {field:'is_freeze', title: '是否冻结', width:140,templet: '#user-table-switchTpl', unresize: true},
-                    {field:'create_time', width:180, title: '注册时间'},
-                    {field:'login_time', width:180, title: '上次登录时间'},
-                    {field:'is_robot', width:180, title: '是否机器人',templet: function (d) {
-                            if (d.is_robot == 0) {
-                                return '<span style="color:#999999;">否</span>'
-                            }else if (d.is_robot == 1) {
-                                return '<span style="color:#008000;">是</span>'
+                    {field:'username', width:190,  title: '用户名'},
+                    {field:'nickname', width:190, title: '昵称'},
+                    {field:'mobile', width:190, title: '手机号'},
+                    {field:'email', width:240, title: '邮箱'},
+                    {field:'create_time', width:220, title: '注册时间'},
+                    {field:'login_time', width:220, title: '上次登录时间'},
+                    {field:'status', width:140, title: '状态',templet:function (d) {
+                            if (d.status == 1) {
+                                return '<span style="color:#008000;">正常</span>'
+                            }else if(d.status == 2){
+                                return '<span style="color:#f44336;">禁用</span>'
                             }else{
                                 return '<span style="color:#999999;">-</span>'
                             }
                         }},
-                    {field:'status_name', width:100, title: '状态'},
-                    {fixed: 'right', title:'操作', toolbar: '#admin-user-table-bar', width:280}
+                    {fixed: 'right', title:'操作', toolbar: '#admin-user-table-bar', width:160}
                 ]],
                 limits: [10, 20, 50, 100],
                 limit: 10,

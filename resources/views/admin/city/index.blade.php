@@ -51,7 +51,7 @@
                     {field:'id', width:80, title: 'ID', sort: true},
                     {field:'title', title: '城市名称'},
                     {field:'grade', title: '等级'},
-                    {field:'sort', title: '排序'},
+                    {field:'sort', title: '排序', edit:'text'},
                     {field:'status', title: '状态',templet: '#city-table-switchTpl', unresize: true},
                 ]],
                 limits: [10, 20, 50, 100],
@@ -89,6 +89,26 @@
                     url:'/admin/city/change_value',
                     method:'post',
                     data:{_token:"{{csrf_token()}}",id:id,field:'status',value:check_value},
+                    success: function (res) {
+                        if(res.code === 0){
+                            layer.msg('编辑成功');
+                        }else{
+                            layer.msg(res.msg);
+                        }
+                    },fail: function () {
+                        layer.msg('编辑失败');
+                    }
+                });
+            });
+            //编辑单元格内容
+            table.on('edit(admin-city-table)',function (obj) {
+                var id = obj.data.id;
+                var field = obj.field;
+                var value = obj.value;
+                $.ajax({
+                    url:'/admin/city/change_value',
+                    method:'post',
+                    data:{_token:"{{csrf_token()}}",id:id,field:field,value:value},
                     success: function (res) {
                         if(res.code === 0){
                             layer.msg('编辑成功');

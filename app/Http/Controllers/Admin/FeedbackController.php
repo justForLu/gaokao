@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\BasicEnum;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Models\Common\Goods;
-use App\Repositories\Admin\CategoryRepository as Category;
+use App\Repositories\Admin\FeedbackRepository as Feedback;
 use App\Repositories\Admin\LogRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends BaseController
 {
-    /**
-     * @var Category
-     */
-    protected $category;
+    protected $feedback;
     protected $log;
 
-    public function __construct(Category $category,LogRepository $log)
+    public function __construct(Feedback $feedback,LogRepository $log)
     {
         parent::__construct();
 
-        $this->category = $category;
+        $this->feedback = $feedback;
         $this->log = $log;
     }
     /**
@@ -30,11 +25,11 @@ class FeedbackController extends BaseController
      */
     public function index()
     {
-        return view('admin.category.index');
+        return view('admin.feedback.index');
     }
 
     /**
-     * 分类列表
+     * 获取列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Repository\Exceptions\RepositoryException
@@ -43,9 +38,16 @@ class FeedbackController extends BaseController
     public function getList(Request $request)
     {
         $params = $request->all();
-
-        $result = $this->category->getList($params);
+        $params['with'] = ['manager'];
+        $result = $this->feedback->getList($params);
         $list = $result['list'] ?? [];
+        if($list){
+            foreach ($list as &$v){
+                $v['manager'] = $v['manager']['username'] ?? '-';
+                $v['deal_time'] = $v['deal_time'] > 0 ? date('Y-m-d H:i:s',$v['deal_time']) : '-';
+                $v['create_time'] = date('Y-m-d H:i:s',$v['create_time']);
+            }
+        }
 
         return $this->ajaxData($list,$result['count'],'OK');
     }
@@ -54,36 +56,20 @@ class FeedbackController extends BaseController
      * Show the form for creating a new resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
-        return view('admin.category.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param CategoryRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @param Request $request
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
-        $params = $request->filterAll();
-
-        $data = [
-            'name' => $params['name'] ?? '',
-            'image' => $params['image'] ?? '',
-            'sort' => $params['sort'] ?? 0,
-            'status' => $params['status'] ?? 0,
-            'create_time' => time()
-        ];
-
-        $result = $this->category->create($data);
-
-        $this->log->writeOperateLog($request, '添加商品分类');  //日志记录
-        return $this->ajaxAuto($result,'添加');
+        //
     }
 
     /**
@@ -105,34 +91,34 @@ class FeedbackController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $data = $this->category->find($id);
+        $data = $this->feedback->find($id);
 
-        return view('admin.category.edit',compact('data'));
+        return view('admin.feedback.edit',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param CategoryRequest $request
+     * @param Request $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $params = $request->filterAll();
+        $params = $request->all();
 
         $data = [
-            'name' => $params['name'] ?? '',
-            'image' => $params['image'] ?? '',
-            'sort' => $params['sort'] ?? 0,
+            'remark' => $params['remark'] ?? '',
             'status' => $params['status'] ?? 0,
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'deal_time' => time(),
             'update_time' => time()
         ];
 
-        $result = $this->category->update($data,$id);
+        $result = $this->feedback->update($data,$id);
 
-        $this->log->writeOperateLog($request, '更新商品分类');  //日志记录
+        $this->log->writeOperateLog($request, '处理意见返回');  //日志记录
         return $this->ajaxAuto($result,'修改');
     }
 
@@ -141,20 +127,10 @@ class FeedbackController extends BaseController
      *
      * @param $id
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id, Request $request)
     {
-        //删除之前检查分类下是否存在商品
-        $is_exist = Goods::where('category_id',$id)->count();
-        if($is_exist > 0){
-            return $this->ajaxError('该分类下存在商品，不能删除');
-        }
-
-        $result = $this->category->delete($id);
-        $this->log->writeOperateLog($request, '删除商品分类');  //日志记录
-
-        return $this->ajaxAuto($result,'删除');
+        //
     }
 
     /**
@@ -169,15 +145,17 @@ class FeedbackController extends BaseController
         $id = $params['id'] ?? 0;
         $field = $params['field'] ?? '';
         $value = $params['value'] ?? '';
-        if(empty($id) || empty($field) || empty($value)){
+        if(empty($id) || empty($field)){
             return $this->ajaxError('未知错误，请联系管理员');
         }
         $data = [
             $field => $value,
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'deal_time' => time(),
             'update_time' => time()
         ];
-        $result = $this->category->update($data,$id);
-        $this->log->writeOperateLog($request, '更新商品分类');  //日志记录
+        $result = $this->feedback->update($data,$id);
+        $this->log->writeOperateLog($request, '更新反馈信息');  //日志记录
         return $this->ajaxAuto($result,'修改');
     }
 
