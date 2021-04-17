@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 17/04/2021 15:36:57
+ Date: 17/04/2021 16:14:32
 */
 
 SET NAMES utf8mb4;
@@ -3581,7 +3581,7 @@ CREATE TABLE `zh_log` (
   `module` tinyint(1) NOT NULL DEFAULT '0' COMMENT '前、后台',
   `create_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=568 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=569 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
 
 -- ----------------------------
 -- Records of zh_log
@@ -4151,6 +4151,7 @@ INSERT INTO `zh_log` VALUES (564, 1, 'feedback', 'changevalue', '/admin/feedback
 INSERT INTO `zh_log` VALUES (565, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643876);
 INSERT INTO `zh_log` VALUES (566, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643901);
 INSERT INTO `zh_log` VALUES (567, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618644951);
+INSERT INTO `zh_log` VALUES (568, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618647241);
 COMMIT;
 
 -- ----------------------------
@@ -4178,7 +4179,7 @@ CREATE TABLE `zh_manager` (
 -- Records of zh_manager
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'OM6tYSljYkXD8wMlluNpwONk8YFyf9VDGdJwhmF7cSJfoJPi5nOh9z1D78ep', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
+INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'm3PwjWgLAJFAlM0anQ5SOM1OARFhUaHRwLcRz2IPI3MoShhKBZXgPIENkO9G', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
 INSERT INTO `zh_manager` VALUES (2, 'test', '$2y$10$K9ZqSDPveI6zuQjOgJj3OeWibeAevedhv5E6vOSLCo2qizF1GAUw.', 'PCkY9mm5WXxdqniZa1kcGdkLHoLREVtNrNmgwhbv3bum3DAqVV3cq2YWmcME', '2020-12-23 12:27:38', '127.0.0.1', '15633339999', '', 1, 0, '2020-12-23 09:28:10', '2021-01-25 17:52:40', NULL);
 INSERT INTO `zh_manager` VALUES (3, 'admin2', '$2y$10$/PDEu9LeNq1w8GJECdBRLOAYnJNyXoTMNZR7XhkM2dzPH2JsAhKii', '', NULL, '', '15987456987', '', 1, 0, '2020-12-23 16:27:31', '2021-01-25 19:09:50', NULL);
 COMMIT;
@@ -4247,77 +4248,53 @@ CREATE TABLE `zh_permission` (
 -- Records of zh_permission
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_permission` VALUES (1, '菜单列表', 'menu.index,menu.getList', '', 5, 1, 1);
-INSERT INTO `zh_permission` VALUES (2, '菜单添加', 'menu.create,menu.store', '', 5, 1, 1);
-INSERT INTO `zh_permission` VALUES (3, '菜单修改', 'menu.edit,menu.update', '', 5, 1, 1);
-INSERT INTO `zh_permission` VALUES (4, '菜单查看', 'menu.show', '', 5, 1, 1);
-INSERT INTO `zh_permission` VALUES (5, '菜单删除', 'menu.destroy,menu.batch_del', '', 5, 1, 1);
-INSERT INTO `zh_permission` VALUES (6, '管理员列表', 'manager.index,manager.getList', '', 2, 1, 0);
-INSERT INTO `zh_permission` VALUES (7, '管理员添加', 'manager.create,manager.store', '', 2, 1, 0);
-INSERT INTO `zh_permission` VALUES (8, '管理员修改', 'manager.edit,manager.update', '', 2, 1, 0);
-INSERT INTO `zh_permission` VALUES (9, '管理员查看', 'manager.show', '', 2, 1, 0);
-INSERT INTO `zh_permission` VALUES (10, '管理员删除', 'manager.destroy', '', 2, 1, 0);
-INSERT INTO `zh_permission` VALUES (11, '权限列表', 'permission.index,permission.getList', '', 4, 1, 1);
-INSERT INTO `zh_permission` VALUES (12, '权限添加', 'permission.create,permission.store', '', 4, 1, 1);
-INSERT INTO `zh_permission` VALUES (13, '权限修改', 'permission.edit,permission.update', '', 4, 1, 1);
-INSERT INTO `zh_permission` VALUES (14, '权限查看', 'permission.show', '', 4, 1, 1);
-INSERT INTO `zh_permission` VALUES (15, '权限删除', 'permission.destroy', '', 4, 1, 1);
-INSERT INTO `zh_permission` VALUES (16, '角色列表', 'role.index,role.getList', '', 3, 1, 0);
-INSERT INTO `zh_permission` VALUES (17, '角色添加', 'role.create,role.store', '', 3, 1, 0);
-INSERT INTO `zh_permission` VALUES (18, '角色修改', 'role.edit,role.update', '', 3, 1, 0);
-INSERT INTO `zh_permission` VALUES (19, '角色查看', 'role.show', '', 3, 1, 0);
-INSERT INTO `zh_permission` VALUES (20, '角色删除', 'role.destroy', '', 3, 1, 0);
-INSERT INTO `zh_permission` VALUES (21, '角色授权', 'role.authority', '', 3, 1, 0);
-INSERT INTO `zh_permission` VALUES (22, '后台日志列表', 'log.index,log.getList', '', 6, 1, 0);
-INSERT INTO `zh_permission` VALUES (23, '城市列表', 'city.index,city.getList', '', 11, 1, 0);
-INSERT INTO `zh_permission` VALUES (24, '城市状态更改', 'city.changeValue', '', 11, 1, 0);
-INSERT INTO `zh_permission` VALUES (25, '网站配置', 'config.index,config.getList', '', 12, 1, 0);
-INSERT INTO `zh_permission` VALUES (26, '网站配置编辑', 'config.edit,config.update', '', 12, 1, 0);
-INSERT INTO `zh_permission` VALUES (27, '轮播图列表', 'banner.index,banner.getList', '', 13, 1, 0);
-INSERT INTO `zh_permission` VALUES (28, '轮播图添加', 'banner.create,banner.store', '', 13, 1, 0);
-INSERT INTO `zh_permission` VALUES (29, '轮播图编辑', 'banner.edit,banner.update', '', 13, 1, 0);
-INSERT INTO `zh_permission` VALUES (30, '轮播图删除', 'banner.destroy', '', 13, 1, 0);
-INSERT INTO `zh_permission` VALUES (31, '轮播图修改', 'banner.changeValue', '', 13, 1, 0);
-INSERT INTO `zh_permission` VALUES (32, '支付方式列表', 'payment.index,payment.getList', '', 14, 1, 0);
-INSERT INTO `zh_permission` VALUES (33, '支付方式编辑', 'payment.edit,payment.update', '', 14, 1, 0);
-INSERT INTO `zh_permission` VALUES (34, '文章列表', 'article.index,article.getList', '', 15, 1, 0);
-INSERT INTO `zh_permission` VALUES (35, '文章添加', 'article.create,article.store', '', 15, 1, 0);
-INSERT INTO `zh_permission` VALUES (36, '文章编辑', 'article.edit,article.update', '', 15, 1, 0);
-INSERT INTO `zh_permission` VALUES (37, '文章删除', 'article.destroy', '', 15, 1, 0);
-INSERT INTO `zh_permission` VALUES (38, '文章修改', 'article.changeValue', '', 15, 1, 0);
-INSERT INTO `zh_permission` VALUES (39, '抢单列表', 'commodity.index,commodity.getList', '', 21, 1, 0);
-INSERT INTO `zh_permission` VALUES (40, '抢单添加', 'commodity.create,commodity.store', '', 21, 1, 0);
-INSERT INTO `zh_permission` VALUES (41, '抢单编辑', 'commodity.edit,commodity.update', '', 21, 1, 0);
-INSERT INTO `zh_permission` VALUES (42, '抢单删除', 'commodity.destroy', '', 21, 1, 0);
-INSERT INTO `zh_permission` VALUES (43, '抢单修改', 'commodity.changeValue', '', 21, 1, 0);
-INSERT INTO `zh_permission` VALUES (44, '场次列表', 'device.index,device.getList', '', 22, 1, 0);
-INSERT INTO `zh_permission` VALUES (45, '场次添加', 'device.create,device.store', '', 22, 1, 0);
-INSERT INTO `zh_permission` VALUES (46, '场次编辑', 'device.edit,device.update', '', 22, 1, 0);
-INSERT INTO `zh_permission` VALUES (47, '场次删除', 'slot.destroy', '', 22, 1, 0);
-INSERT INTO `zh_permission` VALUES (48, '场次修改', 'slot.changeValue', '', 22, 1, 0);
-INSERT INTO `zh_permission` VALUES (49, '抢单配置', 'deploy.index,deploy.getList', '', 23, 1, 0);
-INSERT INTO `zh_permission` VALUES (50, '抢单配置编辑', 'deploy.edit,deploy.update', '', 23, 1, 0);
-INSERT INTO `zh_permission` VALUES (51, '商品分类列表', 'category.index,category.getList', '', 31, 1, 0);
-INSERT INTO `zh_permission` VALUES (52, '商品分类添加', 'category.create,category.store', '', 31, 1, 0);
-INSERT INTO `zh_permission` VALUES (53, '商品分类编辑', 'category.edit,category.update', '', 31, 1, 0);
-INSERT INTO `zh_permission` VALUES (54, '商品分类删除', 'category.destroy', '', 31, 1, 0);
-INSERT INTO `zh_permission` VALUES (55, '商品分类修改', 'category.changeValue', '', 31, 1, 0);
-INSERT INTO `zh_permission` VALUES (56, '商品列表', 'goods.index,goods.getList', '', 32, 1, 0);
-INSERT INTO `zh_permission` VALUES (57, '商品添加', 'goods.create,goods.store', '', 32, 1, 0);
-INSERT INTO `zh_permission` VALUES (58, '商品编辑', 'goods.edit,goods.update', '', 32, 1, 0);
-INSERT INTO `zh_permission` VALUES (59, '商品删除', 'goods.destroy', '', 32, 1, 0);
-INSERT INTO `zh_permission` VALUES (60, '商品修改', 'goods.changeValue', '', 32, 1, 0);
-INSERT INTO `zh_permission` VALUES (67, '商城订单列表', 'order.index,order.getList', '', 41, 1, 0);
-INSERT INTO `zh_permission` VALUES (68, '查看商城订单', 'order.show', '', 41, 1, 0);
-INSERT INTO `zh_permission` VALUES (69, '用户列表', 'user.index,user.getList', '', 51, 1, 0);
-INSERT INTO `zh_permission` VALUES (70, '用户添加', 'user.create,user.store', '', 51, 1, 0);
-INSERT INTO `zh_permission` VALUES (71, '用户编辑', 'user.edit,user.update', '', 51, 1, 0);
-INSERT INTO `zh_permission` VALUES (72, '用户查看', 'user.show', '', 51, 1, 0);
-INSERT INTO `zh_permission` VALUES (73, '用户充值玉豆', 'user.recharge', '', 51, 1, 0);
-INSERT INTO `zh_permission` VALUES (74, '玉豆日志列表', 'beanlog.index,beanlog.getList', '', 52, 1, 0);
-INSERT INTO `zh_permission` VALUES (75, '会员等级编辑', 'grade.edit,grade.update', '', 53, 1, 0);
-INSERT INTO `zh_permission` VALUES (76, '会员等级列表', 'grade.index,grade.getList', '', 53, 1, 0);
-INSERT INTO `zh_permission` VALUES (77, '会员等级修改', 'grade.changeValue', '', 53, 1, 0);
+INSERT INTO `zh_permission` VALUES (1, '管理员列表', 'manager.index,manager.getList', '', 2, 1, 0);
+INSERT INTO `zh_permission` VALUES (2, '管理员添加', 'manager.create,manager.store', '', 2, 1, 0);
+INSERT INTO `zh_permission` VALUES (3, '管理员修改', 'manager.edit,manager.update', '', 2, 1, 0);
+INSERT INTO `zh_permission` VALUES (4, '管理员查看', 'manager.show', '', 2, 1, 0);
+INSERT INTO `zh_permission` VALUES (5, '管理员删除', 'manager.destroy', '', 2, 1, 0);
+INSERT INTO `zh_permission` VALUES (6, '角色列表', 'role.index,role.getList', '', 3, 1, 0);
+INSERT INTO `zh_permission` VALUES (7, '角色添加', 'role.create,role.store', '', 3, 1, 0);
+INSERT INTO `zh_permission` VALUES (8, '角色修改', 'role.edit,role.update', '', 3, 1, 0);
+INSERT INTO `zh_permission` VALUES (9, '角色查看', 'role.show', '', 3, 1, 0);
+INSERT INTO `zh_permission` VALUES (10, '角色删除', 'role.destroy', '', 3, 1, 0);
+INSERT INTO `zh_permission` VALUES (11, '角色授权', 'role.authority', '', 3, 1, 0);
+INSERT INTO `zh_permission` VALUES (12, '后台日志列表', 'log.index,log.getList', '', 4, 1, 0);
+INSERT INTO `zh_permission` VALUES (14, '意见反馈列表', 'feedback.index,feedback.getList', '', 5, 1, 0);
+INSERT INTO `zh_permission` VALUES (15, '意见反馈编辑', 'feedback.edit,feedback.update', '', 5, 1, 0);
+INSERT INTO `zh_permission` VALUES (16, '意见反馈删除', 'feedback.destroy', '', 5, 1, 0);
+INSERT INTO `zh_permission` VALUES (17, '意见反馈修改', 'feedback.changeValue', '', 5, 1, 0);
+INSERT INTO `zh_permission` VALUES (18, '城市列表', 'city.index,city.getList', '', 11, 1, 0);
+INSERT INTO `zh_permission` VALUES (19, '城市状态更改', 'city.changeValue', '', 11, 1, 0);
+INSERT INTO `zh_permission` VALUES (20, '网站配置', 'config.index,config.getList', '', 12, 1, 0);
+INSERT INTO `zh_permission` VALUES (21, '网站配置编辑', 'config.edit,config.update', '', 12, 1, 0);
+INSERT INTO `zh_permission` VALUES (22, '轮播图列表', 'banner.index,banner.getList', '', 13, 1, 0);
+INSERT INTO `zh_permission` VALUES (23, '轮播图添加', 'banner.create,banner.store', '', 13, 1, 0);
+INSERT INTO `zh_permission` VALUES (24, '轮播图编辑', 'banner.edit,banner.update', '', 13, 1, 0);
+INSERT INTO `zh_permission` VALUES (25, '轮播图删除', 'banner.destroy', '', 13, 1, 0);
+INSERT INTO `zh_permission` VALUES (26, '轮播图修改', 'banner.changeValue', '', 13, 1, 0);
+INSERT INTO `zh_permission` VALUES (27, '分类列表', 'category.index,category.getList', '', 14, 1, 0);
+INSERT INTO `zh_permission` VALUES (28, '分类添加', 'category.create,category.store', '', 14, 1, 0);
+INSERT INTO `zh_permission` VALUES (29, '分类编辑', 'category.edit,category.update', '', 14, 1, 0);
+INSERT INTO `zh_permission` VALUES (30, '分类删除', 'category.destroy', '', 14, 1, 0);
+INSERT INTO `zh_permission` VALUES (31, '分类修改', 'category.changeValue', '', 14, 1, 0);
+INSERT INTO `zh_permission` VALUES (32, '分数线列表', 'score.index,score.getList', '', 21, 1, 0);
+INSERT INTO `zh_permission` VALUES (33, '分数线添加', 'score.create,score.store', '', 21, 1, 0);
+INSERT INTO `zh_permission` VALUES (34, '分数线编辑', 'score.edit,score.update', '', 21, 1, 0);
+INSERT INTO `zh_permission` VALUES (35, '分数线删除', 'score.destroy', '', 21, 1, 0);
+INSERT INTO `zh_permission` VALUES (36, '文章列表', 'article.index,article.getList', '', 31, 1, 0);
+INSERT INTO `zh_permission` VALUES (37, '文章添加', 'article.create,article.store', '', 31, 1, 0);
+INSERT INTO `zh_permission` VALUES (38, '文章编辑', 'article.edit,article.update', '', 31, 1, 0);
+INSERT INTO `zh_permission` VALUES (39, '文章删除', 'article.destroy', '', 31, 1, 0);
+INSERT INTO `zh_permission` VALUES (40, '文章修改', 'article.changeValue', '', 31, 1, 0);
+INSERT INTO `zh_permission` VALUES (41, '高校列表', 'school.index,school.getList', '', 41, 1, 0);
+INSERT INTO `zh_permission` VALUES (42, '高校添加', 'school.create,school.store', '', 41, 1, 0);
+INSERT INTO `zh_permission` VALUES (43, '高校编辑', 'school.edit,school.update', '', 41, 1, 0);
+INSERT INTO `zh_permission` VALUES (44, '高校删除', 'school.destroy', '', 41, 1, 0);
+INSERT INTO `zh_permission` VALUES (45, '高校修改', 'school.changeValue', '', 41, 1, 0);
+INSERT INTO `zh_permission` VALUES (46, '用户列表', 'user.index,user.getList', '', 51, 1, 0);
+INSERT INTO `zh_permission` VALUES (47, '用户编辑', 'user.edit,user.update', '', 51, 1, 0);
+INSERT INTO `zh_permission` VALUES (48, '用户查看', 'user.show', '', 51, 1, 0);
 COMMIT;
 
 -- ----------------------------
