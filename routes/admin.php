@@ -33,6 +33,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     Route::post('/file/uploadPic','FileController@uploadPic');
     Route::post('/file/editUploadPic','FileController@editUploadPic');
     Route::post('/file/uploadFile','FileController@uploadFile');
+    Route::get('/get_city_list', 'CityController@get_city_list');
+    Route::any('/manager/my_info', 'ManagerController@myInfo');
+    Route::any('/manager/my_pwd', 'ManagerController@myPwd');
 
     Route::group(['middleware' => ['admin.auth','admin.log','admin.check']], function(){
         Route::get('/index', 'IndexController@index');
@@ -41,8 +44,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
          * 后台管理
          */
         // 管理员管理
-        Route::any('/manager/my_info', 'ManagerController@myInfo');
-        Route::any('/manager/my_pwd', 'ManagerController@myPwd');
         Route::get('/manager/get_list', 'ManagerController@getList');
         Route::resource('/manager', 'ManagerController');
         //角色管理
@@ -63,7 +64,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         //城市列表
         Route::post('/city/change_value', 'CityController@changeValue');
         Route::get('/city/get_list', 'CityController@getList');
-        Route::get('/get_city_list', 'CityController@get_city_list');
         Route::resource('/city', 'CityController');
         //配置管理
         Route::post('/config/change_value', 'ConfigController@changeValue');
@@ -107,7 +107,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
          */
         //用户列表
         Route::get('/user/get_list', 'UserController@getList');
-        Route::any('/user/recharge/{id}', 'UserController@Recharge');
         Route::post('/user/change_value', 'UserController@changeValue');
         Route::resource('/user', 'UserController');
 
