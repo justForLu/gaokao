@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 16/04/2021 17:44:36
+ Date: 17/04/2021 15:36:57
 */
 
 SET NAMES utf8mb4;
@@ -32,16 +32,17 @@ CREATE TABLE `zh_article` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='文章';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='文章';
 
 -- ----------------------------
 -- Records of zh_article
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_article` VALUES (1, '最新公告', 1, '', '<h2 style=\"text-align: center;\"><p><span style=\"font-size: 14px;\">最新公告</span><br></p></h2><p><br></p>', 0, 1, 1610004808, 1616402224);
-INSERT INTO `zh_article` VALUES (2, '最新公告', 1, '', '<h2 style=\"text-align: center;\"><p><br></p></h2><p>最新公告</p><p><br></p>', 0, 1, 1610004808, 1616402252);
-INSERT INTO `zh_article` VALUES (3, '平台公告', 1, '', '<h2 style=\"text-align: center;\"><span style=\"font-size: 14px;\">这是平台公告</span><br></h2><p><br></p>', 0, 1, 1610674828, 1616402247);
-INSERT INTO `zh_article` VALUES (4, '最新平台公告', 1, '', '<p style=\"text-align: center;\">&nbsp; &nbsp; &nbsp;&nbsp;</p><p>放的地方是第三方</p>', 0, 1, 1610674883, 1616402239);
+INSERT INTO `zh_article` VALUES (1, '什么是生物工程', 1, '', '<h2 style=\"text-align: center;\"><p><span style=\"font-size: 14px;\">最新公告</span><br></p></h2><p><br></p>', 0, 1, 1610004808, 1616402224);
+INSERT INTO `zh_article` VALUES (2, '什么是车辆工程', 1, '', '<h2 style=\"text-align: center;\"><p><br></p></h2><p>最新公告</p><p><br></p>', 0, 1, 1610004808, 1616402252);
+INSERT INTO `zh_article` VALUES (3, '什么是土木工程', 1, '', '<h2 style=\"text-align: center;\"><span style=\"font-size: 14px;\">这是平台公告</span><br></h2><p><br></p>', 0, 1, 1610674828, 1616402247);
+INSERT INTO `zh_article` VALUES (4, '什么是物联网专业', 1, '', '<p style=\"text-align: center;\">&nbsp; &nbsp; &nbsp;&nbsp;</p><p>放的地方是第三方</p>', 0, 1, 1610674883, 1616402239);
+INSERT INTO `zh_article` VALUES (5, '什么是物流专业2', 1, '什么是物流专业2', '<p>什么是物流专业2</p><p><br></p>', 0, 1, 1618624235, 1618624495);
 COMMIT;
 
 -- ----------------------------
@@ -133,7 +134,7 @@ INSERT INTO `zh_city` VALUES (14, '吉林', 0, 14, ',0,14,', 1, 0, 1);
 INSERT INTO `zh_city` VALUES (15, '江苏', 0, 15, ',0,15,', 1, 0, 1);
 INSERT INTO `zh_city` VALUES (16, '江西', 0, 16, ',0,16,', 1, 0, 1);
 INSERT INTO `zh_city` VALUES (17, '辽宁', 0, 17, ',0,17,', 1, 0, 1);
-INSERT INTO `zh_city` VALUES (18, '内蒙古', 0, 18, ',0,18,', 1, 0, 1);
+INSERT INTO `zh_city` VALUES (18, '内蒙古', 0, 18, ',0,18,', 1, 1, 1);
 INSERT INTO `zh_city` VALUES (19, '宁夏', 0, 19, ',0,19,', 1, 0, 1);
 INSERT INTO `zh_city` VALUES (20, '青海', 0, 20, ',0,20,', 1, 0, 1);
 INSERT INTO `zh_city` VALUES (21, '山东', 0, 21, ',0,21,', 1, 0, 1);
@@ -3524,8 +3525,12 @@ CREATE TABLE `zh_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
   `mobile` varchar(11) NOT NULL DEFAULT '' COMMENT '手机号',
+  `email` varchar(32) NOT NULL DEFAULT '' COMMENT '邮箱',
   `content` varchar(1000) NOT NULL DEFAULT '' COMMENT '内容',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态（0未处理，1已处理）',
+  `remark` varchar(500) NOT NULL DEFAULT '' COMMENT '备注',
+  `admin_id` int(11) NOT NULL DEFAULT '0' COMMENT '处理人',
+  `deal_time` int(11) NOT NULL DEFAULT '0' COMMENT '处理时间',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
@@ -3535,8 +3540,8 @@ CREATE TABLE `zh_feedback` (
 -- Records of zh_feedback
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_feedback` VALUES (1, '', '', '咨询土木专业', 1, 1609295660, 0);
-INSERT INTO `zh_feedback` VALUES (2, '', '', '咨询物流专业', 1, 0, 1611197159);
+INSERT INTO `zh_feedback` VALUES (1, '张三', '15924140789', '45661515@qq.com', '咨询土木专业', 1, '好了', 0, 0, 1609295660, 0);
+INSERT INTO `zh_feedback` VALUES (2, '李四', '15965287498', 'dsads@qq.com', '咨询物流专业', 1, '已解决', 1, 1618643901, 1609295690, 1611197159);
 COMMIT;
 
 -- ----------------------------
@@ -3576,7 +3581,7 @@ CREATE TABLE `zh_log` (
   `module` tinyint(1) NOT NULL DEFAULT '0' COMMENT '前、后台',
   `create_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=568 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
 
 -- ----------------------------
 -- Records of zh_log
@@ -4112,6 +4117,40 @@ INSERT INTO `zh_log` VALUES (530, 1, 'category', 'changevalue', '/admin/category
 INSERT INTO `zh_log` VALUES (531, 1, 'category', 'changevalue', '/admin/category/change_value', '更新分类', '127.0.0.1', 1, 1618565962);
 INSERT INTO `zh_log` VALUES (532, 1, 'category', 'update', '/admin/category/1', '更新分类', '127.0.0.1', 1, 1618565971);
 INSERT INTO `zh_log` VALUES (533, 1, 'category', 'changevalue', '/admin/category/change_value', '更新分类', '127.0.0.1', 1, 1618565975);
+INSERT INTO `zh_log` VALUES (534, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618623718);
+INSERT INTO `zh_log` VALUES (535, 1, 'article', 'store', '/admin/article', '添加文章', '127.0.0.1', 1, 1618624235);
+INSERT INTO `zh_log` VALUES (536, 1, 'article', 'changevalue', '/admin/article/change_value', '更新文章', '127.0.0.1', 1, 1618624251);
+INSERT INTO `zh_log` VALUES (537, 1, 'article', 'changevalue', '/admin/article/change_value', '更新文章', '127.0.0.1', 1, 1618624259);
+INSERT INTO `zh_log` VALUES (538, 1, 'article', 'changevalue', '/admin/article/change_value', '更新文章', '127.0.0.1', 1, 1618624264);
+INSERT INTO `zh_log` VALUES (539, 1, 'article', 'changevalue', '/admin/article/change_value', '更新文章', '127.0.0.1', 1, 1618624272);
+INSERT INTO `zh_log` VALUES (540, 1, 'article', 'changevalue', '/admin/article/change_value', '更新文章', '127.0.0.1', 1, 1618624402);
+INSERT INTO `zh_log` VALUES (541, 1, 'article', 'update', '/admin/article/5', '编辑文章', '127.0.0.1', 1, 1618624432);
+INSERT INTO `zh_log` VALUES (542, 1, 'article', 'update', '/admin/article/5', '编辑文章', '127.0.0.1', 1, 1618624438);
+INSERT INTO `zh_log` VALUES (543, 1, 'article', 'update', '/admin/article/5', '编辑文章', '127.0.0.1', 1, 1618624490);
+INSERT INTO `zh_log` VALUES (544, 1, 'article', 'update', '/admin/article/5', '编辑文章', '127.0.0.1', 1, 1618624495);
+INSERT INTO `zh_log` VALUES (545, 1, 'score', 'store', '/admin/score', '添加分数线', '127.0.0.1', 1, 1618627925);
+INSERT INTO `zh_log` VALUES (546, 1, 'score', 'changevalue', '/admin/score/change_value', '更新分数线', '127.0.0.1', 1, 1618628499);
+INSERT INTO `zh_log` VALUES (547, 1, 'score', 'update', '/admin/score/1', '更新分数线', '127.0.0.1', 1, 1618628549);
+INSERT INTO `zh_log` VALUES (548, 1, 'score', 'update', '/admin/score/1', '更新分数线', '127.0.0.1', 1, 1618628562);
+INSERT INTO `zh_log` VALUES (549, 1, 'score', 'update', '/admin/score/1', '更新分数线', '127.0.0.1', 1, 1618628616);
+INSERT INTO `zh_log` VALUES (550, 1, 'score', 'destroy', '/admin/score/2', '删除分数线', '127.0.0.1', 1, 1618628646);
+INSERT INTO `zh_log` VALUES (551, 1, 'score', 'store', '/admin/score', '添加分数线', '127.0.0.1', 1, 1618628731);
+INSERT INTO `zh_log` VALUES (552, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618629780);
+INSERT INTO `zh_log` VALUES (553, 1, 'school', 'store', '/admin/school', '添加高校', '127.0.0.1', 1, 1618630494);
+INSERT INTO `zh_log` VALUES (554, 1, 'school', 'changevalue', '/admin/school/change_value', '更新高校', '127.0.0.1', 1, 1618630612);
+INSERT INTO `zh_log` VALUES (555, 1, 'school', 'update', '/admin/school/1', '更新高校', '127.0.0.1', 1, 1618630640);
+INSERT INTO `zh_log` VALUES (556, 1, 'school', 'update', '/admin/school/1', '更新高校', '127.0.0.1', 1, 1618630647);
+INSERT INTO `zh_log` VALUES (557, 1, 'school', 'store', '/admin/school', '添加高校', '127.0.0.1', 1, 1618630769);
+INSERT INTO `zh_log` VALUES (558, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618643008);
+INSERT INTO `zh_log` VALUES (559, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643466);
+INSERT INTO `zh_log` VALUES (560, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643482);
+INSERT INTO `zh_log` VALUES (561, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643487);
+INSERT INTO `zh_log` VALUES (562, 1, 'feedback', 'update', '/admin/feedback/1', '处理意见返回', '127.0.0.1', 1, 1618643630);
+INSERT INTO `zh_log` VALUES (563, 1, 'feedback', 'update', '/admin/feedback/1', '处理意见返回', '127.0.0.1', 1, 1618643669);
+INSERT INTO `zh_log` VALUES (564, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643861);
+INSERT INTO `zh_log` VALUES (565, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643876);
+INSERT INTO `zh_log` VALUES (566, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643901);
+INSERT INTO `zh_log` VALUES (567, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618644951);
 COMMIT;
 
 -- ----------------------------
@@ -4139,11 +4178,9 @@ CREATE TABLE `zh_manager` (
 -- Records of zh_manager
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'SEaAZRyp2np3CB0aogtmqnRFlMjubfITsls4iMiX0BKAmBORaJ9bLBPaVvFT', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
+INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'OM6tYSljYkXD8wMlluNpwONk8YFyf9VDGdJwhmF7cSJfoJPi5nOh9z1D78ep', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
 INSERT INTO `zh_manager` VALUES (2, 'test', '$2y$10$K9ZqSDPveI6zuQjOgJj3OeWibeAevedhv5E6vOSLCo2qizF1GAUw.', 'PCkY9mm5WXxdqniZa1kcGdkLHoLREVtNrNmgwhbv3bum3DAqVV3cq2YWmcME', '2020-12-23 12:27:38', '127.0.0.1', '15633339999', '', 1, 0, '2020-12-23 09:28:10', '2021-01-25 17:52:40', NULL);
 INSERT INTO `zh_manager` VALUES (3, 'admin2', '$2y$10$/PDEu9LeNq1w8GJECdBRLOAYnJNyXoTMNZR7XhkM2dzPH2JsAhKii', '', NULL, '', '15987456987', '', 1, 0, '2020-12-23 16:27:31', '2021-01-25 19:09:50', NULL);
-INSERT INTO `zh_manager` VALUES (4, '888', '$2y$10$QwVBSryEqycCfI.ZK/ysmOwtnlDJquZxCHzqjLIZCyVZ/hWO4sA6C', '', NULL, '', '15968745896', '', 1, 0, '2020-12-24 10:32:23', '2020-12-24 10:32:23', NULL);
-INSERT INTO `zh_manager` VALUES (8, '888', '$2y$10$QwVBSryEqycCfI.ZK/ysmOwtnlDJquZxCHzqjLIZCyVZ/hWO4sA6C', '', NULL, '', '15968745896', '', 1, 0, '2020-12-24 10:32:23', '2020-12-24 10:32:23', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -4174,19 +4211,20 @@ INSERT INTO `zh_menu` VALUES (1, '后台管理', 'backstage', 0, '0,1,1', '/back
 INSERT INTO `zh_menu` VALUES (2, '管理员管理', 'manager', 1, '0,1,2', '/manager', 2, 2, 1, 'fa fa-users', 1, 0);
 INSERT INTO `zh_menu` VALUES (3, '角色管理', 'role', 1, '0,1,1,3', '/role', 2, 3, 1, 'fa fa-user-secret', 1, 0);
 INSERT INTO `zh_menu` VALUES (4, '日志列表', 'log', 1, '0,1,4', '/log', 2, 4, 1, 'fa fa-calendar', 1, 1);
+INSERT INTO `zh_menu` VALUES (5, '用户反馈', 'feedback', 1, '0,1,5', '/feedback', 2, 5, 1, 'fa fa-envelope-o', 1, 1);
 INSERT INTO `zh_menu` VALUES (10, '系统设置', 'system', 0, '0,10', '/system', 1, 2, 1, 'fa fa-tachometer ', 1, 0);
 INSERT INTO `zh_menu` VALUES (11, '城市列表', 'city', 10, '0,10,7', '/city', 2, 1, 1, 'fa fa-building-o', 1, 0);
 INSERT INTO `zh_menu` VALUES (12, '配置管理', 'config', 10, '0,10,12', '/config', 2, 2, 1, 'fa fa-wrench', 1, 0);
 INSERT INTO `zh_menu` VALUES (13, '轮播图列表', 'banner', 10, '0,10,13', '/banner', 2, 3, 1, 'fa fa-file-image-o', 1, 0);
-INSERT INTO `zh_menu` VALUES (14, '商品分类', 'category', 10, '0,10,14', '/category', 2, 4, 1, 'fa fa-sitemap', 1, 0);
-INSERT INTO `zh_menu` VALUES (20, '分数线管理', 'fenshux', 0, '0,20', '/fenshux', 1, 3, 1, 'fa fa-cubes ', 1, 0);
+INSERT INTO `zh_menu` VALUES (14, '分类管理', 'category', 10, '0,10,14', '/category', 2, 4, 1, 'fa fa-sitemap', 1, 0);
+INSERT INTO `zh_menu` VALUES (20, '分数线管理', 'fenshux', 0, '0,20', '/fenshux', 1, 3, 1, 'fa fa-balance-scale', 1, 0);
 INSERT INTO `zh_menu` VALUES (21, '分数线列表', 'score', 20, '0,20,21', '/score', 2, 1, 1, 'fa fa-bars', 1, 0);
-INSERT INTO `zh_menu` VALUES (30, '文章管理', 'wenzhang', 0, '0,30', '/wenzhang', 1, 4, 1, 'fa fa-shopping-cart', 1, 0);
-INSERT INTO `zh_menu` VALUES (31, '文章管理', 'article', 30, '0,30,30', '/article', 2, 1, 1, 'fa fa-book', 1, 0);
-INSERT INTO `zh_menu` VALUES (40, '高校管理', 'gaoxiao', 0, '0,40', '/gaoxiao', 1, 5, 1, 'fa fa-users', 1, 0);
-INSERT INTO `zh_menu` VALUES (41, '高校列表', 'school', 40, '0,40,41', '/school', 2, 1, 1, 'fa fa-user', 1, 0);
-INSERT INTO `zh_menu` VALUES (50, '用户管理', 'yonghu', 0, '0,40', '/yonghu', 1, 5, 1, 'fa fa-users', 1, 0);
-INSERT INTO `zh_menu` VALUES (51, '用户列表', 'user', 40, '0,40,41', '/user', 2, 1, 1, 'fa fa-user', 1, 0);
+INSERT INTO `zh_menu` VALUES (30, '文章管理', 'wenzhang', 0, '0,30', '/wenzhang', 1, 4, 1, 'fa fa-book', 1, 0);
+INSERT INTO `zh_menu` VALUES (31, '文章管理', 'article', 30, '0,30,30', '/article', 2, 1, 1, 'fa fa-file-text-o', 1, 0);
+INSERT INTO `zh_menu` VALUES (40, '高校管理', 'gaoxiao', 0, '0,40', '/gaoxiao', 1, 5, 1, 'fa fa-university', 1, 0);
+INSERT INTO `zh_menu` VALUES (41, '高校列表', 'school', 40, '0,40,41', '/school', 2, 1, 1, 'fa fa-graduation-cap', 1, 0);
+INSERT INTO `zh_menu` VALUES (50, '用户管理', 'yonghu', 0, '0,50', '/yonghu', 1, 5, 1, 'fa fa-users', 1, 0);
+INSERT INTO `zh_menu` VALUES (51, '用户列表', 'user', 50, '0,50,51', '/user', 2, 1, 1, 'fa fa-user', 1, 0);
 COMMIT;
 
 -- ----------------------------
@@ -4404,8 +4442,6 @@ BEGIN;
 INSERT INTO `zh_role_user` VALUES (1, 1, 1, 1);
 INSERT INTO `zh_role_user` VALUES (2, 2, 4, 1);
 INSERT INTO `zh_role_user` VALUES (3, 3, 5, 1);
-INSERT INTO `zh_role_user` VALUES (4, 4, 1, 1);
-INSERT INTO `zh_role_user` VALUES (8, 8, 1, 1);
 COMMIT;
 
 -- ----------------------------
@@ -4419,15 +4455,19 @@ CREATE TABLE `zh_school` (
   `city` int(11) NOT NULL DEFAULT '0' COMMENT '所在城市',
   `area` int(11) NOT NULL DEFAULT '0' COMMENT '所在区县',
   `address` varchar(50) NOT NULL DEFAULT '' COMMENT '详细地址',
+  `sort` tinyint(1) NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='高校列表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='高校列表';
 
 -- ----------------------------
 -- Records of zh_school
 -- ----------------------------
 BEGIN;
+INSERT INTO `zh_school` VALUES (1, '内蒙古工业大学', 18, 257, 0, '', 0, 1, 0, NULL);
+INSERT INTO `zh_school` VALUES (2, '北京科技大学', 1, 3671, 499, '', 0, 1, 0, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -4449,12 +4489,14 @@ CREATE TABLE `zh_score` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='历年高考分数线';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='历年高考分数线';
 
 -- ----------------------------
 -- Records of zh_score
 -- ----------------------------
 BEGIN;
+INSERT INTO `zh_score` VALUES (1, 18, '2020', 526, 489, 456, 401, 515, 478, 431, 398, 0, 0);
+INSERT INTO `zh_score` VALUES (3, 18, '2019', 526, 528, 541, 515, 511, 335, 357, 984, 0, 0);
 COMMIT;
 
 -- ----------------------------
