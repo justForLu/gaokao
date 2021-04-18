@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\BasicEnum;
 use App\Enums\PositionEnum;
+use App\Enums\TermEnum;
 use App\Http\Requests\Admin\BannerRequest;
 use App\Repositories\Admin\BannerRepository as Banner;
 use App\Repositories\Admin\LogRepository;
@@ -48,6 +49,7 @@ class BannerController extends BaseController
         $list = $result['list'] ?? [];
         if($list){
             foreach ($list as &$v){
+                $v['terminal_name'] = TermEnum::getDesc($v['terminal']);
                 $v['position_name'] = PositionEnum::getDesc($v['position']);
             }
         }
@@ -82,6 +84,7 @@ class BannerController extends BaseController
             'title' => $params['title'] ?? '',
             'image' => $params['image'] ?? '',
             'url' => $params['url'] ?? '',
+            'terminal' => $params['terminal'] ?? 0,
             'position' => $params['position'] ?? 0,
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
@@ -137,6 +140,7 @@ class BannerController extends BaseController
             'title' => $params['title'] ?? '',
             'image' => $params['image'] ?? '',
             'url' => $params['url'] ?? '',
+            'terminal' => $params['terminal'] ?? 0,
             'position' => $params['position'] ?? 0,
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,

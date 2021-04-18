@@ -22,12 +22,21 @@
                     </div>
                     <input type="hidden" name="image" value="{{$data->image}}" id="banner_image_path">
                 </div>
+                <div class="layui-form-mid layui-word-aux">PC端建议尺寸，移动端建议尺寸</div>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">跳转地址</label>
             <div class="layui-input-block">
                 <input type="text" name="url" placeholder="请输入跳转地址" value="{{$data->url}}" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">终端</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    {{\App\Enums\TermEnum::enumSelect($data->position,false,'terminal')}}
+                </div>
             </div>
         </div>
         <div class="layui-form-item">
@@ -42,6 +51,7 @@
             <label class="layui-form-label">排序</label>
             <div class="layui-input-block">
                 <input type="text" name="sort" value="{{$data->sort}}" placeholder="请输入排序" autocomplete="off" class="layui-input">
+                <div class="layui-form-mid layui-word-aux">排序越大越靠前</div>
             </div>
         </div>
         <div class="layui-form-item">

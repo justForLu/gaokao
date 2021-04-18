@@ -63,9 +63,9 @@
                 autoSort: false,
                 title: '轮播图列表',
                 cols: [[
-                    {checkbox: true, fixed: true},
                     {field:'id', width:80, title: 'ID', sort: true},
                     {field:'title', title: '轮播图标题', edit:'text'},
+                    {field:'terminal_name', title: '终端'},
                     {field:'position_name', title: '轮播图位置'},
                     {field:'sort', title: '排序'},
                     {field:'status', title: '状态',templet: '#banner-table-switchTpl', unresize: true},

@@ -35,6 +35,7 @@
             <label class="layui-form-label">排序</label>
             <div class="layui-input-inline">
                 <input type="text" name="sort" placeholder="请输入排序" value="{{$data->sort}}" autocomplete="off" class="layui-input">
+                <div class="layui-form-mid layui-word-aux">排序越大越靠前</div>
             </div>
         </div>
         <div class="layui-form-item">
