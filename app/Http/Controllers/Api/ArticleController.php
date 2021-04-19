@@ -19,18 +19,17 @@ class ArticleController extends BaseController
 
     }
 
-
     /**
      * 获取公告列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \ReflectionException
      */
-    public function getNoticeList(Request $request)
+    public function getList(Request $request)
     {
         $params = $request->all();
 
-        $params['type'] = ArticleEnum::NOTICE;
-        $field = ['id','title','content','create_time'];
+        $field = ['id','category_id','title','introduce'];
         $result = $this->article->getList($params, $field);
 
         return $this->returnSuccess($result);

@@ -36,21 +36,6 @@ class ConfigController extends BaseController
     }
 
     /**
-     * 获取平台公告
-     */
-    public function getNotice()
-    {
-        //检查缓存是否存在，不存在则数据库查询
-        $value = Cache::get(\Illuminate\Support\Facades\Config::get('common.cache.website_config').'home_platform_notice');
-        if(empty($value)){
-            $value = $this->config->getConfig('home_platform_notice');
-            Cache::put(\Illuminate\Support\Facades\Config::get('common.cache.website_config').'home_platform_notice', $value, 1440);
-        }
-
-        return $this->returnSuccess($value,'OK');
-    }
-
-    /**
      * 获取ICP备案号
      */
     public function getIcp()
@@ -90,33 +75,6 @@ class ConfigController extends BaseController
         return $this->returnSuccess($data,'OK');
     }
 
-    /**
-     * 安卓APP最新版本以及下载地址
-     */
-    public function androidApp()
-    {
-        //下载地址
-        //检查缓存是否存在，不存在则数据库查询
-        $download = Cache::get(\Illuminate\Support\Facades\Config::get('common.cache.website_config').'home_android_download_address');
-        if(empty($download)){
-            $download = $this->config->getConfig('home_android_download_address');
-            Cache::put(\Illuminate\Support\Facades\Config::get('common.cache.website_config').'home_android_download_address', $download, 1440);
-        }
-        //最新版本
-        //检查缓存是否存在，不存在则数据库查询
-        $version = Cache::get(\Illuminate\Support\Facades\Config::get('common.cache.website_config').'home_android_app_version');
-        if(empty($version)){
-            $version = $this->config->getConfig('home_android_app_version');
-            Cache::put(\Illuminate\Support\Facades\Config::get('common.cache.website_config').'home_android_app_version', $version, 1440);
-        }
-
-        $data = [
-            'download' => $download,
-            'version' => $version
-        ];
-
-        return $this->returnSuccess($data,'OK');
-    }
 }
 
 

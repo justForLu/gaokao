@@ -2,16 +2,14 @@
 
 namespace App\Repositories\Api;
 
-
-use App\Enums\ArticleEnum;
 use App\Enums\BasicEnum;
 use App\Repositories\BaseRepository;
 
-class ArticleRepository extends BaseRepository
+class SchoolRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Article';
+        return 'App\Models\Common\School';
     }
 
     /**
@@ -28,8 +26,8 @@ class ArticleRepository extends BaseRepository
 
         $where = [];
         $where[] = ['status','=',BasicEnum::ACTIVE];
-        if(isset($params['type']) && !empty($params['type'])){
-            $where[] = ['type','=',$params['type']];
+        if(isset($params['province']) && !empty($params['province'])){
+            $where[] = ['province','=',$params['province']];
         }
 
         $count = $this->model->where($where)->count();
@@ -41,11 +39,22 @@ class ArticleRepository extends BaseRepository
             ->offset($offset)->limit($limit)->get();
         if($list){
             foreach ($list as &$v){
-                $v['category_name'] = ArticleEnum::getDesc($v['category_id']);
+
             }
         }
 
         return ['list' => $list,'page_total' => $page_total];
     }
 
+    /**
+     * 获取详情
+     * @param $id
+     * @return mixed
+     */
+    public function getDetail($id)
+    {
+        $data = $this->model->where('id',$id)->first();
+
+        return $data;
+    }
 }

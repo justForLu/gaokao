@@ -132,68 +132,6 @@ class SmsController extends BaseController
     }
 
     /**
-     * 修改支付密码验证码
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \AlibabaCloud\Client\Exception\ClientException
-     */
-    public function payPwdCode(Request $request)
-    {
-        $params = $request->all();
-
-        $res_check = $this->checkMobile($params);
-        if($res_check != 'OK'){
-            return $this->returnError($res_check);
-        }
-        //检查手机号是否与登录账号匹配
-        if($params['mobile'] != $this->userInfo['mobile']){
-            return $this->returnError('手机号与登录账号不匹配');
-        }
-
-        $code = $this->createCode();
-
-        //把验证码存到Redis里，有效期10分钟
-        $this->redis->set(Config::get('api.pay_pwd_code').$params['mobile'],$code);
-        $this->redis->expire(Config::get('api.pay_pwd_code').$params['mobile'],600);
-
-        //发送验证码
-        $this->sms->sendCode($params['mobile'],['code' => $code]);
-
-        return $this->returnSuccess(null,'调用成功');
-    }
-
-    /**
-     * 修改个人银行、支付宝信息验证码
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \AlibabaCloud\Client\Exception\ClientException
-     */
-    public function userBankCode(Request $request)
-    {
-        $params = $request->all();
-
-        $res_check = $this->checkMobile($params);
-        if($res_check != 'OK'){
-            return $this->returnError($res_check);
-        }
-        //检查手机号是否与登录账号匹配
-        if($params['mobile'] != $this->userInfo['mobile']){
-            return $this->returnError('手机号与登录账号不匹配');
-        }
-
-        $code = $this->createCode();
-
-        //把验证码存到Redis里，有效期10分钟
-        $this->redis->set(Config::get('api.user_bank_code').$params['mobile'],$code);
-        $this->redis->expire(Config::get('api.user_bank_code').$params['mobile'],600);
-
-        //发送验证码
-        $this->sms->sendCode($params['mobile'],['code' => $code]);
-
-        return $this->returnSuccess(null,'调用成功');
-    }
-
-    /**
      * 验证手机号是否为空，格式是否正确
      * @param array $params
      * @return string

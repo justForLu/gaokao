@@ -13,7 +13,6 @@ class IndexController extends BaseController
     {
         parent::__construct($request);
 
-
     }
 
 

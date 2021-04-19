@@ -42,7 +42,7 @@ class CityController extends BaseController
     {
         $params = $request->all();
         if(!isset($params['city_id']) || empty($params['city_id'])){
-            return $this->returnError('确实城市ID');
+            return $this->returnError('请确定城市ID');
         }
 
         $list = $this->city->getListByCity($params);

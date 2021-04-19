@@ -19,20 +19,15 @@ class CategoryController extends BaseController
     }
 
     /**
-     * 获取分类列表
+     * 获取文章分类列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getList(Request $request)
+    public function getArtList(Request $request)
     {
         $params = $request->all();
-        $field = ['id','name','image'];
+        $field = ['id','name'];
         $list = $this->category->getList($params,$field);
-        if($list){
-            foreach ($list as &$v){
-                $v['image'] = get_http_type().$_SERVER['HTTP_HOST'].$v['image'];
-            }
-        }
 
         return $this->returnSuccess($list);
     }

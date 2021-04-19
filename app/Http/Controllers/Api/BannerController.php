@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Enums\PositionEnum;
+use App\Enums\TermEnum;
 use App\Repositories\Api\BannerRepository as Banner;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,7 @@ class BannerController extends BaseController
     {
         $params = $request->all();
         $params['position'] = PositionEnum::INDEX;
+        $params['terminal'] = TermEnum::WAP;
         $list = $this->banner->getList($params);
         if($list){
             $http = get_http_type();
