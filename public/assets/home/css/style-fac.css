@@ -628,7 +628,7 @@
 }
 
 .fac_info_con .price {
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_info_con .vals {
@@ -732,8 +732,8 @@
 }
 
 .fac_hot_list a:hover {
-    color: #ff7325;
-    border-color: #2698e4
+    color: #1ea115;
+    border-color: #1ea115
 }
 
 .fac_rank {
@@ -807,7 +807,7 @@
 }
 
 .fac_rank .tops .eqs {
-    background: #2698e4;
+    background: #1ea115;
     color: #fff
 }
 
@@ -854,7 +854,7 @@
 
 .fac_vhistory .prices {
     font-size: 14px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_title {
@@ -879,7 +879,7 @@
 .fac_title .line {
     width: 5px;
     height: 20px;
-    background: #2698e4;
+    background: #1ea115;
     border-radius: 2px;
     display: inline-block;
     vertical-align: middle;
@@ -915,7 +915,7 @@
 
 .fac_recom .fac_title h3 {
     background: none;
-    color: #2698e4;
+    color: #1ea115;
     font-weight: normal
 }
 
@@ -925,7 +925,7 @@
 
 .ne_recom .fac_title h3 {
     background: none;
-    color: #2698e4;
+    color: #1ea115;
     font-weight: normal
 }
 
@@ -933,7 +933,8 @@
     height: 34px;
     line-height: 34px;
     padding: 8px 0;
-    border-bottom: 1px solid #eee
+    border-bottom: 1px solid #eee;
+    text-align: left;
 }
 
 .ner_title h3 {
@@ -997,7 +998,7 @@
 }
 
 .fac_recom .name:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .fac_recom .des {
@@ -1007,7 +1008,7 @@
 }
 
 .fac_recom .price {
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_imgshow {
@@ -1082,7 +1083,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    border: 1px solid #ff7325;
+    border: 1px solid #1ea115;
     display: none;
     cursor: pointer
 }
@@ -1246,7 +1247,8 @@
 .fac_top_info {
     margin-left: 466px;
     position: relative;
-    height: 370px
+    height: 370px;
+    text-align: left;
 }
 
 .fac_top_acts {
@@ -1269,7 +1271,7 @@
 }
 
 .fac_top_acts a:hover, .fac_top_acts a.hover {
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_top_acts a:hover .ic, .fac_top_acts a.hover .ic {
@@ -1325,7 +1327,7 @@
 }
 
 .fac_top .des em {
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_top .des .ic {
@@ -1335,7 +1337,7 @@
 .fac_top .prices {
     height: 40px;
     line-height: 40px;
-    color: #ff7325;
+    color: #1ea115;
     font-size: 28px
 }
 
@@ -1415,8 +1417,8 @@
 }
 
 .fac_tag em:hover {
-    color: #2698e4;
-    border-color: #2698e4
+    color: #1ea115;
+    border-color: #1ea115
 }
 
 .fac_acts {
@@ -1445,7 +1447,7 @@
 }
 
 .fac_acts .award_con em {
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_acts .award_con span {
@@ -1604,7 +1606,7 @@
 }
 
 .fac_main_question .fac_title .nums {
-    color: #2698e4;
+    color: #1ea115;
     font-size: 14px
 }
 
@@ -1631,14 +1633,14 @@ h3.title2 {
     height: 18px;
     line-height: 18px;
     font-size: 18px;
-    color: #2698e4;
+    color: #1ea115;
     padding: 10px 0
 }
 
 h3.title2 .line {
     width: 4px;
     height: 15px;
-    background: #2698e4;
+    background: #1ea115;
     border-radius: 2px;
     display: inline-block;
     vertical-align: -1px;
@@ -1689,11 +1691,12 @@ h3.title2 .line {
 
 .fac_salary td {
     color: #444;
-    border: 1px solid #ddd
+    border: 1px solid #ddd;
+    text-align: left;
 }
 
 .fac_salary .prices {
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_salary em.prices {
@@ -1711,7 +1714,8 @@ h3.title2 .line {
 }
 
 .fac_salary .t1 td {
-    background: #f7f9fa
+    background: #f7f9fa;
+    text-align: left;
 }
 
 .salary_con {
@@ -1744,7 +1748,7 @@ h3.title2 .line {
     width: 100%;
     left: 0;
     height: 4px;
-    background: #2698e4;
+    background: #1ea115;
     border-radius: 2px;
     display: none
 }
@@ -1755,14 +1759,14 @@ h3.title2 .line {
     left: 50%;
     bottom: -6px;
     border: 3px solid transparent;
-    border-top: 3px solid #2698e4;
+    border-top: 3px solid #1ea115;
     width: 0;
     height: 0;
     margin-left: -3px
 }
 
 .salary_tab .active a {
-    color: #2698e4;
+    color: #1ea115;
     font-weight: bold
 }
 
@@ -1803,7 +1807,7 @@ h3.title2 .line {
 }
 
 .fac_des_note .titles {
-    color: #ff7325;
+    color: #1ea115;
     margin-left: 0
 }
 
@@ -1876,7 +1880,7 @@ h3.title2 .line {
     line-height: 25px;
     color: #fff;
     display: block;
-    background: #2698e4;
+    background: #1ea115;
     border-radius: 2px;
     float: left;
     margin-left: 0px;
@@ -1946,7 +1950,11 @@ h3.title2 .line {
     width: 98px;
     height: 38px;
     line-height: 38px;
-    font-size: 18px
+    font-size: 18px;
+    background-color: #1ea115;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
 }
 
 .fac_filter .lists {
@@ -2071,7 +2079,7 @@ h3.title2 .line {
 }
 
 .fac_list_tab .active a {
-    border-top-color: #2698e4;
+    border-top-color: #1ea115;
     background: #fff
 }
 
@@ -2084,7 +2092,7 @@ h3.title2 .line {
 }
 
 .fac_list_tab .nums em {
-    color: #2698e4;
+    color: #1ea115;
     display: inline-block;
     padding: 0 3px
 }
@@ -2116,8 +2124,7 @@ h3.title2 .line {
 
 .fac_list .cons {
     margin-left: 245px;
-    *float: left;
-    *margin-left: 20px
+    text-align: left;
 }
 
 .fac_list .names h4 {
@@ -2128,7 +2135,7 @@ h3.title2 .line {
 .fac_list .prices {
     float: right;
     font-size: 16px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .fac_list .prices em {
@@ -2148,7 +2155,8 @@ h3.title2 .line {
 
 .fac_list .des {
     line-height: 32px;
-    margin-top: 3px
+    margin-top: 3px;
+    text-align: left;
 }
 
 .fac_list .des .titles {
@@ -2218,7 +2226,7 @@ h3.title2 .line {
 .fac_que_filter .q_search {
     width: 95px;
     display: block;
-    background: #2698e4;
+    background: #1ea115;
     color: #fff;
     position: absolute;
     right: 0;
@@ -2235,7 +2243,7 @@ h3.title2 .line {
 .fac_que_filter .filter_hot a {
     display: inline-block;
     margin-right: 20px;
-    color: #2698e4
+    color: #1ea115
 }
 
 .fac_que_filter .filter_num {
@@ -2318,7 +2326,7 @@ h3.title2 .line {
 }
 
 .ne_rhot a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ne_rhot img {
@@ -2363,8 +2371,7 @@ h3.title2 .line {
 
 .store_list .cons {
     margin-left: 232px;
-    *float: left;
-    *margin-left: 20px
+    text-align: left;
 }
 
 .store_list .names {
@@ -2378,7 +2385,7 @@ h3.title2 .line {
 
 .store_list .to_store {
     float: right;
-    color: #2698e4
+    color: #1ea115
 }
 
 .store_list .des {
@@ -2391,7 +2398,7 @@ h3.title2 .line {
 }
 
 .store_list .nums {
-    color: #ff7325
+    color: #1ea115
 }
 
 .store_list + .pagenation {
@@ -2405,7 +2412,7 @@ h3.title2 .line {
 
 .store_recom .fac_title h3 {
     background: none;
-    color: #2698e4;
+    color: #1ea115;
     font-weight: normal
 }
 
@@ -2480,7 +2487,7 @@ h3.title2 .line {
 }
 
 .store_recom_list .name:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .sto_top_info .names {
@@ -2604,7 +2611,7 @@ h3.title2 .line {
 }
 
 .store_local .t_price {
-    color: #ff7325
+    color: #1ea115
 }
 
 .store_local + .pagenation {
@@ -2794,7 +2801,7 @@ h3.title2 .line {
 
 .lc_recom_list .t_price {
     float: right;
-    color: #ff7325
+    color: #1ea115
 }
 
 .lc_recom_list .hover h4 .ic {

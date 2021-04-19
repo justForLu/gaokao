@@ -48,24 +48,24 @@
 }
 
 .ii_key a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ii_key .hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ii_tit {
     height: 36px;
     line-height: 32px;
     font-size: 30px;
-    color: #2698e4;
+    color: #1ea115;
     margin-top: 30px;
     margin-bottom: 18px
 }
 
 .ii_tit em {
-    background: #2698e4;
+    background: #1ea115;
     color: #fff;
     display: inline-block;
     margin-right: 2px;
@@ -96,7 +96,7 @@
 }
 
 .ii_cont li:hover {
-    border-color: #2698e4
+    border-color: #1ea115
 }
 
 .ii_cont li:hover img {
@@ -112,12 +112,12 @@
 }
 
 .ii_cont .name:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ii_cont .price {
     font-size: 24px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .ii_cont p {
@@ -168,7 +168,7 @@
     text-align: center;
     right: 0;
     top: 0;
-    background: #ff7325;
+    background: #1ea115;
     color: #fff;
     padding: 0px 10px
 }
@@ -199,7 +199,7 @@ body {
 }
 
 .t_org {
-    color: #ff7325
+    color: #1ea115
 }
 
 .uc_title {
@@ -211,7 +211,7 @@ body {
 .uc_title .line {
     width: 5px;
     height: 20px;
-    background: #2698e4;
+    background: #1ea115;
     display: inline-block;
     margin-right: 10px;
     border-radius: 2px;
@@ -223,7 +223,7 @@ body {
     display: inline-block;
     margin-right: 10px;
     line-height: 20px;
-    color: #2698e4
+    color: #1ea115
 }
 
 .uc_title .notes {
@@ -231,7 +231,7 @@ body {
 }
 
 .uc_title .notes em {
-    color: #ff7325
+    color: #1ea115
 }
 
 .uc_title .more {
@@ -244,7 +244,7 @@ body {
 }
 
 .uc_title .more a:hover, .uc_title .more a.active {
-    color: #ff7325;
+    color: #1ea115;
     text-decoration: underline
 }
 
@@ -269,7 +269,7 @@ body {
 }
 
 .uc_title_msg a {
-    color: #ff7325
+    color: #1ea115
 }
 
 .uc_title_msg a:hover {
@@ -305,12 +305,12 @@ body {
 }
 
 .list_no .other a {
-    color: #2698e4;
+    color: #1ea115;
     font-size: 18px
 }
 
 .list_no .links {
-    color: #2698e4;
+    color: #1ea115;
     font-size: 14px;
     text-decoration: underline
 }
@@ -346,7 +346,7 @@ body {
 }
 
 .list_recom em {
-    color: #ff7325
+    color: #1ea115
 }
 
 .user_top {
@@ -378,7 +378,7 @@ body {
 
 .user_top_num em {
     display: block;
-    color: #ff7325
+    color: #1ea115
 }
 
 .user_top_avt {
@@ -407,7 +407,7 @@ body {
 }
 
 .user_top_avt em {
-    color: #ff7325
+    color: #1ea115
 }
 
 .user_top .to_avt {
@@ -426,22 +426,23 @@ body {
     padding: 15px 0 15px 85px;
     display: block;
     position: relative;
-    border-left: 2px solid #fff
+    border-left: 2px solid #fff;
+    text-align: left;
 }
 
 .user_left_nav li a:hover {
-    border-color: #2698e4;
+    border-color: #1ea115;
     background: #f8f8f8;
     color: #444
 }
 
 .user_left_nav li.active a {
-    border-color: #2698e4;
+    border-color: #1ea115;
     background: #f8f8f8
 }
 
 .user_left_nav .ic {
-    color: #2698e4;
+    color: #1ea115;
     margin-left: -30px;
     float: left;
     font-size: 18px
@@ -455,7 +456,7 @@ body {
 }
 
 .user_lapp img {
-    width: 215px;
+    width: 180px;
     display: block;
     margin: 15px auto 10px
 }
@@ -466,21 +467,41 @@ body {
 }
 
 .uc_form .form-label {
-    font-size: 16px
+    font-size: 16px;
+    width: 100px;
+    float: left;
+    text-align: right;
+    line-height: 32px;
 }
 
 .uc_form .form-item {
-    margin-right: -20px
+    padding: 20px 0px;
+}
+.uc_form .form-item .form-field {
+    text-align: left;
+}
+.uc_form .form-item .form-field .form-text {
+    width: 300px;
+    height: 35px;
+    border: 1px #dadbdf solid;
+    border-radius: 3px;
+}
+.uc_form .form-item .form-field input::placeholder {
+    color: #dadbdf;
+    font-size: 14px;
 }
 
 .uc_form .required {
-    color: #ff7325
+    color: #1ea115;
+    overflow: hidden;
 }
 
 .uc_form .btn_b {
-    width: 188px;
-    height: 38px;
-    line-height: 40px
+    padding: 10px 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1ea115;
+    color: #fff;
 }
 
 .uc_form .form-select.inline-ele {
@@ -505,7 +526,7 @@ body {
     background: #f8f8f8;
     text-align: center;
     display: inline-block;
-    color: #ff7325
+    color: #1ea115
 }
 
 .uc_form .got_mark:hover {
@@ -513,7 +534,7 @@ body {
 }
 
 .uc_form .form-text:focus, .uc_form .form-textarea:focus, .uc_form .form-select:focus {
-    border-color: #ff7325
+    border-color: #1ea115
 }
 
 .leader_list {
@@ -550,7 +571,7 @@ body {
 
 .leader_list .btn_showcmt {
     margin-right: 15px;
-    color: #2698e4
+    color: #1ea115
 }
 
 .leader_list .btn_showcmt:hover {
@@ -586,7 +607,7 @@ body {
 }
 
 .leader_list .info_main .name a {
-    color: #2698e4
+    color: #1ea115
 }
 
 .leader_list .ic_up {
@@ -687,23 +708,23 @@ body {
 }
 
 .cmt_str .st1 .ic1 {
-    color: #ff7325
+    color: #1ea115
 }
 
 .cmt_str .st2 .ic1, .cmt_str .st2 .ic2 {
-    color: #ff7325
+    color: #1ea115
 }
 
 .cmt_str .st3 .ic1, .cmt_str .st3 .ic2, .cmt_str .st3 .ic3 {
-    color: #ff7325
+    color: #1ea115
 }
 
 .cmt_str .st4 .ic1, .cmt_str .st4 .ic2, .cmt_str .st4 .ic3, .cmt_str .st4 .ic4 {
-    color: #ff7325
+    color: #1ea115
 }
 
 .cmt_str .st5 .ic_star {
-    color: #ff7325
+    color: #1ea115
 }
 
 .leader_cmtsucc {
@@ -733,7 +754,7 @@ body {
 }
 
 .leader_cmtsucc a {
-    color: #2698e4;
+    color: #1ea115;
     text-decoration: underline
 }
 
@@ -781,7 +802,7 @@ body {
 }
 
 .leader_cmtlist .cmt_val .active {
-    color: #ff7325
+    color: #1ea115
 }
 
 .leader_cmtlist .info_main {
@@ -994,7 +1015,8 @@ body {
 }
 
 .user_collect {
-    min-height: 460px
+    min-height: 460px;
+    text-align: left;
 }
 
 .list_collect {
@@ -1041,7 +1063,7 @@ body {
 }
 
 .list_collect li.li_recruit .name:hover {
-    color: #ff7325;
+    color: #1ea115;
     text-decoration: underline
 }
 
@@ -1052,7 +1074,7 @@ body {
 
 .list_collect li.li_recruit .to_map i {
     margin-right: 5px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .list_collect li.li_recruit .btn {
@@ -1095,7 +1117,7 @@ body {
 
 .list_collect li.li_shop .to_store {
     float: right;
-    color: #2698e4
+    color: #1ea115
 }
 
 .list_collect li.li_shop .des {
@@ -1108,7 +1130,7 @@ body {
 }
 
 .list_collect li.li_shop .nums {
-    color: #ff7325
+    color: #1ea115
 }
 .avt_sel {
     padding-top: 55px;
@@ -1136,7 +1158,7 @@ body {
     margin-left: 220px;
     line-height: 38px;
     padding-top: 62px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .avt_show {
@@ -1148,6 +1170,12 @@ body {
 .avt_show .avt_f {
     width: 280px;
     float: left
+}
+.avt_show .avt_f #saveImgBtn {
+    background-color: #1ea116;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
 }
 
 .avt_show .avt_f img {
@@ -1404,7 +1432,7 @@ body {
 }
 
 .uc_recom_stp .time_lost {
-    color: #ff7325;
+    color: #1ea115;
     position: absolute;
     left: -28px;
     top: 38px;
@@ -1436,16 +1464,16 @@ body {
 }
 
 .uc_recom .t_orange {
-    color: #ff7325
+    color: #1ea115
 }
 
 .uc_recom .t_blue {
-    color: #2698e4
+    color: #1ea115
 }
 
 .uc_recom .price {
     font-size: 16px;
-    color: #ff7325;
+    color: #1ea115;
     font-style: italic;
     display: inline-block;
     padding: 0 2px 0 0px
@@ -1500,7 +1528,7 @@ body {
 }
 
 .list_msg .name a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .list_msg .times {
@@ -1551,7 +1579,7 @@ body {
 .form-item_card .upload_note {
     height: 40px;
     line-height: 40px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .upload_card {

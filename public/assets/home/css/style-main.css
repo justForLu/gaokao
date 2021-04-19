@@ -569,7 +569,7 @@ p.form-des {
 }
 
 .formbtn {
-    background: #2698e4;
+    background: #1ea115;
     border-radius: 3px;
     -webkit-box-shadow: 0 3px 0 0 #d06c00;
     box-shadow: 0 3px 0 0 #d06c00
@@ -607,8 +607,8 @@ p.form-des {
     font-size: 16px;
     line-height: 43px;
     color: #fff;
-    background-color: #2698e4;
-    border: 1px solid #2698e4;
+    background-color: #1ea115;
+    border: 1px solid #1ea115;
     border-radius: 3px
 }
 
@@ -621,8 +621,8 @@ p.form-des {
 
 .btn_red {
     color: #fff;
-    background-color: #2698e4;
-    border: 1px solid #2698e4
+    background-color: #1ea115;
+    border: 1px solid #1ea115
 }
 
 .btn_red:hover {
@@ -634,8 +634,8 @@ p.form-des {
 
 .btn_blue {
     color: #fff;
-    background-color: #2698e4;
-    border: 1px solid #2698e4
+    background-color: #1ea115;
+    border: 1px solid #1ea115
 }
 
 .btn_blue:hover {
@@ -660,8 +660,8 @@ p.form-des {
 
 .btn_orange {
     color: #fff;
-    background-color: #ff7325;
-    border: 1px solid #ff7325
+    background-color: #1ea115;
+    border: 1px solid #1ea115
 }
 
 .btn_orange:hover {
@@ -706,8 +706,8 @@ p.form-des {
     font-size: 16px;
     height: 43px;
     color: #fff;
-    background-color: #2698e4;
-    border: 1px solid #2698e4
+    background-color: #1ea115;
+    border: 1px solid #1ea115
 }
 
 .formbtn:hover {
@@ -783,7 +783,7 @@ p.form-des {
 }
 
 .btn_k.btn {
-    color: #2698e4
+    color: #1ea115
 }
 
 .btn_k.btn:hover {
@@ -792,7 +792,7 @@ p.form-des {
 }
 
 .btn_k.btn_red {
-    color: #2698e4
+    color: #1ea115
 }
 
 .btn_k.btn_red:hover {
@@ -801,7 +801,7 @@ p.form-des {
 }
 
 .btn_k.btn_blue {
-    color: #2698e4
+    color: #1ea115
 }
 
 .btn_k.btn_blue:hover {
@@ -2038,12 +2038,12 @@ html #layui_layer_skinlayercss {
 }
 
 .layers .to_login a {
-    color: #ff7325
+    color: #1ea115
 }
 
 .layers .recom_note {
     margin-left: -90px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .layers .form {
@@ -2303,7 +2303,7 @@ a {
 
 a:hover, a:active {
     text-decoration: none;
-    color: #2698e4
+    color: #1ea115
 }
 
 em, i {
@@ -2498,7 +2498,7 @@ em, i {
 
 .head_tool {
     height: 30px;
-    background: #2698e4;
+    background: #1ea115;
     font-size: 12px;
     position: relative;
     z-index: 11;
@@ -2568,7 +2568,7 @@ em, i {
     margin-left: -50px;
     width: 122px;
     height: 122px;
-    color: #2698e4;
+    color: #1ea115;
     display: none;
     color: #444
 }
@@ -2593,7 +2593,7 @@ em, i {
 }
 
 .head_tool .site_list .mark_con a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .head_tool .ic_up, .head_tool .ic_up i {
@@ -2637,14 +2637,14 @@ em, i {
     border: 1px solid #fff;
     padding: 0 8px;
     display: inline-block;
-    color: #2698e4;
+    color: #1ea115;
     border-radius: 2px;
     margin-right: 15px;
     font-size: 16px
 }
 
 .head_login .btns:hover, .head_login .btns.hover {
-    border-color: #2698e4
+    border-color: #1ea115
 }
 
 .head_user {
@@ -2701,7 +2701,7 @@ em, i {
 }
 
 .head_user ul a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .head_user:hover {
@@ -2724,7 +2724,7 @@ em, i {
     display: block;
     font-size: 16px;
     font-weight: 700;
-    color: #ff7325;
+    color: #1ea115;
     font-style: italic;
     margin-top: 3px
 }
@@ -2766,7 +2766,7 @@ em, i {
 }
 
 .nav a.cur, .nav a:hover {
-    background: #2698e4;
+    background: #1ea115;
     color: #fff
 }
 
@@ -2811,7 +2811,7 @@ em, i {
 .cur_site {
     height: 20px;
     line-height: 20px;
-    color: #ff7325;
+    color: #1ea115;
     cursor: pointer;
     font-size: 16px
 }
@@ -2859,7 +2859,7 @@ em, i {
 }
 
 .tese {
-    background: #2698e4;
+    background: #1ea115;
     text-align: center;
     text-align: left;
     color: #fff
@@ -2936,7 +2936,7 @@ em, i {
 }
 
 .foot .ft_links p a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .foot .ft_links .titles {
@@ -3011,7 +3011,7 @@ em, i {
 }
 
 .ft_fdlink a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .copyright {
@@ -3223,7 +3223,7 @@ em, i {
 }
 
 .fix_tool .service .phones {
-    color: #ff7325;
+    color: #1ea115;
     display: block;
     margin-bottom: 10px
 }
@@ -3245,7 +3245,7 @@ em, i {
 }
 
 .fix_tool .tool_item:hover {
-    background: #2698e4
+    background: #1ea115
 }
 
 .fix_tool .tool_item:hover .notes {
@@ -3280,7 +3280,7 @@ em, i {
 }
 
 .breadcrumb .active {
-    color: #2698e4
+    color: #1ea115
 }
 
 .breadcrumb ul {
@@ -3337,7 +3337,7 @@ em, i {
 }
 
 .pagenation a:hover {
-    color: #2698e4;
+    color: #1ea115;
     text-decoration: none
 }
 
@@ -3352,13 +3352,13 @@ em, i {
 
 .pagenation .active {
     color: #fff;
-    background: #2698e4;
-    border-color: #2698e4;
+    background: #1ea115;
+    border-color: #1ea115;
     cursor: default
 }
 
 .pagenation .active:hover {
     color: #fff !important;
-    background: #2698e4 !important;
-    border-color: #2698e4 !important
+    background: #1ea115 !important;
+    border-color: #1ea115 !important
 }

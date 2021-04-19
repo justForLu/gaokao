@@ -271,7 +271,7 @@
 
 .slide .num .cur {
     opacity: 1;
-    background-color: #2698e4
+    background-color: #1ea115
 }
 
 .ind_notice {
@@ -290,7 +290,7 @@
     color: #fff;
     padding: 0 20px;
     border-radius: 15px;
-    background: #2698e4;
+    background: #1ea115;
     font-size: 16px
 }
 
@@ -322,7 +322,7 @@
 }
 
 .ind_notice a em {
-    color: #ff7325
+    color: #1ea115
 }
 
 .ind_notice a:hover {
@@ -370,9 +370,9 @@
 }
 
 .ind_quick a:hover i {
-    background: #2698e4;
+    background: #1ea115;
     color: #fff;
-    border-color: #2698e4
+    border-color: #1ea115
 }
 
 .ind_quick i {
@@ -418,7 +418,117 @@
 .quick_ico.ico4 {
     background-position: 0px -330px
 }
-
+/*  推荐奖励  */
+.tjyj-box {
+    padding-bottom: 50px;
+    background-color: #F1F5F9;
+}
+.tjyj-box .tjgb {
+    padding: 15px 0px;
+    background-color: #fff;
+}
+.tjyj-box .tjgb>div {
+    overflow: hidden;
+    padding-left: 5%;
+}
+.tjyj-box .tjgb>div img {
+    float: left;
+    width: 26px;
+}
+.tjyj-box .tjgb>div .new-ruzhi {
+    float: left;
+    line-height: 24px;
+    padding-left: 10px;
+    height: 30px;
+}
+.tjyj-box .tjgb>div .new-ruzhi p {
+    color: #000000;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    animation: myMove 11s linear infinite;
+    animation-fill-mode: forwards;
+}
+.tjyj-box .tjyj {
+    padding-top: 40px;
+}
+.tjyj-box .tjyj .title img {
+    width: 850px;
+}
+.tjyj-box .tjyj .title h1{
+    position: relative;
+    bottom: 30px;
+}
+.tjyj-box .tjyj .jl-box {
+    display: flex;
+    justify-content: center;
+}
+.tjyj-box .tjyj .jl-box .rzjl {
+    margin-right: 50px;
+    color: #14AC2D;
+}
+.tjyj-box .tjyj .jl-box .yqjl {
+    margin-left: 50px;
+    color: #000000;
+}
+.tjyj-box .tjyj .jl-box>div div {
+    font-size: 16px;
+    padding: 3px;
+    border-bottom: 3px #1ea115 solid;
+    border-radius: 5px;
+    height: 30px;
+    overflow: hidden;
+}
+.tjyj-box .tjyj .jl-box>div div p {
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    animation-fill-mode: forwards;
+}
+.tjyj-box .tjyj .jl-box .rzjl div p {
+    animation: myMove 10s linear infinite;
+}
+.tjyj-box .tjyj .jl-box .yqjl div p {
+    animation: myMove 12s linear infinite;
+}
+/*文字无缝滚动*/
+@keyframes myMove {
+    0% {
+        transform: translateY(0);
+    }
+    10% {
+        transform: translateY(-30px);
+    }
+    20% {
+        transform: translateY(-60px);
+    }
+    30% {
+        transform: translateY(-90px);
+    }
+    40% {
+        transform: translateY(-120px);
+    }
+    50% {
+        transform: translateY(-150px);
+    }
+    60% {
+        transform: translateY(-180px);
+    }
+    70% {
+        transform: translateY(-210px);
+    }
+    80% {
+        transform: translateY(-240px);
+    }
+    90% {
+        transform: translateY(-270px);
+    }
+    100% {
+        transform: translateY(-300px);
+    }
+}
 .ii_key {
     float: right;
     color: #888;
@@ -434,24 +544,25 @@
 }
 
 .ii_key a:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ii_key .hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ii_tit {
     height: 36px;
     line-height: 32px;
     font-size: 30px;
-    color: #2698e4;
+    color: #1ea115;
     margin-top: 30px;
-    margin-bottom: 18px
+    margin-bottom: 18px;
+    padding-left: 92px;
 }
 
 .ii_tit em {
-    background: #2698e4;
+    background: #1ea115;
     color: #fff;
     display: inline-block;
     margin-right: 2px;
@@ -482,7 +593,7 @@
 }
 
 .ii_cont li:hover {
-    border-color: #2698e4
+    border-color: #1ea115
 }
 
 .ii_cont li:hover img {
@@ -498,12 +609,12 @@
 }
 
 .ii_cont .name:hover {
-    color: #2698e4
+    color: #1ea115
 }
 
 .ii_cont .price {
     font-size: 24px;
-    color: #ff7325
+    color: #1ea115
 }
 
 .ii_cont p {
@@ -554,7 +665,7 @@
     text-align: center;
     right: 0;
     top: 0;
-    background: #ff7325;
+    background: #1ea115;
     color: #fff;
     padding: 0px 10px
 }
@@ -602,7 +713,46 @@
     width: 212px;
     height: 157px
 }
-
+/*  平台价值    */
+.ptjz {
+    width: 100%;
+    height: 490px;
+    color: #ffffff;
+    background: url("../images/bg_index.png") no-repeat;
+    background-size: 100%;
+    margin: 60px 0px;
+}
+.ptjz .ptjz-title {
+    padding: 20px 0px;
+}
+.ptjz .ptjz-title h2 span {
+    display: block;
+    margin: 0px auto;
+    width: 46px;
+    height: 1px;
+    background-color: #fff;
+    margin-top: 10px;
+}
+.ptjz .jz-box {
+    width: 705px;
+    margin: 0px auto;
+}
+.ptjz .jz-box .jz-item {
+    width: 320px;
+    height: 165px;
+    background: url(../images/img_index_jz.png) no-repeat;
+    background-size: 320px 165px;
+    float: left;
+    margin: 15px;
+}
+.ptjz .jz-box .jz-item .jz-dsc {
+    width: 170px;
+    height: 80px;
+    margin-left: 75px;
+    margin-top: 43px;
+    background-color: #04AF65;
+    opacity: 0.8;
+}
 .ind_dggl {
     border-radius: 2px;
     background: #fff;
@@ -611,7 +761,7 @@
 }
 
 .ind_dggl a:hover {
-    color: #2698e4 !important
+    color: #1ea115 !important
 }
 
 .dggl_left {
