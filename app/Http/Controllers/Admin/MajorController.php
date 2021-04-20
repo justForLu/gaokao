@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\CategoryEnum;
+use App\Enums\BasicEnum;
 use App\Http\Requests\Admin\CategoryRequest;
-use App\Models\Common\Article;
-use App\Models\Common\Major;
 use App\Repositories\Admin\CategoryRepository as Category;
 use App\Repositories\Admin\LogRepository;
 use Illuminate\Http\Request;
 
-class CategoryController extends BaseController
+class MajorController extends BaseController
 {
     protected $category;
     protected $log;
@@ -68,7 +66,7 @@ class CategoryController extends BaseController
      */
     public function store(CategoryRequest $request)
     {
-        $params = $request->all();
+        $params = $request->filterAll();
 
         $data = [
             'name' => $params['name'] ?? '',
@@ -118,7 +116,7 @@ class CategoryController extends BaseController
      */
     public function update(CategoryRequest $request, $id)
     {
-        $params = $request->all();
+        $params = $request->filterAll();
 
         $data = [
             'name' => $params['name'] ?? '',
@@ -143,19 +141,6 @@ class CategoryController extends BaseController
      */
     public function destroy($id, Request $request)
     {
-        //删除之前检查分类下是否存在使用中的情况
-        $category = $this->category->find($id);
-        if($category->type == CategoryEnum::ARTICLE){
-            $is_exist = Article::where('category_id',$id)->count();
-            if($is_exist > 0){
-                return $this->ajaxError('文章中存在该分类，不能被删除');
-            }
-        }elseif ($category->type == CategoryEnum::MAJOR){
-            $is_exist = Major::where('category_id',$id)->count();
-            if($is_exist > 0){
-                return $this->ajaxError('高校专业中存在该分类，不能被删除');
-            }
-        }
 
         $result = $this->category->delete($id);
         $this->log->writeOperateLog($request, '删除分类');  //日志记录

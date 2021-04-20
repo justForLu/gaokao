@@ -33,6 +33,7 @@
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
                         {{\App\Enums\BasicEnum::enumSelect(false,'请选择状态','status')}}
+                    </div>
                 </div>
                 <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="admin-user-table-search">

@@ -77,14 +77,26 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::post('/category/change_value', 'CategoryController@changeValue');
         Route::get('/category/get_list', 'CategoryController@getList');
         Route::resource('/category', 'CategoryController');
+        //高校标签
+        Route::post('/tag/change_value', 'TagController@changeValue');
+        Route::get('/tag/get_list', 'TagController@getList');
+        Route::resource('/tag', 'TagController');
 
         /**
          * 分数线管理
          */
-        //分数线列表
+        //省控分数线
         Route::post('/score/change_value', 'ScoreController@changeValue');
         Route::get('/score/get_list', 'ScoreController@getList');
         Route::resource('/score', 'ScoreController');
+        //高校各省线
+        Route::post('/enter_line/change_value', 'EnterLineController@changeValue');
+        Route::get('/enter_line/get_list', 'EnterLineController@getList');
+        Route::resource('/enter_line', 'EnterLineController');
+        //高校专业线
+        Route::post('/major_line/change_value', 'MajorLineController@changeValue');
+        Route::get('/major_line/get_list', 'MajorLineController@getList');
+        Route::resource('/major_line', 'MajorLineController');
 
         /**
          * 文章管理
@@ -101,6 +113,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::post('/school/change_value', 'SchoolController@changeValue');
         Route::get('/school/get_list', 'SchoolController@getList');
         Route::resource('/school', 'SchoolController');
+        //高校专业
+        Route::post('/major/change_value', 'MajorController@changeValue');
+        Route::get('/major/get_list', 'MajorController@getList');
+        Route::resource('/major', 'MajorController');
 
         /**
          * 用户管理

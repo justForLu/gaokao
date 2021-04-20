@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\ArticleEnum;
 use App\Enums\CategoryEnum;
 use App\Http\Requests\Admin\ArticleRequest;
-use App\Models\Common\Category;
 use App\Repositories\Admin\ArticleRepository as Article;
+use App\Repositories\Admin\CategoryRepository as Category;
 use App\Repositories\Admin\LogRepository;
 use Illuminate\Http\Request;
 
@@ -14,15 +13,16 @@ class ArticleController extends BaseController
 {
 
     protected $article;
+    protected $category;
     protected $log;
 
-    public function __construct(Article $article,LogRepository $log)
+    public function __construct(Article $article,Category $category,LogRepository $log)
     {
         parent::__construct();
 
         $this->article = $article;
+        $this->category = $category;
         $this->log = $log;
-
 
     }
     /**
@@ -31,7 +31,9 @@ class ArticleController extends BaseController
      */
     public function index()
     {
-        $category = Category::select('id','name')->where('type',CategoryEnum::ARTICLE)->get();
+        $where[] = ['type','=',CategoryEnum::ARTICLE];
+        $field = ['id','name'];
+        $category = $this->category->getAllList($where,$field);
         return view('admin.article.index',compact('category'));
     }
 
@@ -69,7 +71,9 @@ class ArticleController extends BaseController
      */
     public function create(Request $request)
     {
-        $category = Category::select('id','name')->where('type',CategoryEnum::ARTICLE)->get();
+        $where[] = ['type','=',CategoryEnum::ARTICLE];
+        $field = ['id','name'];
+        $category = $this->category->getAllList($where,$field);
         return view('admin.article.create',compact('category'));
     }
 
@@ -123,7 +127,9 @@ class ArticleController extends BaseController
         $data = $this->article->find($id);
 
         $data->content = htmlspecialchars_decode($data->content);
-        $category = Category::select('id','name')->where('type',CategoryEnum::ARTICLE)->get();
+        $where[] = ['type','=',CategoryEnum::ARTICLE];
+        $field = ['id','name'];
+        $category = $this->category->getAllList($where,$field);
 
         return view('admin.article.edit', compact('data','category'));
     }

@@ -44,7 +44,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
             <div class="layui-input-inline">
-                {{\App\Enums\BasicEnum::enumSelect(\App\Enums\BasicEnum::ACTIVE,false,'status')}}
+                {{\App\Enums\BasicEnum::enumRadio(\App\Enums\BasicEnum::ACTIVE,'status')}}
             </div>
         </div>
         <div class="layui-form-item layui-hide">

@@ -2,14 +2,13 @@
 
 namespace App\Repositories\Admin;
 
-
 use App\Repositories\BaseRepository;
 
-class CategoryRepository extends BaseRepository
+class MajorLineRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Category';
+        return 'App\Models\Common\MajorLine';
     }
 
     /**
@@ -26,11 +25,23 @@ class CategoryRepository extends BaseRepository
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
 
         $where = [];
-        if(isset($params['name']) && !empty($params['name'])){
-            $where[] = ['name','LIKE','%'.$params['name'].'%'];
+        if(isset($params['school_id']) && !empty($params['school_id'])){
+            $where[] = ['school_id','=',$params['school_id']];
         }
-        if(isset($params['type']) && !empty($params['type'])){
-            $where[] = ['type','=',$params['type']];
+        if(isset($params['major_id']) && !empty($params['major_id'])){
+            $where[] = ['major_id','=',$params['major_id']];
+        }
+        if(isset($params['province']) && !empty($params['province'])){
+            $where[] = ['province','=',$params['province']];
+        }
+        if(isset($params['year']) && !empty($params['year'])){
+            $where[] = ['year','=',$params['year']];
+        }
+        if(isset($params['batch']) && !empty($params['batch'])){
+            $where[] = ['batch','=',$params['batch']];
+        }
+        if(isset($params['science']) && !empty($params['science'])){
+            $where[] = ['science','=',$params['science']];
         }
 
         $count = $this->model->where($where)->count();
@@ -43,18 +54,4 @@ class CategoryRepository extends BaseRepository
         return ['list' => $list,'count' => $count];
     }
 
-    /**
-     * 根据条件获取分类全部列表
-     * @param array $where
-     * @param string $field
-     * @return mixed
-     */
-    public function getAllList($where = [], $field = '*')
-    {
-        $list = $this->model->select($field)->where($where)
-            ->orderBy('sort','DESC')
-            ->orderBy('id','DESC')->get()->toArray();
-
-        return $list;
-    }
 }

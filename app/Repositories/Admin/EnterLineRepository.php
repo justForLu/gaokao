@@ -2,14 +2,13 @@
 
 namespace App\Repositories\Admin;
 
-
 use App\Repositories\BaseRepository;
 
-class SchoolRepository extends BaseRepository
+class EnterLineRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\School';
+        return 'App\Models\Common\EnterLine';
     }
 
     /**
@@ -22,43 +21,35 @@ class SchoolRepository extends BaseRepository
     {
         $page = isset($params['page']) && $params['page'] > 0 ? $params['page'] : 1;
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
-        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'sort';
+        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'year';
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
+        $with = isset($params['with']) ? $params['with'] : [];
 
         $where = [];
-        if(isset($params['name']) && !empty($params['name'])){
-            $where[] = ['name','LIKE','%'.$params['name'].'%'];
+        if(isset($params['school_id']) && !empty($params['school_id'])){
+            $where[] = ['school_id','=',$params['school_id']];
         }
         if(isset($params['province']) && !empty($params['province'])){
             $where[] = ['province','=',$params['province']];
         }
-        if(isset($params['city']) && !empty($params['city'])){
-            $where[] = ['city','=',$params['city']];
+        if(isset($params['year']) && !empty($params['year'])){
+            $where[] = ['year','=',$params['year']];
+        }
+        if(isset($params['batch']) && !empty($params['batch'])){
+            $where[] = ['batch','=',$params['batch']];
+        }
+        if(isset($params['science']) && !empty($params['science'])){
+            $where[] = ['science','=',$params['science']];
         }
 
         $count = $this->model->where($where)->count();
 
         $offset = ($page-1)*$limit;
-        $list = $this->model->select($field)->where($where)
+        $list = $this->model->select($field)->with($with)->where($where)
             ->orderBy($sortBy, $sortType)
             ->offset($offset)->limit($limit)->get()->toArray();
 
         return ['list' => $list,'count' => $count];
-    }
-
-    /**
-     * 根据条件获取分类全部列表
-     * @param array $where
-     * @param string $field
-     * @return mixed
-     */
-    public function getAllList($where = [], $field = '*')
-    {
-        $list = $this->model->select($field)->where($where)
-            ->orderBy('sort','DESC')
-            ->orderBy('id','DESC')->get()->toArray();
-
-        return $list;
     }
 
 }

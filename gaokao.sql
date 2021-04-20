@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地数据库
+ Source Server         : 尚悟测试数据库
  Source Server Type    : MySQL
- Source Server Version : 50726
- Source Host           : localhost:3306
- Source Schema         : gaokao
+ Source Server Version : 50732
+ Source Host           : 39.102.70.73:3306
+ Source Schema         : gk
 
  Target Server Type    : MySQL
- Target Server Version : 50726
+ Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 17/04/2021 16:14:32
+ Date: 20/04/2021 16:58:47
 */
 
 SET NAMES utf8mb4;
@@ -55,6 +55,7 @@ CREATE TABLE `zh_banner` (
   `image` varchar(200) NOT NULL DEFAULT '' COMMENT 'banner图地址',
   `url` varchar(128) NOT NULL DEFAULT '' COMMENT '跳转的链接',
   `position` tinyint(1) NOT NULL DEFAULT '0' COMMENT '位置。1首页，2设备区',
+  `terminal` tinyint(1) NOT NULL DEFAULT '0' COMMENT '终端（1PC，2移动端）',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序（越大越靠前）',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态（1启用，2禁用）',
   `create_time` int(11) NOT NULL DEFAULT '0',
@@ -66,8 +67,8 @@ CREATE TABLE `zh_banner` (
 -- Records of zh_banner
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_banner` VALUES (1, '首页轮播图1', '/upload/admin/image/2020-12/29/20201229112703897549.jpeg', '', 1, 0, 1, 1609222155, 1609212440);
-INSERT INTO `zh_banner` VALUES (2, '首页轮播图2', '/upload/admin/image/2020-12/29/20201229112733599146.jpeg', '', 1, 0, 1, 1609212455, 1609212455);
+INSERT INTO `zh_banner` VALUES (1, '首页轮播图1', '/upload/admin/image/2020-12/29/20201229112703897549.jpeg', '', 1, 0, 0, 1, 1609222155, 1609212440);
+INSERT INTO `zh_banner` VALUES (2, '首页轮播图2', '/upload/admin/image/2020-12/29/20201229112733599146.jpeg', '', 1, 0, 0, 1, 1609212455, 1609212455);
 COMMIT;
 
 -- ----------------------------
@@ -3518,6 +3519,34 @@ INSERT INTO `zh_config` VALUES (4, '15900000000', '客服电话', '客服电话'
 COMMIT;
 
 -- ----------------------------
+-- Table structure for zh_enter_line
+-- ----------------------------
+DROP TABLE IF EXISTS `zh_enter_line`;
+CREATE TABLE `zh_enter_line` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `school_id` int(11) NOT NULL DEFAULT '0' COMMENT '高校ID',
+  `province` int(11) NOT NULL COMMENT '省份ID（该省录取线）',
+  `year` int(11) NOT NULL DEFAULT '0' COMMENT '年份',
+  `science` tinyint(1) NOT NULL DEFAULT '0' COMMENT '文理科（1理科，2文科）',
+  `batch` tinyint(1) NOT NULL DEFAULT '0' COMMENT '批次（1提前批，2本科一批，3本科二批，4本科三批，5专科批）',
+  `max_score` int(11) NOT NULL DEFAULT '0' COMMENT '最高分',
+  `avg_score` int(11) NOT NULL DEFAULT '0' COMMENT '平均分',
+  `min_score` int(11) NOT NULL DEFAULT '0' COMMENT '最低分',
+  `min_rank` int(11) NOT NULL DEFAULT '0' COMMENT '最低分位次',
+  `control_line` int(11) NOT NULL COMMENT '省控线',
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='录取分数线';
+
+-- ----------------------------
+-- Records of zh_enter_line
+-- ----------------------------
+BEGIN;
+INSERT INTO `zh_enter_line` VALUES (1, 2, 1, 2020, 1, 1, 0, 0, 679, 20, 542, 0, 0);
+COMMIT;
+
+-- ----------------------------
 -- Table structure for zh_feedback
 -- ----------------------------
 DROP TABLE IF EXISTS `zh_feedback`;
@@ -3581,7 +3610,7 @@ CREATE TABLE `zh_log` (
   `module` tinyint(1) NOT NULL DEFAULT '0' COMMENT '前、后台',
   `create_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=569 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=587 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
 
 -- ----------------------------
 -- Records of zh_log
@@ -4152,6 +4181,78 @@ INSERT INTO `zh_log` VALUES (565, 1, 'feedback', 'changevalue', '/admin/feedback
 INSERT INTO `zh_log` VALUES (566, 1, 'feedback', 'changevalue', '/admin/feedback/change_value', '更新反馈信息', '127.0.0.1', 1, 1618643901);
 INSERT INTO `zh_log` VALUES (567, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618644951);
 INSERT INTO `zh_log` VALUES (568, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618647241);
+INSERT INTO `zh_log` VALUES (569, 1, 'login', 'login', '/admin/login', '登录后台', '223.88.75.145', 1, 1618799926);
+INSERT INTO `zh_log` VALUES (570, 1, 'login', 'login', '/admin/login', '登录后台', '60.31.179.169', 1, 1618800015);
+INSERT INTO `zh_log` VALUES (571, 1, 'login', 'login', '/admin/login', '登录后台', '60.31.179.169', 1, 1618800096);
+INSERT INTO `zh_log` VALUES (572, 1, 'login', 'login', '/admin/login', '登录后台', '124.67.176.67', 1, 1618812994);
+INSERT INTO `zh_log` VALUES (573, 1, 'login', 'login', '/admin/login', '登录后台', '124.67.176.67', 1, 1618829585);
+INSERT INTO `zh_log` VALUES (574, 1, 'score', 'update', '/admin/score/3', '更新分数线', '124.67.176.67', 1, 1618830891);
+INSERT INTO `zh_log` VALUES (575, 1, 'score', 'update', '/admin/score/1', '更新分数线', '124.67.176.67', 1, 1618830958);
+INSERT INTO `zh_log` VALUES (576, 1, 'score', 'store', '/admin/score', '添加分数线', '124.67.176.67', 1, 1618831103);
+INSERT INTO `zh_log` VALUES (577, 1, 'school', 'update', '/admin/school/1', '更新高校', '124.67.176.67', 1, 1618831356);
+INSERT INTO `zh_log` VALUES (578, 1, 'score', 'store', '/admin/score', '添加分数线', '124.67.176.67', 1, 1618831792);
+INSERT INTO `zh_log` VALUES (579, 1, 'score', 'update', '/admin/score/5', '更新分数线', '124.67.176.67', 1, 1618831804);
+INSERT INTO `zh_log` VALUES (580, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618905112);
+INSERT INTO `zh_log` VALUES (581, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618905345);
+INSERT INTO `zh_log` VALUES (582, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '127.0.0.1', 1, 1618905472);
+INSERT INTO `zh_log` VALUES (583, 1, 'tag', 'changevalue', '/admin/tag/change_value', '更新高校标签', '127.0.0.1', 1, 1618905476);
+INSERT INTO `zh_log` VALUES (584, 1, 'tag', 'changevalue', '/admin/tag/change_value', '更新高校标签', '127.0.0.1', 1, 1618905479);
+INSERT INTO `zh_log` VALUES (585, 1, 'enterline', 'store', '/admin/enter_line', '添加高校各省录取分数线', '127.0.0.1', 1, 1618908710);
+INSERT INTO `zh_log` VALUES (586, 1, 'enterline', 'update', '/admin/enter_line/1', '更新高校各省录取分数线', '127.0.0.1', 1, 1618908741);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for zh_major
+-- ----------------------------
+DROP TABLE IF EXISTS `zh_major`;
+CREATE TABLE `zh_major` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `school_id` int(11) NOT NULL DEFAULT '0' COMMENT '高校ID',
+  `category_id` int(11) NOT NULL DEFAULT '0' COMMENT '类型（分类表的ID）',
+  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '专业名称',
+  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型（1国家特色专业，2重点专业）',
+  `grade` tinyint(1) NOT NULL DEFAULT '0' COMMENT '等级（1A+，2A，3A-，4B+，5B，6B-，7C+，8C，9C-）',
+  `edu_system` int(2) NOT NULL DEFAULT '0' COMMENT '学制',
+  `content` mediumtext COMMENT '专业介绍',
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='高校专业';
+
+-- ----------------------------
+-- Records of zh_major
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for zh_major_line
+-- ----------------------------
+DROP TABLE IF EXISTS `zh_major_line`;
+CREATE TABLE `zh_major_line` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `school_id` int(11) NOT NULL DEFAULT '0' COMMENT '高校ID',
+  `major_id` int(11) NOT NULL DEFAULT '0' COMMENT '专业ID',
+  `province` int(11) NOT NULL COMMENT '省份ID（该省录取线）',
+  `year` int(11) NOT NULL DEFAULT '0' COMMENT '年份',
+  `batch` tinyint(1) NOT NULL DEFAULT '0' COMMENT '批次（1提前批，2本科一批，3本科二批，4本科三批，5专科批）',
+  `science` tinyint(1) NOT NULL DEFAULT '0' COMMENT '文理科（1理科，2文科）',
+  `max_score` int(11) NOT NULL DEFAULT '0' COMMENT '最高分',
+  `avg_score` int(11) NOT NULL DEFAULT '0' COMMENT '平均分',
+  `min_score` int(11) NOT NULL DEFAULT '0' COMMENT '最低分',
+  `min_rank` int(11) NOT NULL DEFAULT '0' COMMENT '最低分位次',
+  `recruit_num` int(11) NOT NULL COMMENT '招生人数',
+  `sign_num` int(11) NOT NULL COMMENT '报考人数',
+  `enter_num` int(11) NOT NULL DEFAULT '0' COMMENT '录取人数',
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='专业线';
+
+-- ----------------------------
+-- Records of zh_major_line
+-- ----------------------------
+BEGIN;
 COMMIT;
 
 -- ----------------------------
@@ -4179,7 +4280,7 @@ CREATE TABLE `zh_manager` (
 -- Records of zh_manager
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'm3PwjWgLAJFAlM0anQ5SOM1OARFhUaHRwLcRz2IPI3MoShhKBZXgPIENkO9G', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
+INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'PLStohNaJf4MZOWE5ONsVYY1DWmp4JiWzS4JdT8awbB9NO5DWqMCWRmReEdg', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
 INSERT INTO `zh_manager` VALUES (2, 'test', '$2y$10$K9ZqSDPveI6zuQjOgJj3OeWibeAevedhv5E6vOSLCo2qizF1GAUw.', 'PCkY9mm5WXxdqniZa1kcGdkLHoLREVtNrNmgwhbv3bum3DAqVV3cq2YWmcME', '2020-12-23 12:27:38', '127.0.0.1', '15633339999', '', 1, 0, '2020-12-23 09:28:10', '2021-01-25 17:52:40', NULL);
 INSERT INTO `zh_manager` VALUES (3, 'admin2', '$2y$10$/PDEu9LeNq1w8GJECdBRLOAYnJNyXoTMNZR7XhkM2dzPH2JsAhKii', '', NULL, '', '15987456987', '', 1, 0, '2020-12-23 16:27:31', '2021-01-25 19:09:50', NULL);
 COMMIT;
@@ -4218,12 +4319,16 @@ INSERT INTO `zh_menu` VALUES (11, '城市列表', 'city', 10, '0,10,7', '/city',
 INSERT INTO `zh_menu` VALUES (12, '配置管理', 'config', 10, '0,10,12', '/config', 2, 2, 1, 'fa fa-wrench', 1, 0);
 INSERT INTO `zh_menu` VALUES (13, '轮播图列表', 'banner', 10, '0,10,13', '/banner', 2, 3, 1, 'fa fa-file-image-o', 1, 0);
 INSERT INTO `zh_menu` VALUES (14, '分类管理', 'category', 10, '0,10,14', '/category', 2, 4, 1, 'fa fa-sitemap', 1, 0);
+INSERT INTO `zh_menu` VALUES (15, '高校标签', 'tag', 10, '0,10,15', '/tag', 2, 5, 1, 'fa fa-bookmark-o', 1, 0);
 INSERT INTO `zh_menu` VALUES (20, '分数线管理', 'fenshux', 0, '0,20', '/fenshux', 1, 3, 1, 'fa fa-balance-scale', 1, 0);
-INSERT INTO `zh_menu` VALUES (21, '分数线列表', 'score', 20, '0,20,21', '/score', 2, 1, 1, 'fa fa-bars', 1, 0);
+INSERT INTO `zh_menu` VALUES (21, '省控分数线', 'score', 20, '0,20,21', '/score', 2, 1, 1, 'fa fa-bars', 1, 0);
+INSERT INTO `zh_menu` VALUES (22, '高校各省线', 'enter_line', 20, '0,20,22', '/enter_line', 2, 2, 1, 'fa fa-list-ol', 1, 0);
+INSERT INTO `zh_menu` VALUES (23, '高校专业线', 'major_line', 20, '0,20,23', '/major_line', 2, 3, 1, 'fa fa-list', 1, 0);
 INSERT INTO `zh_menu` VALUES (30, '文章管理', 'wenzhang', 0, '0,30', '/wenzhang', 1, 4, 1, 'fa fa-book', 1, 0);
 INSERT INTO `zh_menu` VALUES (31, '文章管理', 'article', 30, '0,30,30', '/article', 2, 1, 1, 'fa fa-file-text-o', 1, 0);
 INSERT INTO `zh_menu` VALUES (40, '高校管理', 'gaoxiao', 0, '0,40', '/gaoxiao', 1, 5, 1, 'fa fa-university', 1, 0);
 INSERT INTO `zh_menu` VALUES (41, '高校列表', 'school', 40, '0,40,41', '/school', 2, 1, 1, 'fa fa-graduation-cap', 1, 0);
+INSERT INTO `zh_menu` VALUES (42, '高校专业', 'major', 40, '0,40,42', '/major', 2, 2, 1, 'fa fa-diamond', 1, 0);
 INSERT INTO `zh_menu` VALUES (50, '用户管理', 'yonghu', 0, '0,50', '/yonghu', 1, 5, 1, 'fa fa-users', 1, 0);
 INSERT INTO `zh_menu` VALUES (51, '用户列表', 'user', 50, '0,50,51', '/user', 2, 1, 1, 'fa fa-user', 1, 0);
 COMMIT;
@@ -4432,19 +4537,26 @@ CREATE TABLE `zh_school` (
   `city` int(11) NOT NULL DEFAULT '0' COMMENT '所在城市',
   `area` int(11) NOT NULL DEFAULT '0' COMMENT '所在区县',
   `address` varchar(50) NOT NULL DEFAULT '' COMMENT '详细地址',
+  `website` varchar(255) NOT NULL DEFAULT '' COMMENT '官方网站',
+  `phone` varchar(255) NOT NULL DEFAULT '' COMMENT '官方电话',
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '官方邮箱',
+  `measure` int(6) NOT NULL DEFAULT '0' COMMENT '占地面积',
+  `belong` varchar(20) NOT NULL DEFAULT '' COMMENT '隶属',
+  `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '高校标签',
+  `content` mediumtext COMMENT '高校介绍',
   `sort` tinyint(1) NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态',
   `create_time` int(11) NOT NULL DEFAULT '0',
-  `update_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='高校列表';
 
 -- ----------------------------
 -- Records of zh_school
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_school` VALUES (1, '内蒙古工业大学', 18, 257, 0, '', 0, 1, 0, NULL);
-INSERT INTO `zh_school` VALUES (2, '北京科技大学', 1, 3671, 499, '', 0, 1, 0, NULL);
+INSERT INTO `zh_school` VALUES (1, '内蒙古大学', 18, 257, 0, '', '', '', '', 0, '', '', NULL, 0, 1, 0, 0);
+INSERT INTO `zh_school` VALUES (2, '北京科技大学', 1, 3671, 499, '', '', '', '', 0, '', '', NULL, 0, 1, 0, 0);
 COMMIT;
 
 -- ----------------------------
@@ -4466,14 +4578,38 @@ CREATE TABLE `zh_score` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='历年高考分数线';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='历年高考分数线';
 
 -- ----------------------------
 -- Records of zh_score
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_score` VALUES (1, 18, '2020', 526, 489, 456, 401, 515, 478, 431, 398, 0, 0);
-INSERT INTO `zh_score` VALUES (3, 18, '2019', 526, 528, 541, 515, 511, 335, 357, 984, 0, 0);
+INSERT INTO `zh_score` VALUES (1, 18, '2020', 452, 333, 0, 160, 520, 437, 0, 160, 0, 0);
+INSERT INTO `zh_score` VALUES (3, 18, '2019', 477, 352, 0, 160, 522, 436, 0, 160, 0, 0);
+INSERT INTO `zh_score` VALUES (4, 18, '2018', 478, 336, 0, 160, 501, 399, 0, 160, 0, 0);
+INSERT INTO `zh_score` VALUES (5, 18, '2017', 466, 328, 0, 160, 472, 375, 0, 166, 0, 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for zh_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `zh_tag`;
+CREATE TABLE `zh_tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '标签名称',
+  `shorter` varchar(32) NOT NULL DEFAULT '' COMMENT '简称',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序（越大越靠前）',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态（1启用，2禁用）',
+  `create_time` int(11) NOT NULL DEFAULT '0',
+  `update_time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='高校标签';
+
+-- ----------------------------
+-- Records of zh_tag
+-- ----------------------------
+BEGIN;
+INSERT INTO `zh_tag` VALUES (1, '普通本科', '普通本科', 0, 1, 0, 0);
 COMMIT;
 
 -- ----------------------------

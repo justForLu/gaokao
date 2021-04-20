@@ -2,14 +2,13 @@
 
 namespace App\Repositories\Admin;
 
-
 use App\Repositories\BaseRepository;
 
-class CategoryRepository extends BaseRepository
+class TagRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\Category';
+        return 'App\Models\Common\Tag';
     }
 
     /**
@@ -29,9 +28,6 @@ class CategoryRepository extends BaseRepository
         if(isset($params['name']) && !empty($params['name'])){
             $where[] = ['name','LIKE','%'.$params['name'].'%'];
         }
-        if(isset($params['type']) && !empty($params['type'])){
-            $where[] = ['type','=',$params['type']];
-        }
 
         $count = $this->model->where($where)->count();
 
@@ -43,18 +39,4 @@ class CategoryRepository extends BaseRepository
         return ['list' => $list,'count' => $count];
     }
 
-    /**
-     * 根据条件获取分类全部列表
-     * @param array $where
-     * @param string $field
-     * @return mixed
-     */
-    public function getAllList($where = [], $field = '*')
-    {
-        $list = $this->model->select($field)->where($where)
-            ->orderBy('sort','DESC')
-            ->orderBy('id','DESC')->get()->toArray();
-
-        return $list;
-    }
 }

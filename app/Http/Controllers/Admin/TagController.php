@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\CategoryEnum;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Models\Common\Article;
-use App\Models\Common\Major;
-use App\Repositories\Admin\CategoryRepository as Category;
+use App\Enums\BasicEnum;
+use App\Http\Requests\Admin\TagRequest;
+use App\Models\Common\School;
+use App\Repositories\Admin\TagRepository as Tag;
 use App\Repositories\Admin\LogRepository;
 use Illuminate\Http\Request;
 
-class CategoryController extends BaseController
+class TagController extends BaseController
 {
-    protected $category;
+    protected $tag;
     protected $log;
 
-    public function __construct(Category $category,LogRepository $log)
+    public function __construct(Tag $tag,LogRepository $log)
     {
         parent::__construct();
 
-        $this->category = $category;
+        $this->tag = $tag;
         $this->log = $log;
     }
     /**
@@ -28,7 +27,7 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        return view('admin.category.index');
+        return view('admin.tag.index');
     }
 
     /**
@@ -42,7 +41,7 @@ class CategoryController extends BaseController
     {
         $params = $request->all();
 
-        $result = $this->category->getList($params);
+        $result = $this->tag->getList($params);
         $list = $result['list'] ?? [];
 
         return $this->ajaxData($list,$result['count'],'OK');
@@ -56,31 +55,31 @@ class CategoryController extends BaseController
      */
     public function create(Request $request)
     {
-        return view('admin.category.create');
+        return view('admin.tag.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param CategoryRequest $request
+     * @param TagRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CategoryRequest $request)
+    public function store(TagRequest $request)
     {
         $params = $request->all();
 
         $data = [
             'name' => $params['name'] ?? '',
-            'type' => $params['type'] ?? 0,
+            'shorter' => $params['shorter'] ?? '',
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
             'create_time' => time()
         ];
 
-        $result = $this->category->create($data);
+        $result = $this->tag->create($data);
 
-        $this->log->writeOperateLog($request, '添加分类');  //日志记录
+        $this->log->writeOperateLog($request, '添加高校标签');  //日志记录
         return $this->ajaxAuto($result,'添加');
     }
 
@@ -103,34 +102,34 @@ class CategoryController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $data = $this->category->find($id);
+        $data = $this->tag->find($id);
 
-        return view('admin.category.edit',compact('data'));
+        return view('admin.tag.edit',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param CategoryRequest $request
+     * @param TagRequest $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(TagRequest $request, $id)
     {
         $params = $request->all();
 
         $data = [
             'name' => $params['name'] ?? '',
-            'type' => $params['type'] ?? 0,
+            'shorter' => $params['shorter'] ?? '',
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
             'update_time' => time()
         ];
 
-        $result = $this->category->update($data,$id);
+        $result = $this->tag->update($data,$id);
 
-        $this->log->writeOperateLog($request, '更新分类');  //日志记录
+        $this->log->writeOperateLog($request, '更新高校标签');  //日志记录
         return $this->ajaxAuto($result,'修改');
     }
 
@@ -143,22 +142,14 @@ class CategoryController extends BaseController
      */
     public function destroy($id, Request $request)
     {
-        //删除之前检查分类下是否存在使用中的情况
-        $category = $this->category->find($id);
-        if($category->type == CategoryEnum::ARTICLE){
-            $is_exist = Article::where('category_id',$id)->count();
-            if($is_exist > 0){
-                return $this->ajaxError('文章中存在该分类，不能被删除');
-            }
-        }elseif ($category->type == CategoryEnum::MAJOR){
-            $is_exist = Major::where('category_id',$id)->count();
-            if($is_exist > 0){
-                return $this->ajaxError('高校专业中存在该分类，不能被删除');
-            }
+        //检查高校中是否存在该标签，存在则不允许删除
+        $is_exist = School::select('id')->where('tag','LIKE','%,'.$id.',%')->count();
+        if($is_exist > 0){
+            return $this->ajaxError('高校中存在该标签，不能删除');
         }
 
-        $result = $this->category->delete($id);
-        $this->log->writeOperateLog($request, '删除分类');  //日志记录
+        $result = $this->tag->delete($id);
+        $this->log->writeOperateLog($request, '删除高校标签');  //日志记录
 
         return $this->ajaxAuto($result,'删除');
     }
@@ -182,8 +173,8 @@ class CategoryController extends BaseController
             $field => $value,
             'update_time' => time()
         ];
-        $result = $this->category->update($data,$id);
-        $this->log->writeOperateLog($request, '更新分类');  //日志记录
+        $result = $this->tag->update($data,$id);
+        $this->log->writeOperateLog($request, '更新高校标签');  //日志记录
         return $this->ajaxAuto($result,'修改');
     }
 
