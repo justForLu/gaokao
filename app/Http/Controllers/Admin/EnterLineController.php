@@ -110,6 +110,13 @@ class EnterLineController extends BaseController
             'create_time' => time()
         ];
 
+        //判断数据是否已经存在
+        $is_exist = $this->line->where('school_id',$data['school_id'])->where('province',$data['province'])
+            ->where('year',$data['year'])->where('batch',$data['batch'])->count();
+        if($is_exist > 0){
+            return $this->ajaxError('已存在的分数线数据');
+        }
+
         $result = $this->line->create($data);
 
         $this->log->writeOperateLog($request, '添加高校各省录取分数线');  //日志记录
@@ -170,6 +177,12 @@ class EnterLineController extends BaseController
             'control_line' => $params['control_line'] ?? 0,
             'update_time' => time()
         ];
+        //判断数据是否已经存在
+        $is_exist = $this->line->where('id','<>',$id)->where('school_id',$data['school_id'])
+            ->where('province',$data['province'])->where('year',$data['year'])->where('batch',$data['batch'])->count();
+        if($is_exist > 0){
+            return $this->ajaxError('已存在的分数线数据');
+        }
 
         $result = $this->line->update($data,$id);
 
