@@ -45,7 +45,7 @@ class EnterLineController extends BaseController
     }
 
     /**
-     * 分类列表
+     * 列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Repository\Exceptions\RepositoryException

@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     Route::get('/get_city_list', 'CityController@get_city_list');
     Route::any('/manager/my_info', 'ManagerController@myInfo');
     Route::any('/manager/my_pwd', 'ManagerController@myPwd');
+    Route::get('/get_major_list', 'MajorController@getMajorList');
 
     Route::group(['middleware' => ['admin.auth','admin.log','admin.check']], function(){
         Route::get('/index', 'IndexController@index');

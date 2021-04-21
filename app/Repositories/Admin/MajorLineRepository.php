@@ -21,8 +21,9 @@ class MajorLineRepository extends BaseRepository
     {
         $page = isset($params['page']) && $params['page'] > 0 ? $params['page'] : 1;
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
-        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'sort';
+        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'school_id';
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
+        $with = isset($params['with']) ? $params['with'] : [];
 
         $where = [];
         if(isset($params['school_id']) && !empty($params['school_id'])){
@@ -47,7 +48,7 @@ class MajorLineRepository extends BaseRepository
         $count = $this->model->where($where)->count();
 
         $offset = ($page-1)*$limit;
-        $list = $this->model->select($field)->where($where)
+        $list = $this->model->select($field)->with($with)->where($where)
             ->orderBy($sortBy, $sortType)
             ->offset($offset)->limit($limit)->get()->toArray();
 

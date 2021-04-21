@@ -12,5 +12,18 @@ class MajorLine extends Base
     protected $fillable = ['school_id','major_id','province','year','batch','science','max_score','avg_score','min_score',
         'min_rank','recruit_num','sign_num','enter_num'];
 
+    /**
+     * 高校
+     */
+    public function school(){
+        return $this->hasOne(School::class,'id','school_id');
+    }
+
+    /**
+     * 省份
+     */
+    public function province(){
+        return $this->hasOne(City::class,'id','province');
+    }
 
 }

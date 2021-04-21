@@ -23,7 +23,7 @@ class Base extends Model{
     /**
      * 自动维护时间戳
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     public $dateFormat = 'U';
 

@@ -112,7 +112,7 @@
 
             //富文本编辑器
             var editor = new wangEditor('#editor');
-            editor.customConfig.uploadImgServer = "../api/upload.json";
+            editor.customConfig.uploadImgServer = "/admin/file/editUploadPic";
             editor.customConfig.uploadFileName = 'image';
             editor.customConfig.pasteFilterStyle = false;
             editor.customConfig.uploadImgMaxLength = 5;

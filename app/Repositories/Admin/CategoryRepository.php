@@ -22,7 +22,7 @@ class CategoryRepository extends BaseRepository
     {
         $page = isset($params['page']) && $params['page'] > 0 ? $params['page'] : 1;
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
-        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'sort';
+        $sortBy = isset($params['sortBy']) ? $params['sortBy'] : 'type';
         $sortType = isset($params['sortType']) ? $params['sortType'] : 'DESC';
 
         $where = [];

@@ -3,21 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\BasicEnum;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Repositories\Admin\CategoryRepository as Category;
+use App\Enums\BatchEnum;
+use App\Enums\ScienceEnum;
+use App\Http\Requests\Admin\MajorLineRequest;
+use App\Models\Common\Major;
+use App\Repositories\Admin\MajorLineRepository as Line;
+use App\Repositories\Admin\SchoolRepository as School;
+use App\Repositories\Admin\CityRepository as City;
 use App\Repositories\Admin\LogRepository;
 use Illuminate\Http\Request;
 
 class MajorLineController extends BaseController
 {
-    protected $category;
+    protected $line;
+    protected $school;
+    protected $city;
     protected $log;
 
-    public function __construct(Category $category,LogRepository $log)
+    public function __construct(Line $line,School $school,City $city,LogRepository $log)
     {
         parent::__construct();
 
-        $this->category = $category;
+        $this->line = $line;
+        $this->school = $school;
+        $this->city = $city;
         $this->log = $log;
     }
     /**
@@ -26,11 +35,18 @@ class MajorLineController extends BaseController
      */
     public function index()
     {
-        return view('admin.category.index');
+        //高校
+        $where[] = ['status','=',BasicEnum::ACTIVE];
+        $field = ['id','name'];
+        $school = $this->school->getAllList($where,$field);
+        //省份
+        $where2 = ['parent'=>0];
+        $province = $this->city->getCityList($where2);
+        return view('admin.major_line.index',compact('school','province'));
     }
 
     /**
-     * 分类列表
+     * 列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Repository\Exceptions\RepositoryException
@@ -40,8 +56,24 @@ class MajorLineController extends BaseController
     {
         $params = $request->all();
 
-        $result = $this->category->getList($params);
+        $params['with'] = ['school','province'];
+        $result = $this->line->getList($params);
         $list = $result['list'] ?? [];
+        if($list){
+            //专业
+            $major_id = array_diff(array_unique(array_column($list,'major_id')),[0]);
+            $major_list = [];
+            if($major_id){
+                $major_list = Major::whereIn('id',$major_id)->pluck('name','id');
+            }
+            foreach ($list as &$v){
+                $v['school_name'] = $v['school']['name'] ?? '-';
+                $v['major_name'] = $major_list[$v['major_id']] ?? '-';
+                $v['province_name'] = $v['province']['title'] ?? '-';
+                $v['science_name'] = ScienceEnum::getDesc($v['science']);
+                $v['batch_name'] = BatchEnum::getDesc($v['batch']);
+            }
+        }
 
         return $this->ajaxData($list,$result['count'],'OK');
     }
@@ -54,31 +86,47 @@ class MajorLineController extends BaseController
      */
     public function create(Request $request)
     {
-        return view('admin.category.create');
+        //高校
+        $where[] = ['status','=',BasicEnum::ACTIVE];
+        $field = ['id','name'];
+        $school = $this->school->getAllList($where,$field);
+        //省份
+        $where2 = ['parent'=>0];
+        $province = $this->city->getCityList($where2);
+        return view('admin.major_line.create',compact('school','province'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param CategoryRequest $request
+     * @param MajorLineRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CategoryRequest $request)
+    public function store(MajorLineRequest $request)
     {
-        $params = $request->filterAll();
+        $params = $request->all();
 
         $data = [
-            'name' => $params['name'] ?? '',
-            'type' => $params['type'] ?? 0,
-            'sort' => $params['sort'] ?? 0,
-            'status' => $params['status'] ?? 0,
+            'school_id' => $params['school_id'] ?? 0,
+            'major_id' => $params['major_id'] ?? 0,
+            'province' => $params['province'] ?? 0,
+            'year' => $params['year'] ?? 0,
+            'science' => $params['science'] ?? 0,
+            'batch' => $params['batch'] ?? 0,
+            'max_score' => $params['max_score'] ?? 0,
+            'avg_score' => $params['avg_score'] ?? 0,
+            'min_score' => $params['min_score'] ?? 0,
+            'min_rank' => $params['min_rank'] ?? 0,
+            'recruit_num' => $params['recruit_num'] ?? 0,
+            'sign_num' => $params['sign_num'] ?? 0,
+            'enter_num' => $params['enter_num'] ?? 0,
             'create_time' => time()
         ];
 
-        $result = $this->category->create($data);
+        $result = $this->line->create($data);
 
-        $this->log->writeOperateLog($request, '添加分类');  //日志记录
+        $this->log->writeOperateLog($request, '添加高校各专业在各省的录取分数线');  //日志记录
         return $this->ajaxAuto($result,'添加');
     }
 
@@ -101,34 +149,52 @@ class MajorLineController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $data = $this->category->find($id);
+        $data = $this->line->find($id);
+        //高校
+        $where[] = ['status','=',BasicEnum::ACTIVE];
+        $field = ['id','name'];
+        $school = $this->school->getAllList($where,$field);
+        //专业
+        $major = Major::select('id','name')->where('school_id',$data->school_id)->get();
+        //省份
+        $where2 = ['parent'=>0];
+        $province = $this->city->getCityList($where2);
 
-        return view('admin.category.edit',compact('data'));
+        return view('admin.major_line.edit',compact('data','school','major','province'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param CategoryRequest $request
+     * @param MajorLineRequest $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(MajorLineRequest $request, $id)
     {
-        $params = $request->filterAll();
+        $params = $request->all();
 
         $data = [
-            'name' => $params['name'] ?? '',
-            'type' => $params['type'] ?? 0,
-            'sort' => $params['sort'] ?? 0,
-            'status' => $params['status'] ?? 0,
+            'school_id' => $params['school_id'] ?? 0,
+            'major_id' => $params['major_id'] ?? 0,
+            'province' => $params['province'] ?? 0,
+            'year' => $params['year'] ?? 0,
+            'science' => $params['science'] ?? 0,
+            'batch' => $params['batch'] ?? 0,
+            'max_score' => $params['max_score'] ?? 0,
+            'avg_score' => $params['avg_score'] ?? 0,
+            'min_score' => $params['min_score'] ?? 0,
+            'min_rank' => $params['min_rank'] ?? 0,
+            'recruit_num' => $params['recruit_num'] ?? 0,
+            'sign_num' => $params['sign_num'] ?? 0,
+            'enter_num' => $params['enter_num'] ?? 0,
             'update_time' => time()
         ];
 
-        $result = $this->category->update($data,$id);
+        $result = $this->line->update($data,$id);
 
-        $this->log->writeOperateLog($request, '更新分类');  //日志记录
+        $this->log->writeOperateLog($request, '更新高校各专业在各省的录取分数线');  //日志记录
         return $this->ajaxAuto($result,'修改');
     }
 
@@ -142,8 +208,8 @@ class MajorLineController extends BaseController
     public function destroy($id, Request $request)
     {
 
-        $result = $this->category->delete($id);
-        $this->log->writeOperateLog($request, '删除分类');  //日志记录
+        $result = $this->line->delete($id);
+        $this->log->writeOperateLog($request, '删除高校各专业在各省的录取分数线');  //日志记录
 
         return $this->ajaxAuto($result,'删除');
     }
@@ -167,8 +233,8 @@ class MajorLineController extends BaseController
             $field => $value,
             'update_time' => time()
         ];
-        $result = $this->category->update($data,$id);
-        $this->log->writeOperateLog($request, '更新分类');  //日志记录
+        $result = $this->line->update($data,$id);
+        $this->log->writeOperateLog($request, '更新高校各专业在各省的录取分数线');  //日志记录
         return $this->ajaxAuto($result,'修改');
     }
 
