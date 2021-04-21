@@ -29,28 +29,6 @@ class BaseController extends Controller
                 view()->share('userInfo',$userInfo);
             }
 
-            //城市
-            $province_arr = session('province_arr');
-            $city_info = session('city_info');
-            if(!$province_arr){
-                $province = City::where('parent',0)
-                    ->where('status', BasicEnum::ACTIVE)
-                    ->orderBy('sort','DESC')
-                    ->orderBy('id','ASC')
-                    ->get()->toArray();
-
-                $province_arr = $province;
-                session(['province_arr' => $province_arr]);
-            }
-            if(!$city_info){
-                $city_info = ['id' => 148, 'province_id' => 10, 'title' => '郑州'];    //默认郑州
-
-                session(['city_info' => $city_info]);
-            }
-
-            view()->share('province_arr', $province_arr);
-            view()->share('city_info', $city_info);
-
             return $next($request);
         });
 
@@ -75,7 +53,7 @@ class BaseController extends Controller
      */
     public function ajaxAuto($flag,$msg = '操作',$referrer = '')
     {
-        if($flag !== false){
+        if($flag){
             return $this->ajaxSuccess(null,$msg.'成功',$referrer);
         }else{
             return $this->ajaxError($msg.'失败',$referrer);
