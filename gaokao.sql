@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 20/04/2021 16:58:47
+ Date: 21/04/2021 14:44:37
 */
 
 SET NAMES utf8mb4;
@@ -85,13 +85,16 @@ CREATE TABLE `zh_category` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='商品分类';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='商品分类';
 
 -- ----------------------------
 -- Records of zh_category
 -- ----------------------------
 BEGIN;
 INSERT INTO `zh_category` VALUES (1, '专业解读', '', 1, 1, 0, 0, 0);
+INSERT INTO `zh_category` VALUES (2, '经济学类（本）', '', 2, 1, 0, 0, 1618978319);
+INSERT INTO `zh_category` VALUES (3, '财政学类(本)', '', 2, 1, 0, 0, 1618978313);
+INSERT INTO `zh_category` VALUES (4, '机械类(本)', '', 2, 1, 0, 1618978308, 1618978308);
 COMMIT;
 
 -- ----------------------------
@@ -3543,7 +3546,7 @@ CREATE TABLE `zh_enter_line` (
 -- Records of zh_enter_line
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_enter_line` VALUES (1, 2, 1, 2020, 1, 1, 0, 0, 679, 20, 542, 0, 0);
+INSERT INTO `zh_enter_line` VALUES (1, 2, 1, 2020, 1, 1, 0, 0, 680, 20, 542, 0, 0);
 COMMIT;
 
 -- ----------------------------
@@ -3610,7 +3613,7 @@ CREATE TABLE `zh_log` (
   `module` tinyint(1) NOT NULL DEFAULT '0' COMMENT '前、后台',
   `create_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=587 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=607 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
 
 -- ----------------------------
 -- Records of zh_log
@@ -4199,6 +4202,26 @@ INSERT INTO `zh_log` VALUES (583, 1, 'tag', 'changevalue', '/admin/tag/change_va
 INSERT INTO `zh_log` VALUES (584, 1, 'tag', 'changevalue', '/admin/tag/change_value', '更新高校标签', '127.0.0.1', 1, 1618905479);
 INSERT INTO `zh_log` VALUES (585, 1, 'enterline', 'store', '/admin/enter_line', '添加高校各省录取分数线', '127.0.0.1', 1, 1618908710);
 INSERT INTO `zh_log` VALUES (586, 1, 'enterline', 'update', '/admin/enter_line/1', '更新高校各省录取分数线', '127.0.0.1', 1, 1618908741);
+INSERT INTO `zh_log` VALUES (587, 1, 'enterline', 'changevalue', '/admin/enter_line/change_value', '更新高校各省录取分数线', '127.0.0.1', 1, 1618909607);
+INSERT INTO `zh_log` VALUES (588, 1, 'enterline', 'update', '/admin/enter_line/1', '更新高校各省录取分数线', '127.0.0.1', 1, 1618909824);
+INSERT INTO `zh_log` VALUES (589, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618974860);
+INSERT INTO `zh_log` VALUES (590, 1, 'category', 'store', '/admin/category', '添加分类', '127.0.0.1', 1, 1618974895);
+INSERT INTO `zh_log` VALUES (591, 1, 'category', 'store', '/admin/category', '添加分类', '127.0.0.1', 1, 1618974918);
+INSERT INTO `zh_log` VALUES (592, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '127.0.0.1', 1, 1618974983);
+INSERT INTO `zh_log` VALUES (593, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '127.0.0.1', 1, 1618974998);
+INSERT INTO `zh_log` VALUES (594, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '127.0.0.1', 1, 1618975026);
+INSERT INTO `zh_log` VALUES (595, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '127.0.0.1', 1, 1618975034);
+INSERT INTO `zh_log` VALUES (596, 1, 'major', 'store', '/admin/major', '添加高校专业', '127.0.0.1', 1, 1618975632);
+INSERT INTO `zh_log` VALUES (597, 1, 'major', 'store', '/admin/major', '添加高校专业', '127.0.0.1', 1, 1618975783);
+INSERT INTO `zh_log` VALUES (598, 1, 'category', 'update', '/admin/category/2', '更新分类', '127.0.0.1', 1, 1618978186);
+INSERT INTO `zh_log` VALUES (599, 1, 'category', 'changevalue', '/admin/category/change_value', '更新分类', '127.0.0.1', 1, 1618978231);
+INSERT INTO `zh_log` VALUES (600, 1, 'manager', 'update', '/admin/manager/3', '更新管理员信息', '127.0.0.1', 1, 1618978257);
+INSERT INTO `zh_log` VALUES (601, 1, 'category', 'store', '/admin/category', '添加分类', '127.0.0.1', 1, 1618978308);
+INSERT INTO `zh_log` VALUES (602, 1, 'category', 'changevalue', '/admin/category/change_value', '更新分类', '127.0.0.1', 1, 1618978313);
+INSERT INTO `zh_log` VALUES (603, 1, 'category', 'update', '/admin/category/2', '更新分类', '127.0.0.1', 1, 1618978319);
+INSERT INTO `zh_log` VALUES (604, 1, 'majorline', 'store', '/admin/major_line', '添加高校各专业在各省的录取分数线', '127.0.0.1', 1, 1618979127);
+INSERT INTO `zh_log` VALUES (605, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618986700);
+INSERT INTO `zh_log` VALUES (606, 1, 'majorline', 'update', '/admin/major_line/1', '更新高校各专业在各省的录取分数线', '127.0.0.1', 1, 1618987404);
 COMMIT;
 
 -- ----------------------------
@@ -4210,19 +4233,22 @@ CREATE TABLE `zh_major` (
   `school_id` int(11) NOT NULL DEFAULT '0' COMMENT '高校ID',
   `category_id` int(11) NOT NULL DEFAULT '0' COMMENT '类型（分类表的ID）',
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '专业名称',
-  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型（1国家特色专业，2重点专业）',
+  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型（1国家特色专业，2重点学科专业，3本校王牌专业）',
   `grade` tinyint(1) NOT NULL DEFAULT '0' COMMENT '等级（1A+，2A，3A-，4B+，5B，6B-，7C+，8C，9C-）',
   `edu_system` int(2) NOT NULL DEFAULT '0' COMMENT '学制',
   `content` mediumtext COMMENT '专业介绍',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序（越大越靠前）',
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='高校专业';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='高校专业';
 
 -- ----------------------------
 -- Records of zh_major
 -- ----------------------------
 BEGIN;
+INSERT INTO `zh_major` VALUES (1, 2, 2, '国际经济与贸易', 1, 2, 4, '', 0, 0, 0);
+INSERT INTO `zh_major` VALUES (2, 1, 2, '经济学', 0, 0, 4, '<p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">培养目标：本专业培养德、智、体等方面全面发展，掌握数学与自然科学基础知识以及计算 机、网络与信息系统相关的基本理论、基本知识、基本技能和基本方法，具有较强的专业能力和良 好的综合素质，能胜任计算机科学研究、计算机系统设计、开发与应用等工作的高级专门人才。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">培养要求：</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">1．掌握马列主义、毛泽东思想与中国特色社会主义基本理论，具有良好的人文社会科学素 养、职业道德和心理素质，社会责任感强；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">2．掌握从事本专业工作所需的数学（特别是离散数学）和其他相关的自然科学知识以及一 定的经济学与管理学知识；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">3．系统掌握计算机科学与技术学科的基础理论和专业知识，理解本学科的基本概念、知识 结构、典型方法，建立数字化、算法、模块化与层次化等核心专业意识；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">4．掌握计算学科的基本思维方法和研究方法，具有良好的科学素养和一定的工程意识，并 具备综合运用所掌握的知识、方法和技术解决实际问题的能力；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">5．具有终身学习意识以及运用现代信息技术获取相关信息和新技术、新知识的能力；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">6．了解计算机科学与技术学科的发展现状和趋势，具有创新意识，并具有技术创新和产品 创新的初步能力；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">7．了解与本专业相关的职业和行业的重要法律法规及方针政策，理解工程技术与信息技术 应用相关的伦理基本要求；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">8．具有一定的组织管理能力、表达能力、独立工作能力、人际交往能力和团队合作能力；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">9．具有一定的外语应用能力，能阅读本专业的外文材料，具有一定的国际视野和跨文化交 流、竞争与合作能力；</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">10.掌握体育运动的一般知识和基本方法，形成良好的体育锻炼习惯。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">主干学科：计算机科学与技术。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">核心知识领域：离散结构、基本算法、程序设计、数据结构、计算机组成、操作系统、计算机网 络、数据库系统、软件工程等。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">核心课程示例（括号内为理论学时+实验或者习题课学时）：</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">示例一：高级语言程序设计（40+48学时）、计算机导论（24+6学时）、集合论与图论（48学 时）、汇编语言程序设计（32+8学时）、电路44+16学时）、数理逻辑（32学时）、电子技术基础(32 +20学时)、数字逻辑设计（36+12学时）、数据结构与算法（40+24学时）、近世代数（32学时）、计 算机组成原理（48+60学时）、软件工程（48 +16学时）、形式语言与自动机（32学时）、数理逻辑 （32学时）、数据库系统（40+24学时）、操作系统（40+16学时）、计算机网络（36+30学时）、算法 设计与分析（32学时）、计算机体系结构（48学时）。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">示例二：计算概论（72学时）、数据结构与算法（72学时）、数字逻辑设计（54学时）、集合论 与图论（54学时）、代数结构与组合数学（54学时）、数理逻辑（54学时）、微机原理（54学时）、计 算机组织与体系结构（54学时）、电路分析原理（72学时）、数字集成电路（72学时）、信号与系统 （54学时）、微电子与电路基础（54学时）、电子线路（72学时）、算法设计与设计（72学时）、脑与 认知科学（36学时）、人工智能导论（54学时）、编译技术及实习（54+72学时）、操作系统及实 习（54+72学时）、微机实验（0+72学时）、程序设计实习（0+72学时）、数字逻辑电路实验(O+ 72学时)、数字逻辑设计实验（0+72学时）、电子线路实验（0+72学时）、基础电路实验(0+72 学时)。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">示例三：电路分析基础（68学时）、数字电路与逻辑设计（60+30学时）、模拟电子技术基础 （60+30学时）、信号与系统（68学时）、电路信号与系统实验（15 +15学时）、计算机导论（16学 时）、计算机通信与网络（56+20学时）、软件工程（30+16学时）、数据库系统（40 +12学时）、编译 原理（52+16学时）、人工智能（46学时）、操作系统（54+24学时）、程序设计基础（44+32学时）、 数据结构（54+24学时）、离散数学（一）（54学时）、计算机组织与体系结构（76+20学时）、微机 系统（50+20学时）、离散数学（二）（30学时）。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">主要实践性教学环节：课程实验、课程设计、专业实习、毕业设计（论文）等。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">主要专业实验：程序设计实验、数据结构实验、计算机组成实验、操作系统实验、数据库实验、 计算机网络实验。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">修业年限：四年。</p><p style=\"-webkit-tap-highlight-color: transparent; outline: 0px; margin-top: 0px; margin-bottom: 1em; vertical-align: baseline; text-size-adjust: none; color: rgba(0, 0, 0, 0.65); font-family: \"Microsoft Yahei\", 微软雅黑, Arial, Helvetica, sans-serif;\">授予学位：工学学士或理学学士。</p>', 0, 0, 0);
 COMMIT;
 
 -- ----------------------------
@@ -4247,12 +4273,13 @@ CREATE TABLE `zh_major_line` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='专业线';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='专业线';
 
 -- ----------------------------
 -- Records of zh_major_line
 -- ----------------------------
 BEGIN;
+INSERT INTO `zh_major_line` VALUES (1, 2, 1, 18, 2020, 2, 1, 589, 542, 523, 65774, 10, 12, 10, 1618979127, 1618987404);
 COMMIT;
 
 -- ----------------------------
@@ -4282,7 +4309,7 @@ CREATE TABLE `zh_manager` (
 BEGIN;
 INSERT INTO `zh_manager` VALUES (1, 'admin', '$2y$10$njkBfDd/cwLmmY25tq96neZj0wbxCye0x/vtCii8YnL6k5FfNyckK', 'PLStohNaJf4MZOWE5ONsVYY1DWmp4JiWzS4JdT8awbB9NO5DWqMCWRmReEdg', '2020-12-23 10:44:38', '127.0.0.1', '15924789588', '123456', 1, 1, '2020-12-01 09:40:30', '2021-01-25 17:53:12', NULL);
 INSERT INTO `zh_manager` VALUES (2, 'test', '$2y$10$K9ZqSDPveI6zuQjOgJj3OeWibeAevedhv5E6vOSLCo2qizF1GAUw.', 'PCkY9mm5WXxdqniZa1kcGdkLHoLREVtNrNmgwhbv3bum3DAqVV3cq2YWmcME', '2020-12-23 12:27:38', '127.0.0.1', '15633339999', '', 1, 0, '2020-12-23 09:28:10', '2021-01-25 17:52:40', NULL);
-INSERT INTO `zh_manager` VALUES (3, 'admin2', '$2y$10$/PDEu9LeNq1w8GJECdBRLOAYnJNyXoTMNZR7XhkM2dzPH2JsAhKii', '', NULL, '', '15987456987', '', 1, 0, '2020-12-23 16:27:31', '2021-01-25 19:09:50', NULL);
+INSERT INTO `zh_manager` VALUES (3, 'admin2', '$2y$10$/PDEu9LeNq1w8GJECdBRLOAYnJNyXoTMNZR7XhkM2dzPH2JsAhKii', '', NULL, '', '15987456987', '15987456987', 1, 0, '2020-12-23 16:27:31', '2021-04-21 12:10:57', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -4603,13 +4630,17 @@ CREATE TABLE `zh_tag` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='高校标签';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='高校标签';
 
 -- ----------------------------
 -- Records of zh_tag
 -- ----------------------------
 BEGIN;
 INSERT INTO `zh_tag` VALUES (1, '普通本科', '普通本科', 0, 1, 0, 0);
+INSERT INTO `zh_tag` VALUES (2, '综合类', '综合类', 0, 1, 0, 0);
+INSERT INTO `zh_tag` VALUES (3, '公办', '公办', 0, 1, 0, 0);
+INSERT INTO `zh_tag` VALUES (4, '985工程', '985', 0, 1, 0, 0);
+INSERT INTO `zh_tag` VALUES (5, '211工程', '211', 0, 1, 0, 0);
 COMMIT;
 
 -- ----------------------------
