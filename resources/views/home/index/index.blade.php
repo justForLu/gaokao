@@ -8,7 +8,7 @@
     <div class="banner">
         <div class="slide">
             <ul class="pics">
-                @if($banner_arr)
+                @if(!empty($banner_arr))
                     @foreach($banner_arr as $v)
                         <li style="background:url({{$v['image']}}) center top no-repeat;">
                             <a href="{{$v['link']}}" target="_blank" class="slide_a" title="{{$v['alt']}}"></a>
@@ -18,7 +18,7 @@
             </ul>
             <div class="section slide_nav">
                 <div class="num">
-                    @if($banner_arr)
+                    @if(!empty($banner_arr))
                         @foreach($banner_arr as $v)
                             <span></span>
                         @endforeach
@@ -96,29 +96,6 @@
                 </div>
                 <h2 class="ii_tit"><em>今日</em>热招</h2>
             </div>
-            <ul class="ii_cont">
-                @if($recruit_arr)
-                    @foreach($recruit_arr as $v)
-                        <li>
-                            <div class="ii_pic">
-                                <a href="{{url("/home/recruit/detail/".$v['id'].".html")}}" target="_blank">
-                                    <img src="{{$v['factory']['image']}}" alt="{{$v['title']}}"/>
-                                    <i class="ic_hot ic_ind_fachot"></i>
-                                </a>
-                            </div>
-                            <div class="ii_con">
-                                <a href="{{url("/home/recruit/detail/".$v['id'].".html")}}" target="_blank" class="name">{{$v['title']}}</a>
-                                <p>招聘岗位：{{$v['posts']}}<br>
-                                    招聘要求：@if($v['edu_ask']) {{$v['edu_ask']}}<i class="line"></i> @endif
-                                    @if($v['sex_ask']) {{$v['sex_ask']}}<i class="line"></i> @endif
-                                    @if($v['age_ask']) {{$v['age_ask']}} @endif <br>
-                                    综合薪资：<span class="price">{{$v['salary_up']}}-{{$v['salary_down']}}元/月</span>
-                                </p>
-                            </div>
-                        </li>
-                    @endforeach
-                @endif
-            </ul>
         </div>
         <div class="ptjz">
             <div class="ptjz-title">
@@ -164,73 +141,11 @@
                 </h2>
             </div>
             <ul class="ii_cont">
-                @if($shop_arr)
-                    @foreach($shop_arr as $v)
-                        <li class="t5">
-                            <a href="{{url("/home/shop/detail/".$v['id'].".html")}}" target="_blank">
-                                <div class="ii_pic">
-                                    <img src="{{$v['image']}}" alt="{{$v['name']}}"/>
-                                </div>
-                                <div class="ii_con">
-                                    <span class="name">{{$v['name']}}</span>
-                                    <p>
-                                        <i class="ic ic_ind_address"></i>{{$v['address']}}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    @endforeach
-                @endif
+
             </ul>
         </div>
     </div>
-
-    <div style="height:0;overflow:hidden;">
-        <div class="layer_join layers" id="layer_join">
-            <p style="text-align: right">
-                <span class="close_join" style="padding: 8px; color: #999;">关闭</span>
-            </p>
-            <p class="to_login">
-                <a href="{{url("/home/login")}}">我是会员>></a>
-            </p>
-            <form action="{{url("/home/enroll/sign_up")}}" class="form form-horizontal J_ajaxForm">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="type" value="2" />
-                <input type="hidden" name="user_id" value="{{$user_id}}" />
-                <div class="form-item">
-                    <label class="form-label" for="">姓名：</label>
-                    <div class="form-field">
-                        <input type="text" placeholder="请输入您的姓名" style="width: 60%;border: 1px solid #dadbdf;padding: 4px;height: 35px;line-height: 35px;border-radius: 4px;" name="name">
-                    </div>
-                </div>
-                <div class="form-item">
-                    <label class="form-label" for="">电话：</label>
-                    <div class="form-field">
-                        <input type="text" placeholder="请输入您的联系电话" style="width: 60%;border: 1px solid #dadbdf;padding: 4px;height: 35px;line-height: 35px;border-radius: 4px;"  name="mobile">
-                    </div>
-                </div>
-
-                <div class="form-item">
-                    <button type="submit" class="btn btn_b btn_orange J_ajax_submit_btn">确定</button>
-                </div>
-            </form>
-        </div>
-    </div>
 @endsection
 
-@section('scripts')
-    <script src="{{asset("/assets/home/js/index.js")}}"></script>
-    <script src="{{asset("/assets/home/js/tvp.player_v2_jq.js")}}"></script>
-    <script type="text/javascript">
-        $("#btn_join_layer").click(function () {
-            $("#layer_join").css({"position": "fixed","bottom": "400px","left": "30%","background-color": "#fff","z-index": 99999999,"width": "40%","display":"block"});
-        });
-        $(".close_join").click(function () {
-            $("#layer_join").hide();
-            $(".layui-layer-shade").removeAttr("style");
-            $(".layui-layer-shade").removeAttr("class");
-        });
-    </script>
-@endsection
 
 

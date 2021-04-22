@@ -13,7 +13,7 @@
         <div class="left reg_left">
             <div class="reg_lhead font_18" id="login_meth">
                 <a id="login-btn1" class="cur">账号密码登录</a>
-                <a id="login-btn2" class="">手机验证码登录</a>
+{{--                <a id="login-btn2" class="">手机验证码登录</a>--}}
             </div>
             <div id="login_item1" class="login_item show">
                 <form class="J_ajaxForm" method="post" action="{{url("home/login")}}">
@@ -37,6 +37,7 @@
                         <tr>
                             <td></td>
                             <td class="grey">
+                                <a href="{{url("/home/register")}}" class="orange">立即注册</a>
                                 <a href="" class="right grey">忘记密码？</a>
                             </td>
                             <td></td>
@@ -93,24 +94,24 @@
         </div>
 
         <div class="right reg_right ta_center">
-            <p class="mt_50 orange bold font_18">下载本职工作网APP</p>
-            <p>手机报名 入职速度快50%</p>
+            <p class="mt_50 orange bold font_18">中夏教育微信号</p>
+            <p>加老师微信</p>
             <p class="mt_20">
                 <img src="{{asset("/assets/home/images/app-ewm.png")}}" width="122" height="122"></p>
-            <p>扫一扫即刻体验</p>
+            <p>咨询报志愿技巧</p>
             <div class="reg_rfoot grey">
                 没有账号？<a href="{{url("/home/register")}}" class="orange">立即注册</a>
-                <p class="mt_20">还可以使用以下方式登录</p>
+                <p class="mt_20"></p>
                 <p class="reg_www mt_20">
-                    <a href="">
-                        <img src="{{asset('/assets/home/images/weixin.png')}}" style="border: none;">
-                    </a>
-                    <a href="">
-                        <img src="{{asset('/assets/home/images/qq.png')}}" style="border: none;">
-                    </a>
-                    <a href="">
-                        <img src="{{asset('/assets/home/images/weibo.png')}}" style="border: none;">
-                    </a>
+{{--                    <a href="">--}}
+{{--                        <img src="{{asset('/assets/home/images/weixin.png')}}" style="border: none;">--}}
+{{--                    </a>--}}
+{{--                    <a href="">--}}
+{{--                        <img src="{{asset('/assets/home/images/qq.png')}}" style="border: none;">--}}
+{{--                    </a>--}}
+{{--                    <a href="">--}}
+{{--                        <img src="{{asset('/assets/home/images/weibo.png')}}" style="border: none;">--}}
+{{--                    </a>--}}
                 </p>
             </div>
         </div>
