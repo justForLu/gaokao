@@ -31,7 +31,7 @@ class UserController extends BaseController
         unset($user_info['parent_id']);
         unset($user_info['invite_path']);
         unset($user_info['role']);
-        $user_info['create_time'] = date('Y-m-d H:i:s', strtotime($user_info['create_time']));
+
         $user_info['login_time'] = date('Y-m-d H:i:s', $user_info['login_time']);
         $user_info['head_img_url'] = !empty($user_info['head_img']) ? get_http_type().$_SERVER['HTTP_HOST'].$user_info['head_img'] : get_http_type().$_SERVER['HTTP_HOST'].'/assets/api/images/head_img_default.png';
 

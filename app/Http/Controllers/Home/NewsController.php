@@ -74,7 +74,7 @@ class NewsController extends BaseController
         $news_1 = $this->news->getList('*',$where1,5);
         if ($news_1){
             foreach ($news_1 as &$v){
-                $v['date'] = date("Y-m-d",$v['create_time']);
+
             }
         }
 

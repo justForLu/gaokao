@@ -51,7 +51,6 @@ class UserController extends BaseController
         if($list){
             foreach ($list as &$v){
                 $v['login_time'] = $v['login_time'] > 0 ? date('Y-m-d H:i:s', $v['login_time']) : '-';
-                $v['create_time'] = date('Y-m-d H:i:s', strtotime($v['create_time']));
 
                 unset($v['password']);
                 unset($v['salt']);
@@ -93,7 +92,6 @@ class UserController extends BaseController
 
         //处理时间
         $data->login_time = $data->login_time > 0 ? date('Y-m-d H:i:s', $data->login_time) : '-';
-        $data->create_time = $data->create_time > 0 ? date('Y-m-d H:i:s', $data->create_time) : '-';
 
         return view('admin.user.show', compact('data'));
     }

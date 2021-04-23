@@ -45,7 +45,6 @@ class FeedbackController extends BaseController
             foreach ($list as &$v){
                 $v['manager'] = $v['manager']['username'] ?? '-';
                 $v['deal_time'] = $v['deal_time'] > 0 ? date('Y-m-d H:i:s',$v['deal_time']) : '-';
-                $v['create_time'] = date('Y-m-d H:i:s',$v['create_time']);
             }
         }
 

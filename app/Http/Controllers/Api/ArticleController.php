@@ -47,7 +47,6 @@ class ArticleController extends BaseController
         $article = $this->article->select('id','title','content','create_time')->find($id);
 
         $article->content = htmlspecialchars_decode($article->content);
-        $article->create_time = date('Y-m-d H:i:s', $article->create_time);
 
         return $this->returnSuccess($article);
     }
