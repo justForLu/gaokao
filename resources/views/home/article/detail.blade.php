@@ -30,12 +30,12 @@
                         <h3>热门文章</h3>
                     </div>
                     <ul class="ne_rhot_list clearfix">
-                        @if($news_2)
-                            @foreach($news_2 as $news2)
+                        @if($article)
+                            @foreach($article as $v)
                                 <li>
-                                    <a href="{{url("/home/news/detail/".$news2['id'].".html")}}" title="{{$news2['title']}}">
-                                        <img src="{{$news2['image']}}" alt="{{$news2['title']}}">
-                                        <p>{{$news2['title']}}</p>
+                                    <a href="{{url("/home/news/detail/".$v['id'].".html")}}" title="{{$v['title']}}">
+                                        <img src="{{$v['image']}}" alt="{{$v['title']}}">
+                                        <p>{{$v['title']}}</p>
                                     </a>
                                 </li>
                             @endforeach

@@ -53,7 +53,10 @@ class ArticleController extends BaseController
         if($list){
             //文章分类
             $category_id = array_diff(array_unique(array_column($list,'category_id')),[0]);
-            $category_list = Category::whereIn('id',$category_id)->pluck('name','id');
+            $category_list = [];
+            if($category_id){
+                $category_list = \App\Models\Common\Category::whereIn('id',$category_id)->pluck('name','id');
+            }
             foreach ($list as &$v){
                 $v['category_name'] = $category_list[$v['category_id']] ?? '-';
             }

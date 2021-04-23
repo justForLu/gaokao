@@ -5,16 +5,16 @@ namespace App\Repositories\Home;
 use App\Enums\BasicEnum;
 use App\Repositories\BaseRepository;
 
-class NewsRepository extends BaseRepository
+class ArticleRepository extends BaseRepository
 {
     public function model()
     {
-        return 'App\Models\Common\News';
+        return 'App\Models\Common\Article';
     }
 
 
     /**
-     * 获取新闻列表（无分页）
+     * 获取文章列表（无分页）
      * @param string $select
      * @param array $where
      * @param int $limit

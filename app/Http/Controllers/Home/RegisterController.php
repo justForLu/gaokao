@@ -61,9 +61,10 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $params = $request->all();
-        $params['username'] = $params['mobile'];    //目前只有手机号注册，默认username为手机号
+        $params['username'] = $params['mobile'];
+        //TODO 验证注册信息
 
-        $this->validator($params)->validate();
+        $this->validator($params);
 
         event(new Registered($user = $this->create($params)));
 

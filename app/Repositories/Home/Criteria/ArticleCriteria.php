@@ -1,10 +1,10 @@
 <?php
 namespace App\Repositories\Home\Criteria;
 
-use Bosnadev\Repositories\Criteria\Criteria;
-use Bosnadev\Repositories\Contracts\RepositoryInterface as Repository;
+use Prettus\Repository\Contracts\CriteriaInterface;
+use Prettus\Repository\Contracts\RepositoryInterface as Repository;
 
-class NewsCriteria extends Criteria {
+class ArticleCriteria implements CriteriaInterface {
 
     private $conditions;
 

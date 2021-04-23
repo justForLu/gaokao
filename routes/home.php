@@ -21,21 +21,24 @@ Route::get('home', function () {
 });
 
 Route::group(['prefix' => 'home', 'namespace' => 'Home'], function (){
-
+    //登录注册
     Route::get('/login', 'LoginController@index');
     Route::post('/login', 'LoginController@login');
     Route::get('/register', 'RegisterController@index');
     Route::post('/register', 'RegisterController@register');
     Route::get('/logout', 'LoginController@logout');
 
+    //首页
     Route::get('/index.html', 'IndexController@index');
     Route::get('/recruit/index.html', 'RecruitController@index');
     Route::get('/recruit/detail/{id}.html', 'RecruitController@detail');
     Route::get('/shop/index.html', 'ShopController@index');
     Route::get('/shop/detail/{id}.html', 'ShopController@detail');
-    Route::get('/news/index.html', 'NewsController@index');
-    Route::get('/news/list.html', 'NewsController@list');
-    Route::get('/news/detail/{id}.html', 'NewsController@detail');
+    //专业解读
+    Route::get('/article/index.html', 'ArticleController@index');
+    Route::get('/article/list.html', 'ArticleController@list');
+    Route::any('/article/detail/{id}', 'ArticleController@detail');
+
     Route::get('/join/index.html', 'JoinController@index');
     Route::post('/enroll/sign_up','EnrollController@sign_up');
     Route::post('/question/ask','QuestionController@ask');
@@ -49,6 +52,7 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function (){
     Route::get('/ejectMap/{longitude}/{latitude}/{address}.html', 'EjectController@ejectMap');
 
     Route::group(['middleware' => ['home.auth']], function(){
+        //个人中心
         Route::get('/user/message.html', 'UsersController@message');
         Route::get('/user/cash_out.html', 'UsersController@cash_out');
         Route::get('/user/info.html', 'UsersController@info');

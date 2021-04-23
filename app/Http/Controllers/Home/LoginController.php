@@ -118,6 +118,7 @@ class LoginController extends Controller
     {
         $username = $request->input('username');
         $password = $request->input('password');
+        //验证用户是否存在
 
         // 验证用户名登录方式
         $usernameLogin = $this->auth->attempt(

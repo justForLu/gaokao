@@ -18,15 +18,15 @@
                         @if($list)
                             @foreach($list as $data)
                                 <li>
-                                    <a href="{{url("/home/news/detail/".$data->id.".html")}}" class="imgs">
-                                        <img src="{{$data->image}}" alt="{{$data->title}}"></a>
                                     <div class="cons">
-                                        <h3><a href="{{url("/home/news/detail/".$data->id.".html")}}">{{$data->title}}</a></h3>
-                                        <p>{{$data->desc}}</p>
+                                        <h3><a href="{{url("/home/article/detail/".$data->id.".html")}}">{{$data->title}}</a></h3>
+                                        <a href="{{url("/home/article/detail/".$data->id.".html")}}">
+                                        <p>{{$data->introduce}}</p>
                                         <span class="times">
                                             <i class="ic ic_ne_time"></i>{{$data->create_time}}
                                             <i class="ic ic_yueduliang" style="margin-left: 15px;"></i>{{$data->read}}
                                         </span>
+                                        </a>
                                     </div>
                                 </li>
                             @endforeach
@@ -43,12 +43,11 @@
                         <h3>热门文章</h3>
                     </div>
                     <ul class="ne_rhot_list clearfix">
-                        @if($news_2)
-                            @foreach($news_2 as $news2)
+                        @if($article)
+                            @foreach($article as $v)
                                 <li>
-                                    <a href="{{url("/home/news/detail/".$news2['id'].".html")}}" title="{{$news2['title']}}">
-                                        <img src="{{$news2['image']}}" alt="{{$news2['title']}}">
-                                        <p>{{$news2['title']}}</p>
+                                    <a href="{{url("/home/article/detail/".$v['id'].".html")}}" title="{{$v['title']}}">
+                                        <p>{{$v['title']}}</p>
                                     </a>
                                 </li>
                             @endforeach

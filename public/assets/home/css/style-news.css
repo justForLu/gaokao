@@ -409,12 +409,12 @@
 
 .ne_rhot_list {
     font-size: 14px;
-    padding: 17px 15px
+    padding: 10px 5px
 }
 
 .ne_rhot li {
-    float: left;
-    width: 50%
+    text-align: left;
+    border-bottom: 1px #ececec solid;
 }
 
 .ne_rhot a {
@@ -434,8 +434,7 @@
 }
 
 .ne_rhot p {
-    padding-top: 5px;
-    height: 75px;
+    font-size: 16px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -1054,7 +1053,7 @@
 }
 
 .ne_xlist li {
-    padding: 30px;
+    padding: 5px 15px;
     border-bottom: 1px solid #eee
 }
 
@@ -1063,14 +1062,13 @@
 }
 
 .ne_xlist .cons {
-    margin-left: 200px;
     text-align: left;
 }
 
 .ne_xlist h3 a {
     display: block;
     line-height: 2;
-    font-size: 22px;
+    font-size: 20px;
     color: #444
 }
 
@@ -1079,7 +1077,7 @@
 }
 
 .ne_xlist p {
-    font-size: 16px;
+    font-size: 14px;
     color: #888;
     padding: 5px 0;
     height: 44px;
@@ -1087,7 +1085,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    margin-bottom: 13px;
+    margin-bottom: 5px;
 }
 
 .ne_xlist .times {
