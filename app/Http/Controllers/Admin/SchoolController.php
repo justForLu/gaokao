@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BasicEnum;
 use App\Http\Requests\Admin\SchoolRequest;
 use App\Models\Common\City;
+use App\Models\Common\Tag;
 use App\Repositories\Admin\SchoolRepository as School;
 use App\Repositories\Admin\LogRepository;
 use App\Repositories\Admin\CityRepository;
@@ -31,12 +33,11 @@ class SchoolController extends BaseController
     {
         $where = ['parent'=>0];
         $province = $this->city->getCityList($where);
-
         return view('admin.school.index',compact('province'));
     }
 
     /**
-     * 分类列表
+     * 获取列表
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Prettus\Repository\Exceptions\RepositoryException
@@ -65,9 +66,7 @@ class SchoolController extends BaseController
                 $province_name = $city_list[$v['province']] ?? '-';
                 $city_name = $city_list[$v['city']] ?? '-';
                 $area_name = $city_list[$v['area']] ?? '-';
-                $v['province_name'] = $province_name;
-                $v['city_name'] = $city_name;
-                $v['area_name'] = $area_name;
+                $v['province_city'] = $province_name.'-'.$city_name.'-'.$area_name;
             }
         }
 
@@ -82,11 +81,14 @@ class SchoolController extends BaseController
      */
     public function create(Request $request)
     {
+        //省份
         $where['parent'] = 0;
         $where['grade'] = 1;
         $province = $this->city->getCityList($where);
+        //标签
+        $tag = Tag::where('status',BasicEnum::ACTIVE)->orderBy('sort','DESC')->get();
 
-        return view('admin.school.create',compact('province'));
+        return view('admin.school.create',compact('province','tag'));
     }
 
     /**
@@ -105,8 +107,15 @@ class SchoolController extends BaseController
             'province' => $params['province'] ?? 0,
             'city' => $params['city'] ?? 0,
             'area' => $params['area'] ?? 0,
+            'address' => $params['address'] ?? '',
+            'website' => $params['website'] ?? '',
+            'phone' => $params['phone'] ?? '',
+            'email' => $params['email'] ?? '',
+            'measure' => $params['measure'] ?? 0,
+            'belong' => $params['belong'] ?? '',
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
+            'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'create_time' => time()
         ];
         //判断高校是否已经存在
@@ -114,6 +123,10 @@ class SchoolController extends BaseController
         if($is_exist > 0){
             return $this->ajaxError('已存在的高校');
         }
+        //高校标签
+        $tag = $params['tag'] ?? [];
+        $tag_str = ','.implode(',',$tag);
+        $data['tag'] = $tag_str;
 
         $result = $this->school->create($data);
 
@@ -141,6 +154,7 @@ class SchoolController extends BaseController
     public function edit($id,Request $request)
     {
         $data = $this->school->find($id);
+        //省市县
         $where1['parent'] = 0;
         $where1['grade'] = 1;
         $province = $this->city->getCityList($where1);
@@ -148,8 +162,18 @@ class SchoolController extends BaseController
         $city = $this->city->getCityList($where2);
         $where3['parent'] = $data->city;
         $area = $this->city->getCityList($where3);
+        //标签
+        $tag = Tag::where('status',BasicEnum::ACTIVE)->orderBy('sort','DESC')->get();
+        $tag_arr = explode(',',$data->tag);
+        if(!empty($tag) && !empty($tag_arr)){
+            foreach ($tag as &$v){
+                if(in_array($v['id'],$tag_arr)){
+                    $v['checked'] = 1;
+                }
+            }
+        }
 
-        return view('admin.school.edit',compact('data','province','city','area'));
+        return view('admin.school.edit',compact('data','province','city','area','tag'));
     }
 
     /**
@@ -169,8 +193,15 @@ class SchoolController extends BaseController
             'province' => $params['province'] ?? 0,
             'city' => $params['city'] ?? 0,
             'area' => $params['area'] ?? 0,
+            'address' => $params['address'] ?? '',
+            'website' => $params['website'] ?? '',
+            'phone' => $params['phone'] ?? '',
+            'email' => $params['email'] ?? '',
+            'measure' => $params['measure'] ?? 0,
+            'belong' => $params['belong'] ?? '',
             'sort' => $params['sort'] ?? 0,
             'status' => $params['status'] ?? 0,
+            'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'update_time' => time()
         ];
         //判断高校是否已经存在
@@ -178,6 +209,10 @@ class SchoolController extends BaseController
         if($is_exist > 0){
             return $this->ajaxError('已存在的高校');
         }
+        //高校标签
+        $tag = $params['tag'] ?? [];
+        $tag_str = ','.implode(',',$tag);
+        $data['tag'] = $tag_str;
 
         $result = $this->school->update($data,$id);
 

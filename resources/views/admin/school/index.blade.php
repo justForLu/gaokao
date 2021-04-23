@@ -85,9 +85,9 @@
                 cols: [[
                     {field:'id', width:80, title: 'ID', sort: true},
                     {field:'name', title: '高校名称', edit:'text'},
-                    {field:'province_name', title: '省份'},
-                    {field:'city_name', title: '城市'},
-                    {field:'area_name', title: '区县'},
+                    {field:'province_city', title: '省市县'},
+                    {field:'address', title: '详细地址'},
+                    {field:'belong', title: '隶属'},
                     {field:'sort', title: '排序'},
                     {field:'status', title: '状态',templet: '#school-table-switchTpl', unresize: true},
                     {fixed: 'right', title:'操作', toolbar: '#admin-school-table-bar', width:150}
@@ -183,7 +183,7 @@
                         type: 2,
                         title: '编辑高校',
                         content: 'school/'+id+'/edit',
-                        area: ['650px', '630px'],
+                        area: ['800px', '630px'],
                         btn: ['确定', '取消'],
                         yes: function(index, layero){
                             var iframeWindow = window['layui-layer-iframe'+ index],
@@ -227,7 +227,7 @@
                             type: 2,
                             title: '添加高校',
                             content: 'school/create',
-                            area: ['650px', '630px'],
+                            area: ['800px', '630px'],
                             btn: ['确定', '取消'],
                             yes: function(index, layero){
                                 var iframeWindow = window['layui-layer-iframe'+ index],

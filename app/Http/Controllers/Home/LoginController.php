@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\Home\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Lang;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * 登录成功跳转
      * @var string
@@ -71,44 +69,19 @@ class LoginController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => ['required', 'string', 'max:20'],
-            'password' => ['required', 'string', 'min:6'],
-        ]);
-    }
-
-    /**
      * 登录校验处理(重写框架默认自带的登录校验)
-     * @param Request $request
+     * @param LoginRequest $request
      * @return \Illuminate\Http\JsonResponse|void
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function login(Request $request)
+    public function login(LoginRequest $loginRequest)
     {
-        $this->validateLogin($request);
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+        if ($this->attemptLogin($loginRequest)) {
+            $this->updateLoginInfo($loginRequest);
 
-            return $this->sendLockoutResponse($request);
+            return response()->json(['status' => 'success','code' => '200','msg' => '登录成功','referrer' => $this->redirectTo]);
         }
-
-        if ($this->auth->attemptLogin($request)) {
-            $this->updateLoginInfo($request);
-            session(['userInfo' => $this->auth->user()]);
-
-            return response()->json(['status' => 'success','code' => '200','msg' => Lang::get('auth.success'),'referrer' => $this->redirectPath()]);
-
-        }
-
-        return response()->json(['status' => 'fail','code' => '300','msg' => Lang::get('auth.failed')]);
+        return response()->json(['status' => 'fail','code' => 300,'msg' => '登录失败，请检查用户名或密码']);
     }
 
     /**
@@ -119,6 +92,7 @@ class LoginController extends Controller
     {
         $data['login_ip'] = $loginRequest->ip();
         $data['login_time'] = time();
+        $data['login_times'] = $this->auth->user()->login_times + 1;
         $uid = $this->auth->user()->id;
         $this->user->update($data,$uid);
     }
@@ -130,30 +104,9 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        $this->auth->logout();
 
-        $request->session()->invalidate();
-
-        return $this->loggedOut($request) ?: redirect('/home');
-
-    }
-
-    /**
-     * 自定义guard
-     * @return mixed
-     */
-    protected function guard()
-    {
-        return Auth::guard('home');
-    }
-
-    /**
-     * 用户登录用户名
-     * @return string
-     */
-    protected function username()
-    {
-        return 'username';
+        return response()->json(['status' => 'success','code' => 0,'msg' => '退出成功','referrer' => $this->redirectAfterLogout]);
     }
 
     /**
@@ -167,14 +120,14 @@ class LoginController extends Controller
         $password = $request->input('password');
 
         // 验证用户名登录方式
-        $usernameLogin = $this->guard()->attempt(
+        $usernameLogin = $this->auth->attempt(
             ['username' => $username, 'password' => $password], $request->filled('remember')
         );
         if ($usernameLogin) {
             return true;
         }
         //验证手机号登陆
-        $mobileLogin = $this->guard()->attempt(
+        $mobileLogin = $this->auth->attempt(
             ['mobile' => $username, 'password' => $password], $request->filled('remember')
         );
         if ($mobileLogin) {
@@ -182,7 +135,7 @@ class LoginController extends Controller
         }
 
         // 验证邮箱登录方式
-        $emailLogin = $this->guard()->attempt(
+        $emailLogin = $this->auth->attempt(
             ['email' => $username, 'password' => $password], $request->filled('remember')
         );
         if ($emailLogin) {

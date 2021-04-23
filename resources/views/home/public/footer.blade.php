@@ -2,43 +2,35 @@
     <div class="section clearfix">
         <ul class="ft_links">
             <li>
-                <a class="titles" rel="nofollow">好工人工作网</a>
+                <a class="titles" rel="nofollow">中夏教育</a>
                 <p style="padding-top: 30px;">
                     <a href="" rel="nofollow">首页</a>
-                    <a href="" rel="nofollow">找工作</a>
-                    <a href="" rel="nofollow">找门店</a>
-                    <a href="" rel="nofollow">招商加盟</a>
-                    <a href="" rel="nofollow">新闻资讯</a>
-                    <a href="" rel="nofollow">关于我们</a>
+                    <a href="" rel="nofollow">查高校</a>
+                    <a href="" rel="nofollow">查录取分数</a>
+                    <a href="" rel="nofollow">专业解读</a>
                 </p>
             </li>
             <li>
                 <a class="titles" rel="nofollow">联系我们</a>
                 <div style="text-align: left;color: #999999;">
                     <p>联系电话：(0371)8888 8888 / 13866669999</p>
-                    <p>联系地址：郑州市金水区CBD</p>
-                    <p>联系邮箱：haogongren@163.com</p>
+                    <p>联系地址：通辽市</p>
+                    <p>联系邮箱：zhongxia@163.com</p>
                 </div>
             </li>
         </ul>
         <ul class="ft_mark">
-            <li>
-                <div class="img">
-                    <img src="{{asset("/assets/home/images/app-ewm.png")}}" alt="本职工作网APP"/>
-                </div>
-                <p style="color: #999999;">APP下载</p>
-            </li>
             <li class="last">
                 <div class="img">
-                    <img src="{{asset("/assets/home/images/weixin.jpg")}}" alt="本职工作网微信"/></div>
-                <p style="color: #999999;">微信公众号</p>
+                    <img src="{{asset("/assets/home/images/weixin.jpg")}}" alt="中夏教育微信"/></div>
+                <p style="color: #999999;">微信</p>
             </li>
         </ul>
     </div>
     <div class="copyright">
         <div class="section">
-            Copyright © 2016 好工人工作网 版权所有
-            <a href="http://beian.miit.gov.cn/" ref="nofollow" target="_blank">豫ICP备16088888号-2</a></div>
+            Copyright © 2016 中夏教育 版权所有
+            <a href="http://beian.miit.gov.cn/" ref="nofollow" target="_blank">蒙ICP备16088888号-2</a></div>
     </div>
 </div>
 <div class="fix_tool fix_tool_index" id="fix_tool">
@@ -64,10 +56,5 @@
         <a href="javascript:void(0);" class="tool_btn" rel="nofollow">
             <i class="ic_tool_mark"></i>
         </a>
-        <span class="marks">
-            <img src="{{asset("/assets/home/images/app-ewm.png")}}" width="150px" height="150px" alt="本职工作网APP"/>
-            <p>下载“本职工作网APP”，随时随地轻松查询！</p>
-            <i class="ic_right"></i>
-        </span>
     </div>
 </div>

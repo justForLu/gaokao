@@ -27,6 +27,8 @@ class SchoolRequest extends Request
             'name' => 'required',
             'province' => 'required',
             'city' => 'required',
+            'address' => 'required',
+            'belong' => 'required',
         ];
     }
 
@@ -39,6 +41,8 @@ class SchoolRequest extends Request
             'name.required' => '请输入高校名称',
             'province.required' => '请选择省份',
             'city.required' => '请选择城市',
+            'address.required' => '请输入详细地址',
+            'belong.required' => '请输入隶属',
         ];
     }
 
