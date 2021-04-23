@@ -11,7 +11,7 @@
  Target Server Version : 50732
  File Encoding         : 65001
 
- Date: 21/04/2021 14:44:37
+ Date: 23/04/2021 18:03:36
 */
 
 SET NAMES utf8mb4;
@@ -27,6 +27,9 @@ CREATE TABLE `zh_article` (
   `category_id` int(11) NOT NULL DEFAULT '0' COMMENT '分类ID',
   `introduce` varchar(255) NOT NULL DEFAULT '' COMMENT '简介',
   `content` mediumtext COMMENT '内容',
+  `read` int(11) NOT NULL DEFAULT '0' COMMENT '阅读量',
+  `is_recommend` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐',
+  `is_top` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否置顶',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序（越大越靠前）',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态（1启用，2禁用）',
   `create_time` int(11) NOT NULL DEFAULT '0',
@@ -38,11 +41,11 @@ CREATE TABLE `zh_article` (
 -- Records of zh_article
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_article` VALUES (1, '什么是生物工程', 1, '', '<h2 style=\"text-align: center;\"><p><span style=\"font-size: 14px;\">最新公告</span><br></p></h2><p><br></p>', 0, 1, 1610004808, 1616402224);
-INSERT INTO `zh_article` VALUES (2, '什么是车辆工程', 1, '', '<h2 style=\"text-align: center;\"><p><br></p></h2><p>最新公告</p><p><br></p>', 0, 1, 1610004808, 1616402252);
-INSERT INTO `zh_article` VALUES (3, '什么是土木工程', 1, '', '<h2 style=\"text-align: center;\"><span style=\"font-size: 14px;\">这是平台公告</span><br></h2><p><br></p>', 0, 1, 1610674828, 1616402247);
-INSERT INTO `zh_article` VALUES (4, '什么是物联网专业', 1, '', '<p style=\"text-align: center;\">&nbsp; &nbsp; &nbsp;&nbsp;</p><p>放的地方是第三方</p>', 0, 1, 1610674883, 1616402239);
-INSERT INTO `zh_article` VALUES (5, '什么是物流专业2', 1, '什么是物流专业2', '<p>什么是物流专业2</p><p><br></p>', 0, 1, 1618624235, 1618624495);
+INSERT INTO `zh_article` VALUES (1, '什么是生物工程', 1, '', '<h2 style=\"text-align: center;\"><p><span style=\"font-size: 14px;\">最新公告</span><br></p></h2><p><br></p>', 0, 1, 0, 0, 1, 1610004808, 1616402224);
+INSERT INTO `zh_article` VALUES (2, '什么是车辆工程', 1, '', '<h2 style=\"text-align: center;\"><p><br></p></h2><p>最新公告</p><p><br></p>', 0, 1, 0, 0, 1, 1610004808, 1616402252);
+INSERT INTO `zh_article` VALUES (3, '什么是土木工程', 1, '', '<h2 style=\"text-align: center;\"><span style=\"font-size: 14px;\">这是平台公告</span><br></h2><p><br></p>', 0, 1, 0, 0, 1, 1610674828, 1616402247);
+INSERT INTO `zh_article` VALUES (4, '什么是物联网专业', 1, '', '<p style=\"text-align: center;\">&nbsp; &nbsp; &nbsp;&nbsp;</p><p>放的地方是第三方</p>', 0, 1, 0, 0, 1, 1610674883, 1616402239);
+INSERT INTO `zh_article` VALUES (5, '什么是物流专业2', 1, '什么是物流专业2什么是物流专业2什么是物流专业2什么是物流专业2什么是物流专业2什么是物流专业2什么是物流专业2什么是物流专业2什么是物流专业2', '<p>什么是物流专业2</p><p><br></p>', 0, 1, 0, 0, 1, 1618624235, 1619171162);
 COMMIT;
 
 -- ----------------------------
@@ -3613,7 +3616,7 @@ CREATE TABLE `zh_log` (
   `module` tinyint(1) NOT NULL DEFAULT '0' COMMENT '前、后台',
   `create_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=607 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=618 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='后台日志表';
 
 -- ----------------------------
 -- Records of zh_log
@@ -4222,6 +4225,17 @@ INSERT INTO `zh_log` VALUES (603, 1, 'category', 'update', '/admin/category/2', 
 INSERT INTO `zh_log` VALUES (604, 1, 'majorline', 'store', '/admin/major_line', '添加高校各专业在各省的录取分数线', '127.0.0.1', 1, 1618979127);
 INSERT INTO `zh_log` VALUES (605, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1618986700);
 INSERT INTO `zh_log` VALUES (606, 1, 'majorline', 'update', '/admin/major_line/1', '更新高校各专业在各省的录取分数线', '127.0.0.1', 1, 1618987404);
+INSERT INTO `zh_log` VALUES (607, 1, 'login', 'login', '/admin/login', '登录后台', '223.88.75.145', 1, 1618991305);
+INSERT INTO `zh_log` VALUES (608, 1, 'login', 'login', '/admin/login', '登录后台', '223.88.58.230', 1, 1619009339);
+INSERT INTO `zh_log` VALUES (609, 1, 'school', 'update', '/admin/school/1', '更新高校', '223.88.58.230', 1, 1619009386);
+INSERT INTO `zh_log` VALUES (610, 1, 'login', 'login', '/admin/login', '登录后台', '124.67.176.67', 1, 1619088848);
+INSERT INTO `zh_log` VALUES (611, 1, 'school', 'store', '/admin/school', '添加高校', '124.67.176.67', 1, 1619090695);
+INSERT INTO `zh_log` VALUES (612, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '124.67.176.67', 1, 1619090743);
+INSERT INTO `zh_log` VALUES (613, 1, 'tag', 'store', '/admin/tag', '添加高校标签', '124.67.176.67', 1, 1619090762);
+INSERT INTO `zh_log` VALUES (614, 1, 'school', 'update', '/admin/school/3', '更新高校', '124.67.176.67', 1, 1619090816);
+INSERT INTO `zh_log` VALUES (615, 1, 'login', 'login', '/admin/login', '登录后台', '223.88.75.246', 1, 1619157792);
+INSERT INTO `zh_log` VALUES (616, 1, 'login', 'login', '/admin/login', '登录后台', '127.0.0.1', 1, 1619170810);
+INSERT INTO `zh_log` VALUES (617, 1, 'article', 'update', '/admin/article/5', '编辑文章', '127.0.0.1', 1, 1619171162);
 COMMIT;
 
 -- ----------------------------
@@ -4576,14 +4590,15 @@ CREATE TABLE `zh_school` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='高校列表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='高校列表';
 
 -- ----------------------------
 -- Records of zh_school
 -- ----------------------------
 BEGIN;
-INSERT INTO `zh_school` VALUES (1, '内蒙古大学', 18, 257, 0, '', '', '', '', 0, '', '', NULL, 0, 1, 0, 0);
+INSERT INTO `zh_school` VALUES (1, '内蒙古大学', 18, 257, 0, '内蒙古', '', '', '', 0, '内蒙古', ',', '<p>内蒙古</p>', 0, 1, 0, 1619009386);
 INSERT INTO `zh_school` VALUES (2, '北京科技大学', 1, 3671, 499, '', '', '', '', 0, '', '', NULL, 0, 1, 0, 0);
+INSERT INTO `zh_school` VALUES (3, '阜阳师范大学', 2, 40, 0, '安徽省阜阳市清河西路100号', 'http://www.fynu.edu.cn/', '0558-2596225', '', 0, '安徽省教育厅', ',1,6', '<p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">学校创办于1956年，1977年开始招收本科生，1978年设立阜阳师范学院，2008年教育部本科教学工作水平评估获得“优秀”等级，2009年启动研究生培养，2019年6月更名为阜阳师范大学，2019年10月获批为安徽省博士学位立项建设单位。2005年、2014年先后两次荣获国家级教学成果二等奖。建校60多年来，学校已经发展成为教师教育特色鲜明、应用型优势初步彰显、多学科协调发展、具有较大影响的省属地方高校，先后向社会输送10万余名毕业生，人才培养质量赢得广泛赞誉，服务区域经济社会发展成效显著，被誉为“皖北地区基础教育的摇篮、人才培养的基地、科技创新的平台、文化建设的窗口”。</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><br style=\"font-size: 16px !important;\"></span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">　　学校现有全日制在籍在校本科生18836人、研究生565人，占地114.34万平方米，校舍建筑面积85.36万平方米。学校设置17个教学学院和继续教育学院，拥有70个本科专业，涵盖11个学科门类；现有学术型硕士学位一级学科授予点5个，硕士专业学位授权点4个。学校现有汉语言文字学、中国古代文学、教育经济与管理、生物化学与分子生物学等4个省级重点学科，“生物学”1个省级学科建设重大项目，物理学、数学与应用数学、汉语言文学等3个国家级特色专业，汉语言文学、数学与应用数学、物理学、化学4个专业获批国家级一流本科专业建设点，首批国家级线上一流课程1门，16个省级一流专业建设点，国家级卓越农林人才教育培养计划改革试点1项，国家级大学生创新创业训练基地1个；建有环境激素与生殖发育、环境污染物降解与监测等2个安徽省重点实验室，抗衰老中草药、生物质转化与污染防控等2个安徽省高校工程技术研究中心，胚胎发育与生殖调节、区域物流规划与现代物流工程、信息功能材料结构与器件等3个安徽省高校重点实验室以及皖北文化研究中心、农民工研究中心、安徽武术文化研究中心、中国诗学研究中心阜阳师范大学分中心等4个安徽省人文社科重点研究基地。教学科研仪器设备总值31114.5万元，纸质图书204.4万册，拥有中国期刊全文数据库、Elsevier ScienceDirect电子期刊库等41个中外网络资源数据库以及皖北文化研究专题数据库、农民工研究专题数据库等自建特色数据库。</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><br style=\"font-size: 16px !important;\"></span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">　　学校现有专任教师1058人，94%以上具有硕士及以上学位，其中博士占比27%；高级专业技术职务人员 397人，其中正高级专业技术职务人员145人；拥有安徽省学术技术带头人及后备人选、安徽省优秀人才、享受国务院或省政府津贴、全国优秀教师、宝钢优秀教师、安徽省优秀教师和教学名师等86人；博士生、硕士生导师356人。聘请中国工程院原副院长刘德培院士，中国科学院陈国良院士、方维海院士等兼职教师109人。</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><br style=\"font-size: 16px !important;\"></span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">　　学校高度重视教学科研工作。五年来，承担各级各类科研课题1045项，其中省部级以上课题546项，横向合作项目281项，荣获省部级以上科研成果奖22项；发表学术论文2405篇，其中二类以上期刊论文899篇，获国家授权专利609项；出版著作199部。主办出版《阜阳师范大学学报》《阜阳师大报》《安徽基础教育》。</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><br style=\"font-size: 16px !important;\"></span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><img border=\"1\" hspace=\"12\" vspace=\"12\" align=\"left\" src=\"http://www.fynu.edu.cn/__local/0/9D/E5/AF5A3C50073704A74F003A14A17_3C9596F3_9C99.jpg?e=.jpg\" width=\"330\" height=\"220\" vwidth=\"330\" vheight=\"220\" vurl=\"/_vsl/09DE5AF5A3C50073704A74F003A14A17/3C9596F3/9C99?e=.jpg\" vsbhref=\"vurl\" orisrc=\"/__local/0/9D/E5/AF5A3C50073704A74F003A14A17_3C9596F3_9C99.jpg?e=.jpg\" style=\"border-width: 0px; border-style: initial; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 16px !important;\"></span><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">　　学校不断彰显实践育人特色，着力培养具有社会责任感、创新精神和实践能力的高素质人才。五年来，我校学生获得国家级学科竞赛奖励516项，省级学科竞赛奖励2843项，位列《2016至2020年全国普通高校大学生竞赛排行榜（本科TOP300）》第185位，在安徽省入围的师范类院校中排名第一；学生主持各类科研项目2179项，其中创新创业训练计划国家级项目262项。毕业生角色转换快、实践能力强、发展后劲足，社会满意度高。</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><br style=\"font-size: 16px !important;\"></span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">　　学校始终坚持社会主义办学方向，努力营<img border=\"1\" hspace=\"12\" vspace=\"12\" align=\"right\" src=\"http://www.fynu.edu.cn/__local/1/B1/D6/4F81414CB95D1F835022AE00B85_9BA16C17_21591.jpg?e=.jpg\" width=\"330\" height=\"200\" vwidth=\"330\" vheight=\"200\" vurl=\"/_vsl/1B1D64F81414CB95D1F835022AE00B85/9BA16C17/21591?e=.jpg\" vsbhref=\"vurl\" orisrc=\"/__local/1/B1/D6/4F81414CB95D1F835022AE00B85_9BA16C17_21591.jpg?e=.jpg\" style=\"border-width: 0px; border-style: initial; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 16px !important;\"></span><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">造健康向上的校园文化氛围，长期坚持开展“未来教师”职业技能大赛、大学生科技文化艺术节等一系列品牌第二课堂活动，先后获得“全国大中专学生志愿者‘三下乡’社会实践活动先进单位” “全国青少年普法教育先进单位” 安徽省文明单位”“安徽省党建和思想政治工作先进高等学校”“安徽省高校综合改革首批试点单位”“安徽教育系统先进集体”““安徽省社科普及工作先进单位”， “安徽省优秀教学管理单位”“安徽省学生资助工作先进单位”“安徽省普通高校毕业生就业工作‘标兵单位’”“安徽省第一批省级创业学院”“安徽省普通高校大学生创新创业教育示范校”等荣誉称号。</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\"><br style=\"font-size: 16px !important;\"></span></p><p style=\"margin-top: 0px; margin-bottom: 0px; font-size: 12px; font-family: \"??ì?\", Arial, Helvetica, sans-serif; color: rgb(85, 85, 85); text-align: justify; line-height: 34px; word-break: break-all; overflow-wrap: break-word;\"><span style=\"font-size: 14px; font-family: \"Microsoft YaHei\" !important;\">　　站在新的历史起点上，学校将始终坚持以习近平新时代中国特色社会主义思想为指导，全面贯彻党的教育方针，牢固树立新发展理念，落实立德树人根本任务，秉承“厚德、博学、自胜、勤行”的校训，弘扬“艰苦奋斗、自强不息、厚德育人、求真务实”的学校精神，坚持创新驱动，深化综合改革，主动对接经济社会发展需求，抢抓“双一流”建设重大机遇，努力建设高水平师范大学，为经济社会发展做出新的更大贡献。</span></p>', 0, 1, 1619090695, 1619090816);
 COMMIT;
 
 -- ----------------------------
@@ -4630,7 +4645,7 @@ CREATE TABLE `zh_tag` (
   `create_time` int(11) NOT NULL DEFAULT '0',
   `update_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='高校标签';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='高校标签';
 
 -- ----------------------------
 -- Records of zh_tag
@@ -4641,6 +4656,8 @@ INSERT INTO `zh_tag` VALUES (2, '综合类', '综合类', 0, 1, 0, 0);
 INSERT INTO `zh_tag` VALUES (3, '公办', '公办', 0, 1, 0, 0);
 INSERT INTO `zh_tag` VALUES (4, '985工程', '985', 0, 1, 0, 0);
 INSERT INTO `zh_tag` VALUES (5, '211工程', '211', 0, 1, 0, 0);
+INSERT INTO `zh_tag` VALUES (6, '师范类', '师范类', 0, 1, 1619090743, 1619090743);
+INSERT INTO `zh_tag` VALUES (7, '双一流', '双一流', 0, 1, 1619090762, 1619090762);
 COMMIT;
 
 -- ----------------------------
