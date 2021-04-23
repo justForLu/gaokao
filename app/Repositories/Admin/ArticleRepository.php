@@ -36,6 +36,8 @@ class ArticleRepository extends BaseRepository
 
         $offset = ($page-1)*$limit;
         $list = $this->model->select($field)->where($where)
+            ->orderBy('is_top', 'DESC')
+            ->orderBy('is_recommend', 'DESC')
             ->orderBy($sortBy, $sortType)
             ->offset($offset)->limit($limit)->get()->toArray();
 

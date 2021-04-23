@@ -35,9 +35,17 @@
         <div class="layui-card-body">
             <table id="admin-article-table" lay-filter="admin-article-table"></table>
 
-            <script type="text/html" id="article-table-switchTpl">
+            <script type="text/html" id="article-status-switchTpl">
                 <input type="checkbox" lay-skin="switch" lay-text="启用|禁用" lay-filter="article-table-status"
                        value="@{{ d.id }}" @{{ d.status == 1 ? 'checked' : '' }}>
+            </script>
+            <script type="text/html" id="article-recommend-switchTpl">
+                <input type="checkbox" lay-skin="switch" lay-text="推荐|普通" lay-filter="article-table-recommend"
+                       value="@{{ d.id }}" @{{ d.is_recommend == 1 ? 'checked' : '' }}>
+            </script>
+            <script type="text/html" id="article-top-switchTpl">
+                <input type="checkbox" lay-skin="switch" lay-text="置顶|普通" lay-filter="article-table-top"
+                       value="@{{ d.id }}" @{{ d.is_top == 1 ? 'checked' : '' }}>
             </script>
             <script type="text/html" id="admin-article-table-toolbar">
                 <div class="layui-btn-container">
@@ -80,7 +88,9 @@
                     {field:'id', width:120, title: 'ID', sort: true},
                     {field:'title', title: '文章标题',edit:'text'},
                     {field:'category_name', width:160, title: '文章分类'},
-                    {field:'status',  width:160, title: '状态',templet: '#article-table-switchTpl', unresize: true},
+                    {field:'status',  width:160, title: '状态',templet: '#article-status-switchTpl', unresize: true},
+                    {field:'is_recommend',  width:160, title: '是否推荐',templet: '#article-recommend-switchTpl', unresize: true},
+                    {field:'is_top',  width:160, title: '是否置顶',templet: '#article-top-switchTpl', unresize: true},
                     {field:'sort',  width:120, title: '排序'},
                     {fixed: 'right', title:'操作', toolbar: '#admin-article-table-bar', width:150}
                 ]],
@@ -249,6 +259,52 @@
                     url:'/admin/article/change_value',
                     method:'post',
                     data:{_token:"{{csrf_token()}}",id:id,field:'status',value:check_value},
+                    success: function (res) {
+                        if(res.code === 0){
+                            layer.msg('编辑成功');
+                        }else{
+                            layer.msg(res.msg);
+                        }
+                    },fail: function () {
+                        layer.msg('编辑失败');
+                    }
+                });
+            });
+            //监听switch操作
+            form.on('switch(article-table-recommend)', function(obj){
+                var id = obj.value;
+                var check_status = obj.elem.checked;
+                var check_value = 0;
+                if(check_status){
+                    check_value = 1;
+                }
+                $.ajax({
+                    url:'/admin/article/change_value',
+                    method:'post',
+                    data:{_token:"{{csrf_token()}}",id:id,field:'is_recommend',value:check_value},
+                    success: function (res) {
+                        if(res.code === 0){
+                            layer.msg('编辑成功');
+                        }else{
+                            layer.msg(res.msg);
+                        }
+                    },fail: function () {
+                        layer.msg('编辑失败');
+                    }
+                });
+            });
+            //监听switch操作
+            form.on('switch(article-table-top)', function(obj){
+                var id = obj.value;
+                var check_status = obj.elem.checked;
+                var check_value = 0;
+                if(check_status){
+                    check_value = 1;
+                }
+                $.ajax({
+                    url:'/admin/article/change_value',
+                    method:'post',
+                    data:{_token:"{{csrf_token()}}",id:id,field:'is_top',value:check_value},
                     success: function (res) {
                         if(res.code === 0){
                             layer.msg('编辑成功');

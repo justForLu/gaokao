@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Home;
 
+use App\Enums\BasicEnum;
 use App\Enums\BoolEnum;
+use App\Enums\CategoryEnum;
 use App\Repositories\Home\Criteria\ArticleCriteria;
 use App\Repositories\Home\ArticleRepository as Article;
 use App\Repositories\Home\CategoryRepository as Category;
@@ -40,12 +42,16 @@ class ArticleController extends BaseController
         $this->article->pushCriteria(new ArticleCriteria($params));
 
         $list = $this->article->paginate(Config::get('home.page_size',10));
-
+        //文章分类
+        $category = \App\Models\Common\Category::where('status',BasicEnum::ACTIVE)
+            ->where('type',CategoryEnum::ARTICLE)
+            ->orderBy('sort','DESC')
+            ->get();
         //热门文章
         $where1['is_recommend']['EQ'] = BoolEnum::YES;
         $article = $this->article->getList('*',$where1,6);
 
-        return view('home.article.index', compact('list','article'));
+        return view('home.article.index', compact('list','params','article','category'));
     }
 
     /**

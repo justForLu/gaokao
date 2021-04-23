@@ -12,7 +12,14 @@
     <div class="wrap wrap_news">
         <div class="section clearfix">
             <div class="ne_fl">
-
+                <ul class="article_nav" style='text-align: left'>
+                    <li @if(!isset($params['category_id']) || empty($params['category_id'])) class="active" @endif><a href="{{url("/home/article/index.html")}}">全部</a></li>
+                    @if(!empty($category))
+                        @foreach($category as $v)
+                            <li @if(isset($params['category_id']) && $params['category_id'] == $v['id']) class="active" @endif><a href="{{url("/home/article/index.html?category_id=".$v['id'])}}">专业解读</a></li>
+                        @endforeach
+                    @endif
+                </ul>
                 <div class="ne_xlist_main">
                     <ul class="ne_xlist">
                         @if($list)

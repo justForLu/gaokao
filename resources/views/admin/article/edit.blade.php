@@ -32,6 +32,18 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">是否推荐</label>
+            <div class="layui-input-inline">
+                {{\App\Enums\BoolEnum::enumRadio($data->is_recommend,'is_recommend')}}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否置顶</label>
+            <div class="layui-input-inline">
+                {{\App\Enums\BoolEnum::enumRadio($data->is_top,'is_top')}}
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">排序</label>
             <div class="layui-input-inline">
                 <input type="text" name="sort" placeholder="请输入排序" value="{{$data->sort}}" autocomplete="off" class="layui-input">

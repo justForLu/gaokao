@@ -36,8 +36,7 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function (){
     Route::get('/shop/detail/{id}.html', 'ShopController@detail');
     //专业解读
     Route::get('/article/index.html', 'ArticleController@index');
-    Route::get('/article/list.html', 'ArticleController@list');
-    Route::any('/article/detail/{id}', 'ArticleController@detail');
+    Route::get('/article/detail/{id}', 'ArticleController@detail');
 
     Route::get('/join/index.html', 'JoinController@index');
     Route::post('/enroll/sign_up','EnrollController@sign_up');

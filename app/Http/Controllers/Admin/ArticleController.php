@@ -97,6 +97,8 @@ class ArticleController extends BaseController
             'introduce' => $params['introduce'] ?? '',
             'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'status' => $params['status'] ?? 0,
+            'is_recommend' => $params['is_recommend'] ?? 0,
+            'is_top' => $params['is_top'] ?? 0,
             'sort' => $params['sort'],
             'create_time' => time()
         ];
@@ -155,6 +157,8 @@ class ArticleController extends BaseController
             'introduce' => $params['introduce'] ?? '',
             'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'status' => $params['status'] ?? 0,
+            'is_recommend' => $params['is_recommend'] ?? 0,
+            'is_top' => $params['is_top'] ?? 0,
             'sort' => $params['sort'],
             'update_time' => time()
         ];
@@ -191,7 +195,7 @@ class ArticleController extends BaseController
         $id = $params['id'] ?? 0;
         $field = $params['field'] ?? '';
         $value = $params['value'] ?? '';
-        if(empty($id) || empty($field) || empty($value)){
+        if(empty($id) || empty($field)){
             return $this->ajaxError('未知错误，请联系管理员');
         }
         $data = [
