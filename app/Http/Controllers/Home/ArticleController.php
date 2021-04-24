@@ -51,16 +51,18 @@ class ArticleController extends BaseController
         $where1['is_recommend']['EQ'] = BoolEnum::YES;
         $article = $this->article->getList('*',$where1,6);
 
-        return view('home.article.index', compact('list','params','article','category'));
+        return view('home.article.index', compact('list','article','category'));
     }
 
     /**
      * 新闻详情
-     * @param $id
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function detail($id)
+    public function detail(Request $request)
     {
+        $params = $request->all();
+        $id = $params['id'] ?? 0;
         $data = $this->article->find($id);
         $data->content = htmlspecialchars_decode($data->content);
 

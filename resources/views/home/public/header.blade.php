@@ -1,13 +1,3 @@
-<style type="text/css">
-    #PoPy {
-        position: absolute;
-        background: transparent;
-        z-index: 20000;
-        width: 73px;
-        top: 83px;
-        left: 237px;
-    }
-</style>
 <div class="head_tool wrap">
     <div class="section clearfix">
         <p class="phones fl">

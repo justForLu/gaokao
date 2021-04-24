@@ -2,10 +2,9 @@
 namespace App\Http\Controllers\Home;
 
 use App\Enums\PositionEnum;
+use App\Enums\TermEnum;
 use App\Repositories\Home\BannerRepository as Banner;
 use App\Repositories\Home\CategoryRepository as Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class IndexController extends BaseController
 {
@@ -32,6 +31,7 @@ class IndexController extends BaseController
     {
         //banner图
         $where1['position'] = PositionEnum::INDEX;
+        $where1['terminal'] = TermEnum::PC;
         $banner = $this->banner->getList($where1);
 
         return view('home.index.index', compact('banner'));

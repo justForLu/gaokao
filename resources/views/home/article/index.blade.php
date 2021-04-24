@@ -53,7 +53,7 @@
                         @if($article)
                             @foreach($article as $v)
                                 <li>
-                                    <a href="{{url("/home/article/detail/".$v['id'].".html")}}" title="{{$v['title']}}">
+                                    <a href="{{url("/home/article/detail?id=".$v['id'])}}" title="{{$v['title']}}">
                                         <p>{{$v['title']}}</p>
                                     </a>
                                 </li>

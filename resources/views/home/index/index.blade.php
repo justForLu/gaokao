@@ -6,20 +6,20 @@
 
 @section('content')
     <div class="banner">
-        <div class="slide">
-            <ul class="pics">
-                @if(!empty($banner_arr))
-                    @foreach($banner_arr as $v)
+        <div id="slide">
+            <ul id="pics">
+                @if(!empty($banner))
+                    @foreach($banner as $v)
                         <li style="background:url({{$v['image']}}) center top no-repeat;">
-                            <a href="{{$v['link']}}" target="_blank" class="slide_a" title="{{$v['alt']}}"></a>
+                            <a href="" target="_blank" class="slide_a" title=""></a>
                         </li>
                     @endforeach
                 @endif
             </ul>
             <div class="section slide_nav">
                 <div class="num">
-                    @if(!empty($banner_arr))
-                        @foreach($banner_arr as $v)
+                    @if(!empty($banner))
+                        @foreach($banner as $v)
                             <span></span>
                         @endforeach
                     @endif
