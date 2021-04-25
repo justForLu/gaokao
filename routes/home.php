@@ -27,16 +27,18 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function (){
     Route::get('/register', 'RegisterController@index');
     Route::post('/register', 'RegisterController@register');
     Route::get('/logout', 'LoginController@logout');
-
     //首页
     Route::get('/index.html', 'IndexController@index');
-    Route::get('/recruit/index.html', 'RecruitController@index');
-    Route::get('/recruit/detail/{id}.html', 'RecruitController@detail');
-    Route::get('/shop/index.html', 'ShopController@index');
-    Route::get('/shop/detail/{id}.html', 'ShopController@detail');
     //专业解读
     Route::get('/article/index.html', 'ArticleController@index');
     Route::get('/article/detail/{id}.html', 'ArticleController@detail');
+    //查高校
+    Route::get('/school/index.html', 'SchoolController@index');
+    Route::get('/school/detail/{id}.html', 'SchoolController@detail');
+    //查分数线
+    Route::get('/score/index.html', 'ScoreController@index');
+    Route::get('/score/detail/{id}.html', 'ScoreController@detail');
+
 
     Route::get('/join/index.html', 'JoinController@index');
     Route::post('/enroll/sign_up','EnrollController@sign_up');

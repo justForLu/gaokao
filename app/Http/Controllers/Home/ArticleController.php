@@ -52,8 +52,7 @@ class ArticleController extends BaseController
             'is_recommend' => BoolEnum::YES,
             'limit' => 6,
         ];
-        $article = $this->article->getList($where2);
-        $article = $article['list'] ?? [];
+        $article = $this->article->getAllList($where2);
 
         return view('home.article.index', compact('params','list','count','category','article'));
     }
@@ -68,14 +67,13 @@ class ArticleController extends BaseController
         $data = $this->article->find($id);
 
         $data->content = htmlspecialchars_decode($data->content);
-$data->author = $this->manager->find($data->author);
+
         //热门文章
         $where1 = [
             'is_recommend' => BoolEnum::YES,
             'limit' => 6,
         ];
-        $article = $this->article->getList($where1);
-        $article = $article['list'] ?? [];
+        $article = $this->article->getAllList($where1);
 
         //增加一次阅读量
         $this->article->where('id',$id)->increment('read',1, ['update_time' => time()]);

@@ -7,7 +7,7 @@ use App\Repositories\Home\UsersRepository as Users;
 use App\Repositories\Home\CollectRepository as Collect;
 use App\Repositories\Home\FactoryRepository as Factory;
 use App\Repositories\Home\PositionRepository as Position;
-use App\Repositories\Home\LabelRepository as Label;
+use App\Repositories\Home\TagRepository as Label;
 use App\Http\Controllers\Admin\CityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

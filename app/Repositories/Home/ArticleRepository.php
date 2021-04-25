@@ -42,4 +42,30 @@ class ArticleRepository extends BaseRepository
 
         return ['list' => $list,'count' => $count];
     }
+
+    /**
+     * 获取文章列表（无分页）
+     * @param array $params
+     * @param string $field
+     * @return array
+     */
+    public function getAllList($params = [], $field = '*')
+    {
+        $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
+
+        $where = [];
+        if(isset($params['category_id']) && !empty($params['category_id'])){
+            $where[] = ['category_id','=',$params['category_id']];
+        }
+        if(isset($params['is_recommend']) && !empty($params['is_recommend'])){
+            $where[] = ['is_recommend','=',$params['is_recommend']];
+        }
+        $offset = 0;
+        $list = $this->model->select($field)->where($where)
+            ->orderBy('sort', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->offset($offset)->limit($limit)->get()->toArray();
+
+        return $list;
+    }
 }

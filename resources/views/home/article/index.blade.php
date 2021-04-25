@@ -2,6 +2,11 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{asset("/assets/home/css/style-news.css")}}">
+    <style type="text/css">
+        .layui-this a {
+            color: #1ea115;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -12,14 +17,16 @@
     <div class="wrap wrap_news">
         <div class="section clearfix">
             <div class="ne_fl">
-                <ul class="article_nav" style='text-align: left'>
-                    <li @if(!isset($params['category_id']) || empty($params['category_id'])) class="active" @endif><a href="{{url("/home/article/index.html")}}">全部</a></li>
-                    @if(!empty($category))
-                        @foreach($category as $v)
-                            <li @if(isset($params['category_id']) && $params['category_id'] == $v['id']) class="active" @endif><a href="{{url("/home/article/index.html?category_id=".$v['id'])}}">专业解读</a></li>
-                        @endforeach
-                    @endif
-                </ul>
+                <div class="layui-tab">
+                    <ul class="layui-tab-title">
+                        <li @if(!isset($params['category_id']) || empty($params['category_id'])) class="layui-this" @endif><a href="{{url("/home/article/index.html")}}">全部</a></li>
+                        @if(!empty($category))
+                            @foreach($category as $v)
+                                <li @if(isset($params['category_id']) && $params['category_id'] == $v['id']) class="layui-this" @endif><a href="{{url("/home/article/index.html?category_id=".$v['id'])}}">专业解读</a></li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
                 <div class="ne_xlist_main">
                     <ul class="ne_xlist">
                         @if($list)
@@ -70,9 +77,14 @@
 @section('scripts')
     <script src="{{asset("/assets/home/js/news.js")}}"></script>
     <script>
-        layui.use(['laypage'], function(){
+        layui.use(['element','laypage'], function(){
             var $ = layui.$,
-                laypage = layui.laypage;
+            laypage = layui.laypage,
+            element = layui.element;
+
+            //nav
+            element.render();
+            //分页
             var category_id = "{{$params['category_id'] ?? 0}}";
             var count = "{{$count}}";
             var url = "{{url('/home/article/index.html?category_id=')}}";
