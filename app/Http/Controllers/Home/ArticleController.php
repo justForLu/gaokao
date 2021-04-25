@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Home;
 use App\Enums\BasicEnum;
 use App\Enums\BoolEnum;
 use App\Enums\CategoryEnum;
-use App\Repositories\Home\Criteria\ArticleCriteria;
 use App\Repositories\Home\ArticleRepository as Article;
 use App\Repositories\Home\CategoryRepository as Category;
 use App\Repositories\Admin\ManagerRepository as Manager;
@@ -33,25 +32,30 @@ class ArticleController extends BaseController
      * 文章首页
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
 	public function index(Request $request)
     {
         $params = $request->all();
+        $params['limit'] = Config::get('home.page_size',10);
+        $list = $this->article->getList($params);
+        $count = $list['count'] ?? 0;
+        $list = $list['list'] ?? [];
 
-        $this->article->pushCriteria(new ArticleCriteria($params));
-
-        $list = $this->article->paginate(Config::get('home.page_size',10));
         //文章分类
-        $category = \App\Models\Common\Category::where('status',BasicEnum::ACTIVE)
-            ->where('type',CategoryEnum::ARTICLE)
-            ->orderBy('sort','DESC')
-            ->get();
+        $where1 = [
+            'status' => BasicEnum::ACTIVE,
+            'type' => CategoryEnum::ARTICLE
+        ];
+        $category = $this->category->getList($where1);
         //热门文章
-        $where1['is_recommend']['EQ'] = BoolEnum::YES;
-        $article = $this->article->getList('*',$where1,6);
+        $where2 = [
+            'is_recommend' => BoolEnum::YES,
+            'limit' => 6,
+        ];
+        $article = $this->article->getList($where2);
+        $article = $article['list'] ?? [];
 
-        return view('home.article.index', compact('list','article','category'));
+        return view('home.article.index', compact('params','list','count','category','article'));
     }
 
     /**
@@ -59,23 +63,22 @@ class ArticleController extends BaseController
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function detail(Request $request)
+    public function detail($id)
     {
-        $params = $request->all();
-        $id = $params['id'] ?? 0;
         $data = $this->article->find($id);
+
         $data->content = htmlspecialchars_decode($data->content);
-
-        //发布作者
-        $user = $this->manager->find($data->author);
-        $data->author = isset($user->username) ? $user->username : '';
-
+$data->author = $this->manager->find($data->author);
         //热门文章
-        $where1['is_recommend']['EQ'] = BoolEnum::YES;
-        $article = $this->article->getList('*',$where1,6);
+        $where1 = [
+            'is_recommend' => BoolEnum::YES,
+            'limit' => 6,
+        ];
+        $article = $this->article->getList($where1);
+        $article = $article['list'] ?? [];
 
         //增加一次阅读量
-        $this->article->increment('read',1, ['update_time' => time()]);
+        $this->article->where('id',$id)->increment('read',1, ['update_time' => time()]);
 
         return view('home.article.detail',compact('data','article'));
     }

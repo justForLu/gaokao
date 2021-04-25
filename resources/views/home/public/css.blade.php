@@ -4,4 +4,5 @@
 <link rel="stylesheet" href="{{asset("/assets/home/css/city.css")}}">
 <link rel="stylesheet" href="{{asset("/assets/home/css/style-news.css")}}">
 <link rel="stylesheet" href="{{asset("/assets/home/css/layer.css")}}">
+<link rel="stylesheet" href="{{asset("/assets/plugins/layui/css/layui.css")}}">
 

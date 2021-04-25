@@ -6,24 +6,13 @@
 
 @section('content')
     <div class="banner">
-        <div id="slide">
-            <ul id="pics">
+        <div class="layui-carousel" id="slide">
+            <div carousel-item>
                 @if(!empty($banner))
                     @foreach($banner as $v)
-                        <li style="background:url({{$v['image']}}) center top no-repeat;">
-                            <a href="" target="_blank" class="slide_a" title=""></a>
-                        </li>
+                        <div><img src="{{$v['image']}}"></div>
                     @endforeach
                 @endif
-            </ul>
-            <div class="section slide_nav">
-                <div class="num">
-                    @if(!empty($banner))
-                        @foreach($banner as $v)
-                            <span></span>
-                        @endforeach
-                    @endif
-                </div>
             </div>
         </div>
     </div>
@@ -147,5 +136,22 @@
     </div>
 @endsection
 
+@section('scripts')
+    <script>
+        layui.config({
+            base: "{{asset('/assets/plugins/layui/')}}/" //静态资源所在路径
+        }).use(['carousel'], function(){
+            var $ = layui.$,
+                carousel = layui.carousel;
+
+            carousel.render({
+                elem: '#slide',
+                width: '100%',
+                height: '410px',
+                interval: 5000
+            });
+        })
+    </script>
+@endsection
 
 

@@ -4,9 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use App\Http\Controllers\Admin\BaseController;
 
 class HomeAuthenticate
 {

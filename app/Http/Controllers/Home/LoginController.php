@@ -5,9 +5,7 @@ use App\Http\Requests\Home\LoginRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use App\Repositories\Home\UsersRepository;
-use Illuminate\Support\Facades\Lang;
 
 class LoginController extends Controller
 {
@@ -70,9 +68,9 @@ class LoginController extends Controller
 
     /**
      * 登录校验处理(重写框架默认自带的登录校验)
-     * @param LoginRequest $request
-     * @return \Illuminate\Http\JsonResponse|void
-     * @throws \Illuminate\Validation\ValidationException
+     * @param LoginRequest $loginRequest
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function login(LoginRequest $loginRequest)
     {
@@ -87,6 +85,7 @@ class LoginController extends Controller
     /**
      * 更新用户的登录信息
      * @param $loginRequest
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function updateLoginInfo($loginRequest)
     {

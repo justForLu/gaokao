@@ -8,7 +8,6 @@
 
 namespace App\Repositories;
 
-use App\Enums\BasicEnum;
 use Prettus\Repository\Eloquent\BaseRepository as Repository;
 
 abstract class BaseRepository extends Repository
@@ -31,73 +30,6 @@ abstract class BaseRepository extends Repository
 
         return $redis;
     }
-
-
-    /**
-     * 专为前端部分获取list方法整合的方法
-     * @param null $model
-     * @param string $select
-     * @param array $where
-     * @param int $limit
-     * @param array $with
-     * @param array $order
-     * @return array
-     */
-    public function getLists($model = null, $select = '*', $where = [], $limit = 0, $with = [], $order = [])
-    {
-        if($with){
-            $model = $model->with($with);
-        }
-        $model = $model->select($select)->where('status',BasicEnum::ACTIVE);
-        if($where){
-            foreach ($where as $key => $val){
-                if($val && is_array($val)){
-                    foreach ($val as $k => $v){
-                        if ($k == 'IN' && is_array($v)){
-                            $model = $model->whereIn($key,$v);
-                        }elseif ($k == 'NOTIN' && is_array($v)){
-                            $model = $model->whereNOtIn($key,$v);
-                        }elseif ($k == 'EQ'){
-                            $model = $model->where($key,'=',$v);
-                        }elseif ($k == 'NEQ'){
-                            $model = $model->where($key,'<>',$v);
-                        }elseif ($k == 'GT'){
-                            $model = $model->where($key,'>',$v);
-                        }elseif ($k == 'EGT'){
-                            $model = $model->where($key,'>=',$v);
-                        }elseif ($k == 'LT'){
-                            $model = $model->where($key,'<',$v);
-                        }elseif ($k == 'ELT'){
-                            $model = $model->where($key,'<=',$v);
-                        }elseif ($k == 'LIKE'){
-                            $model = $model->where($key,'LIKE','%'.$v.'%');
-                        }elseif ($k == 'BETWEEN' && is_array($v)){
-                            $model = $model->whereBetween($key,$v);
-                        }elseif ($k == 'NOTBETWEEN' && is_array($v)){
-                            $model = $model->whereNotBetween($key,$v);
-                        }elseif ($k == 'NULL'){
-                            $model = $model->whereNull($key);
-                        }elseif ($k == 'NOTNULL'){
-                            $model = $model->whereNotNull($key);
-                        }
-                    }
-                }
-            }
-        }
-        if($order){
-            foreach ($order as $v){
-                $model = $model->orderBy($v[0],$v[1]);
-            }
-        }
-        if($limit){
-            $model = $model->limit($limit);
-        }
-
-        $list = $model->get()->toArray();
-
-        return $list;
-    }
-
 
     /**
      * 成功返回

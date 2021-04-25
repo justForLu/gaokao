@@ -15,7 +15,7 @@
                     <div class="ne_pg">
                         <div class="ne_pg_title">
                             <h2>{{$data->title}}</h2>
-                            <p><span>浏览次数：{{$data->read}}次</span><span>发布时间：{{$data->create_time}}</span><span>编辑：{{$data->author}}</span></p>
+                            <p><span>浏览次数：{{$data->read}}次</span><span>发布时间：{{$data->create_time}}</span></p>
                         </div>
                         <div class="ne_pg_con">
                             <?php echo $data->content ?>
@@ -33,8 +33,7 @@
                         @if($article)
                             @foreach($article as $v)
                                 <li>
-                                    <a href="{{url("/home/news/detail/".$v['id'].".html")}}" title="{{$v['title']}}">
-                                        <img src="{{$v['image']}}" alt="{{$v['title']}}">
+                                    <a href="{{url("/home/article/detail/".$v['id'].".html")}}" target="_blank">
                                         <p>{{$v['title']}}</p>
                                     </a>
                                 </li>

@@ -20,7 +20,7 @@
                     </div>
                     <input type="hidden" name="image" value="" id="banner_image_path">
                 </div>
-                <div class="layui-form-mid layui-word-aux">PC端建议尺寸，移动端建议尺寸</div>
+                <div class="layui-form-mid layui-word-aux">PC端建议尺寸1600*420，移动端建议尺寸</div>
             </div>
         </div>
         <div class="layui-form-item">

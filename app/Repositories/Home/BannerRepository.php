@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Home;
 
-use App\Enums\BasicEnum;
 use App\Repositories\BaseRepository;
 
 class BannerRepository extends BaseRepository
@@ -12,24 +11,28 @@ class BannerRepository extends BaseRepository
         return 'App\Models\Common\Banner';
     }
 
-
     /**
      * 根据位置获取对应的幻灯片
-     * @param array $where
-     * @param int $limit
+     * @param array $params
+     * @param string $field
      * @return array
      */
-    public function getList($where = [],$limit = 0)
+    public function getList($params = [],$field = '*')
     {
-        $model = $this->model->where($where)
-            ->where('status',BasicEnum::ACTIVE)
-            ->orderBy('sort','DESC');
+        $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
 
-        if($limit){
-            $model = $model->limit($limit);
+        $where = [];
+        if(isset($params['position']) && !empty($params['position'])){
+            $where[] = ['position','=',$params['position']];
         }
-
-        $list = $model->get()->toArray();
+        if(isset($params['terminal']) && !empty($params['terminal'])){
+            $where[] = ['terminal','=',$params['terminal']];
+        }
+        $offset = 0;
+        $list = $this->model->select($field)->where($where)
+            ->orderBy('sort', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->offset($offset)->limit($limit)->get()->toArray();
 
         return $list;
     }
