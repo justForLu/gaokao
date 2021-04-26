@@ -1990,6 +1990,10 @@ h3.title2 .line {
     font-weight: normal
 }
 
+.store_list .names h4 a:hover {
+    color: #1ea115;
+}
+
 .store_list .school-tag {
     margin-top: 20px;
     margin-left: -10px;
@@ -2436,3 +2440,38 @@ h3.title2 .line {
 .lc_recom_list .hover .cons {
     display: block
 }
+/* 分数线 */
+.score-box {
+    min-height: 400px;
+}
+
+.score-title {
+    overflow: hidden;
+    font-size: 18px;
+    background-color: #eee;
+    padding: 15px 0px;
+    border-bottom: 1px #ececec solid;
+}
+
+.score-title li {
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
+.body-box {
+
+}
+
+.body-box .score-body {
+    overflow: hidden;
+    padding: 15px 0px;
+    border-bottom: 1px #ececec solid;
+}
+
+.body-box .score-body li {
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
