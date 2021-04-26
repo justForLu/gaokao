@@ -104,6 +104,7 @@ class SchoolController extends BaseController
 
         $data = [
             'name' => $params['name'] ?? '',
+            'logo' => $params['logo'] ?? '',
             'province' => $params['province'] ?? 0,
             'city' => $params['city'] ?? 0,
             'area' => $params['area'] ?? 0,
@@ -125,7 +126,7 @@ class SchoolController extends BaseController
         }
         //高校标签
         $tag = $params['tag'] ?? [];
-        $tag_str = ','.implode(',',$tag);
+        $tag_str = ','.implode(',',$tag).',';
         $data['tag'] = $tag_str;
 
         $result = $this->school->create($data);
@@ -190,6 +191,7 @@ class SchoolController extends BaseController
 
         $data = [
             'name' => $params['name'] ?? '',
+            'logo' => $params['logo'] ?? '',
             'province' => $params['province'] ?? 0,
             'city' => $params['city'] ?? 0,
             'area' => $params['area'] ?? 0,
@@ -211,7 +213,7 @@ class SchoolController extends BaseController
         }
         //高校标签
         $tag = $params['tag'] ?? [];
-        $tag_str = ','.implode(',',$tag);
+        $tag_str = ','.implode(',',$tag).',';
         $data['tag'] = $tag_str;
 
         $result = $this->school->update($data,$id);

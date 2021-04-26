@@ -35,7 +35,7 @@
                 <a href="{{url("/home/school/index.html")}}" @if($menu == 'School') class="cur" @endif>查高校<i class="ic_up"></i></a>
             </li>
             <li>
-                <a href="{{url("/home/score/index.html")}}" @if($menu == 'Score') class="cur" @endif>查录取分数<i class="ic_up"></i></a>
+                <a href="{{url("/home/score/index.html")}}" @if($menu == 'Score') class="cur" @endif>历年分数线<i class="ic_up"></i></a>
             </li>
             <li>
                 <a href="{{url("/home/article/index.html")}}" @if($menu == 'Article') class="cur" @endif>专业解读<i class="ic_up"></i></a>

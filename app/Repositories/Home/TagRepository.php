@@ -22,9 +22,6 @@ class TagRepository extends BaseRepository
         $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
 
         $where = [];
-        if(isset($params['type']) && !empty($params['type'])){
-            $where[] = ['type','=',$params['type']];
-        }
         if(isset($params['status']) && !empty($params['status'])){
             $where[] = ['status','=',$params['status']];
         }

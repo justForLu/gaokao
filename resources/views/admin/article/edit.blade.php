@@ -14,15 +14,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">文章类型</label>
             <div class="layui-input-inline">
-                <div class="layui-input-inline">
-                    @if(!empty($category))
-                        <select name="category_id">
-                            @foreach($category as $v)
-                                <option value="{{$v['id']}}" @if($v['id'] == $data->category_id) selected @endif>{{$v['name']}}</option>
-                            @endforeach
-                        </select>
-                    @endif
-                </div>
+                @if(!empty($category))
+                    <select name="category_id">
+                        @foreach($category as $v)
+                            <option value="{{$v['id']}}" @if($v['id'] == $data->category_id) selected @endif>{{$v['name']}}</option>
+                        @endforeach
+                    </select>
+                @endif
             </div>
         </div>
         <div class="layui-form-item">

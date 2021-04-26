@@ -25,6 +25,7 @@ class SchoolRequest extends Request
     {
         return [
             'name' => 'required',
+            'logo' => 'required',
             'province' => 'required',
             'city' => 'required',
             'address' => 'required',
@@ -39,6 +40,7 @@ class SchoolRequest extends Request
     {
         return  [
             'name.required' => '请输入高校名称',
+            'logo.required' => '请上传高校logo',
             'province.required' => '请选择省份',
             'city.required' => '请选择城市',
             'address.required' => '请输入详细地址',

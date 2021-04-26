@@ -37,6 +37,7 @@ class SchoolRepository extends BaseRepository
             $where[] = ['area','=',$params['area']];
         }
         if(isset($params['tag']) && !empty($params['tag'])){
+            $params['tag'] = ','.$params['tag'].',';
             $where[] = ['tag','LIKE','%'.$params['tag'].'%'];
         }
 
@@ -46,7 +47,7 @@ class SchoolRepository extends BaseRepository
         $list = $this->model->select($field)->where($where)
             ->orderBy('sort', 'DESC')
             ->orderBy('id', 'DESC')
-            ->offset($offset)->limit($limit)->get();
+            ->offset($offset)->limit($limit)->get()->toArray();
 
         return ['list' => $list,'count' => $count];
     }
@@ -59,21 +60,18 @@ class SchoolRepository extends BaseRepository
      */
     public function getAllList($params = [], $field = '*')
     {
-//        $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
-//
-//        $where = [];
-//        if(isset($params['type']) && !empty($params['type'])){
-//            $where[] = ['type','=',$params['type']];
-//        }
-//        if(isset($params['status']) && !empty($params['status'])){
-//            $where[] = ['status','=',$params['status']];
-//        }
-//        $offset = 0;
-//        $list = $this->model->select($field)->where($where)
-//            ->orderBy('sort', 'DESC')
-//            ->orderBy('id', 'DESC')
-//            ->offset($offset)->limit($limit)->get()->toArray();
-//
-//        return $list;
+        $limit = isset($params['limit']) && $params['limit'] > 0 ? $params['limit'] : 10;
+
+        $where = [];
+        if(isset($params['status']) && !empty($params['status'])){
+            $where[] = ['status','=',$params['status']];
+        }
+        $offset = 0;
+        $list = $this->model->select($field)->where($where)
+            ->orderBy('sort', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->offset($offset)->limit($limit)->get()->toArray();
+
+        return $list;
     }
 }

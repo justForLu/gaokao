@@ -1,11 +1,9 @@
 <?php
 namespace App\Http\Controllers\Home;
 
-use App\Enums\BasicEnum;
 use App\Repositories\Home\ScoreRepository as Score;
 use App\Repositories\Home\CityRepository as City;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class ScoreController extends BaseController
 {
@@ -29,31 +27,24 @@ class ScoreController extends BaseController
      */
 	public function index(Request $request)
     {
-        $params = $request->all();
-        $params['limit'] = Config::get('home.page_size',10);
-        $list = $this->score->getList($params);
-        $count = $list['count'] ?? 0;
-        $list = $list['list'] ?? [];
-
         //省份
         $where1['parent'] = 0;
         $province = $this->city->getCityList($where1);
 
-        return view('home.score.index',compact('params','list','count'));
+        return view('home.score.index',compact('province'));
     }
 
-
     /**
-     * 查分数线详情页
-     * @param $id
+     * 获取列表
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Bosnadev\Repositories\Exceptions\RepositoryException
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function detail($id, Request $request)
+    public function getList(Request $request)
     {
-        $data = $this->score->find($id);
+        $params = $request->all();
 
-        return view('home.score.detail',compact('data'));
+        $result = $this->score->getList($params);
+
+        return $this->ajaxSuccess($result);
     }
 }

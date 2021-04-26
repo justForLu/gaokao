@@ -33,12 +33,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function (){
     Route::get('/article/index.html', 'ArticleController@index');
     Route::get('/article/detail/{id}.html', 'ArticleController@detail');
     //查高校
-    Route::get('/school/index.html', 'SchoolController@index');
+    Route::any('/school/index.html', 'SchoolController@index');
     Route::get('/school/detail/{id}.html', 'SchoolController@detail');
     //查分数线
     Route::get('/score/index.html', 'ScoreController@index');
-    Route::get('/score/detail/{id}.html', 'ScoreController@detail');
-
+    Route::get('/score/get_list', 'ScoreController@getList');
 
     Route::get('/join/index.html', 'JoinController@index');
     Route::post('/enroll/sign_up','EnrollController@sign_up');

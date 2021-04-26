@@ -1954,8 +1954,7 @@ h3.title2 .line {
 
 .store_list li {
     border-top: 1px solid #e6e6e6;
-    padding: 30px;
-    *padding-right: 0
+    padding: 20px 10px;
 }
 
 .store_list li:hover {
@@ -1967,8 +1966,8 @@ h3.title2 .line {
 }
 
 .store_list .imgs {
-    width: 212px;
-    height: 145px;
+    width: 100px;
+    height: 100px;
     float: left
 }
 
@@ -1978,7 +1977,7 @@ h3.title2 .line {
 }
 
 .store_list .cons {
-    margin-left: 232px;
+    margin-left: 120px;
     text-align: left;
 }
 
@@ -1989,6 +1988,20 @@ h3.title2 .line {
 .store_list .names h4 {
     font-size: 18px;
     font-weight: normal
+}
+
+.store_list .school-tag {
+    margin-top: 20px;
+    margin-left: -10px;
+}
+
+.store_list .school-tag span {
+    padding: 0px 10px;
+    border-right: 1px #ccc solid;
+}
+
+.store_list .school-tag span:last-child {
+    border: none;
 }
 
 .store_list .to_store {
