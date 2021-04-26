@@ -2475,3 +2475,19 @@ h3.title2 .line {
     text-align: center;
 }
 
+/*  高校详情  */
+.school_logo_box {
+    min-height: 200px;
+}
+
+.school_logo_box .school_log {
+
+}
+
+.school_logo_box .school_log img {
+
+}
+
+.school_dec_box {
+
+}

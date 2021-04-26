@@ -8,23 +8,17 @@
     <div class="fac_wrap wrap">
         <div class="section">
             <div class="fac_top clearfix">
-                <div class="fac_imgshow fac_imgswiper" id="fac_imgshow">
-                    <div class="view">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-
-                            </div>
-                        </div>
+                <div class="school_logo_box">
+                    <div class="school_log">
+                        <img src="{{$data->logo}}">
                     </div>
                 </div>
-                <div class="fac_top_info sto_top_info">
+                <div class="school_dec_box">
                     <p class="names">{{$data->name}}</p>
 
                     <p class="des">
 
                     </p>
-
-                    <p class="sto_top_note">郑重声明：本站所有发布招聘信息都经过工立方官方核实，100%真实有效，请大家放心报名！</p>
                 </div>
             </div>
         </div>
