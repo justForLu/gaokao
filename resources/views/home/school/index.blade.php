@@ -73,7 +73,8 @@
                                 </a>
                                 <div class="cons">
                                     <div class="names">
-                                        <h4><a href="{{url("/home/school/detail/".$v['id'].".html")}}" target="_blank">{{$v['name']}}</a></h4>
+                                        <a href="{{url("/home/school/detail/".$v['id'].".html")}}" target="_blank" class="to_store">高校详情 ></a>
+                                        <h4><a href="{{url("/home/school/detail/".$v['id'].".html")}}" target="_blank">{{$v['name']}}</a><span>{{$v['region']}}</span></h4>
                                     </div>
                                     <div class="school-tag">
                                         @if(!empty($v['tag_arr']))

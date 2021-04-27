@@ -119,6 +119,10 @@ class SchoolController extends BaseController
             'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'create_time' => time()
         ];
+        //如果是直辖市，需要选择区县
+        if(in_array($data['province'],[1,24,26,31]) && empty($data['area'])){
+            return $this->ajaxError('请选择区县');
+        }
         //判断高校是否已经存在
         $is_exist = $this->school->where('name',$data['name'])->count();
         if($is_exist > 0){
@@ -206,6 +210,10 @@ class SchoolController extends BaseController
             'content' => $params['content'] ? htmlspecialchars_decode($params['content']) : '',
             'update_time' => time()
         ];
+        //如果是直辖市，需要选择区县
+        if(in_array($data['province'],[1,24,26,31]) && empty($data['area'])){
+            return $this->ajaxError('请选择区县');
+        }
         //判断高校是否已经存在
         $is_exist = $this->school->where('id','<>',$id)->where('name',$data['name'])->count();
         if($is_exist > 0){

@@ -17,10 +17,10 @@
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="school-upload-normal">上传图片</button>
                     <div class="layui-upload-list">
-                        <img src="{{$data->image}}" class="layui-upload-img" id="school-upload-normal-img" style="width: 150px; height: 150px;">
+                        <img src="{{$data->logo}}" class="layui-upload-img" id="school-upload-normal-img" style="width: 150px; height: 150px;">
                         <p id="test-upload-demoText"></p>
                     </div>
-                    <input type="hidden" name="logo" value="{{$data->image}}" id="school_image_path">
+                    <input type="hidden" name="logo" value="{{$data->logo}}" id="school_image_path">
                 </div>
             </div>
         </div>

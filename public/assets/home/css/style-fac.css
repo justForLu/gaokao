@@ -1990,6 +1990,14 @@ h3.title2 .line {
     font-weight: normal
 }
 
+.store_list .names h4 span {
+    font-size: 13px;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border: 1px #ececec solid;
+    border-radius: 5px;
+}
+
 .store_list .names h4 a:hover {
     color: #1ea115;
 }

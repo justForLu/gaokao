@@ -42,12 +42,30 @@ class SchoolController extends BaseController
             //高校标签
             $tag = array_column($list,'tag');
             $tag = implode(',',$tag);
-            $tag_arr = array_diff(array_unique(explode(',',$tag)),[0]);
+            $tag_arr = array_diff(array_unique(explode(',',$tag)),['']);
             $tag_list = [];
             if($tag_arr){
                 $tag_list = \App\Models\Common\Tag::whereIn('id',$tag_arr)->pluck('shorter','id');
             }
+            //高校省市
+            $province_id = array_unique(array_column($list,'province'));
+            $city_id = array_unique(array_column($list,'city'));
+            $area_id = array_unique(array_column($list,'area'));
+            $region_id = array_diff(array_merge($province_id,$city_id,$area_id),[0]);
+            $region_list = [];
+            if($region_id){
+                $region_list = \App\Models\Common\City::whereIn('id',$region_id)->pluck('title','id');
+            }
+
             foreach ($list as &$v){
+                //省市
+                $province_name = $region_list[$v['province']] ?? '';
+                if(in_array($v['province'],[1,24,26,31])){
+                    $city_name = $region_list[$v['area']] ?? '';
+                }else{
+                    $city_name = $region_list[$v['city']] ?? '';
+                }
+                $v['region'] = $province_name.$city_name;
                 //高校标签
                 $tag_ids = array_diff(explode(',',$v['tag']),[0]);
                 $temp_arr = [];
