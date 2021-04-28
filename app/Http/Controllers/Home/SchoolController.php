@@ -5,7 +5,9 @@ use App\Enums\BasicEnum;
 use App\Enums\MajorEnum;
 use App\Enums\MajorTypeEnum;
 use App\Models\Common\Category;
+use App\Models\Common\EnterLine;
 use App\Models\Common\Major;
+use App\Models\Common\MajorLine;
 use App\Repositories\Home\SchoolRepository as School;
 use App\Repositories\Home\CityRepository as City;
 use App\Repositories\Home\TagRepository as Tag;
@@ -209,10 +211,37 @@ class SchoolController extends BaseController
                     $major[$v['category_id']]['category_name'] = $category_list[$v['category_id']] ?? '';
                 }
             }
+        }elseif ($nav == 'province'){
+            $province_province = $params['province_province'] ?? 18;    //默认内蒙古
+            $province_year = $params['province_year'] ?? (date('Y') - 1);
+            $province_science = $params['province_science'] ?? 1;   //默认理科
+            //各省录取分数线总数
+            $province_count = EnterLine::where('school_id',$id)->where('province',$province_province)
+                ->where('year',$province_year)->where('science',$province_science)->count();
+
+        }elseif ($nav == 'line'){
+            $line_province = $params['province_province'] ?? 18;    //默认内蒙古
+            $line_year = $params['province_year'] ?? (date('Y') - 1);
+            $line_science = $params['province_science'] ?? 1;   //默认理科
+            //查找该校拥有的批次
+            $batch_list = MajorLine::where('school_id',$id)->orderBy('batch','ASC')->pluck('batch');
+            $batch = [];
+            if(!empty($batch_list)){
+                $batch_arr = ['1' => '提前批','2' => '本科一批','3' => '本科二批','4' => '本科三批','5' => '大专批'];
+                foreach ($batch_list as $b_v){
+                    if(in_array($b_v,[1,2,3,4,5])){
+                        $batch[$b_v] = ['id' => $b_v,'name' => $batch_arr[$b_v]];
+                    }
+                }
+            }
+            //各专业录取总数
+            $line_count = EnterLine::where('school_id',$id)->where('province',$line_province)
+                ->where('year',$line_year)->where('science',$line_science)->count();
         }
 
         return view('home.school.detail',compact('data','nav','subject','country_major','main_major',
-            'major','king_major','school_hot'));
+            'major','king_major','school_hot','province_province','province_year','province_science','province_count',
+            'line_province','line_year','line_science','line_count','batch'));
     }
 
 }

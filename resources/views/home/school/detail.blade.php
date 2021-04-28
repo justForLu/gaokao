@@ -120,13 +120,85 @@
                         </div>
                     </div>
                     <div class="school_main_con" @if($nav == 'province') style="display: block;" @else style="display: none;" @endif>
-                        <div class="school-major-line">
+                        <div class="school-province-line">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <div class="layui-input-inline">
+                                        @if(!empty($province))
+                                            <select id="province" lay-filter="score_province">
+                                                <option value="0">请选择省份</option>
+                                                @foreach($province as $v)
+                                                    <option value="{{$v['id']}}">{{$v['title']}}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input" id="test-laydate-type-year" placeholder="yyyy">
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <select id="science" lay-filter="score_science">
+                                            <option value="1">理科</option>
+                                            <option value="2">文科</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="title-box">
+                                <ul class="province-line-title">
+                                    <li>省份</li>
+                                    <li>批次</li>
+                                    <li>文理科</li>
+                                    <li>分数</li>
+                                </ul>
+                            </div>
+                            <div class="province-line-box">
 
+                            </div>
+                            <div class="layui-col-md12 layui-col-sm12">
+                                <div id="province_page"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="school_main_con" @if($nav == 'line') style="display: block;" @else style="display: none;" @endif>
                         <div class="school-major-line">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <div class="layui-input-inline">
+                                        @if(!empty($province))
+                                            <select id="province" lay-filter="score_province">
+                                                <option value="0">请选择省份</option>
+                                                @foreach($province as $v)
+                                                    <option value="{{$v['id']}}">{{$v['title']}}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input" id="test-laydate-type-year" placeholder="yyyy">
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <select id="science" lay-filter="score_science">
+                                            <option value="1">理科</option>
+                                            <option value="2">文科</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="title-box">
+                                <ul class="province-line-title">
+                                    <li>省份</li>
+                                    <li>批次</li>
+                                    <li>文理科</li>
+                                    <li>分数</li>
+                                </ul>
+                            </div>
+                            <div class="province-line-box">
 
+                            </div>
+                            <div class="layui-col-md12 layui-col-sm12">
+                                <div id="line_page"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -153,6 +225,59 @@
 @section('scripts')
     <script src="{{asset("/assets/home/js/fac.js")}}"></script>
     <script src="{{asset("/assets/home/js/push.js")}}"></script>
+    <script>
+        layui.use(['form','laydate','laypage'], function(){
+            var $ = layui.$,
+                form = layui.form,
+                laydate = layui.laydate,
+                laypage = layui.laypage;
+
+            //省录取线分页
+            var province_province = "{{$params['province_province'] ?? 18}}";
+            var province_year = "{{$params['province_year'] ?? 0}}";
+            var province_science = "{{$params['province_science'] ?? 0}}";
+            var province_count = "{{$count}}";
+            var province_url = "{{url('/home/article/index.html?category_id=')}}";
+            var province_curr = "{{$params['page'] ?? 1}}";
+            laypage.render({
+                elem: 'province_page',
+                count: province_count, //数据总数
+                limit: 10,   //每页条数设置
+                curr : province_curr,
+                jump: function(obj, first){
+                    province_page=obj.curr;  //改变当前页码
+                    // limit=obj.limit;
+                    //首次不执行
+                    if(!first){
+                        window.location.replace(url+category_id+"&province_page="+province_page)
+                    }
+                }
+            });
+
+            //专业录取线分页
+            var line_province = "{{$params['line_province'] ?? 18}}";
+            var line_year = "{{$params['line_year'] ?? 0}}";
+            var line_science = "{{$params['line_science'] ?? 0}}";
+            var line_batch = "{{$params['line_batch'] ?? 0}}";
+            var line_count = "{{$count}}";
+            var line_url = "{{url('/home/article/index.html?category_id=')}}";
+            var line_curr = "{{$params['page'] ?? 1}}";
+            laypage.render({
+                elem: 'line_page',
+                count: count, //数据总数
+                limit: 10,   //每页条数设置
+                curr : line_curr,
+                jump: function(obj, first){
+                    line_page=obj.curr;  //改变当前页码
+                    // limit=obj.limit;
+                    //首次不执行
+                    if(!first){
+                        window.location.replace(url+category_id+"&line_page="+line_page)
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
 
 
