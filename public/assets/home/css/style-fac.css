@@ -2536,7 +2536,7 @@ h3.title2 .line {
 }
 
 .school_main_con {
-    min-height: 150px;
+    min-height: 165px;
     padding: 20px 10px;
 }
 
@@ -2547,3 +2547,63 @@ h3.title2 .line {
 .school_main_con .school-content img {
     padding: 10px;
 }
+
+.school-major {
+
+}
+
+.school-major .school-subject {
+    margin: 30px 0px;
+}
+
+.school-major .country_major {
+    margin: 30px 0px;
+}
+
+.school-major .main_major {
+    margin: 30px 0px;
+}
+
+.school-major .king_major {
+    margin: 30px 0px;
+}
+
+.school-major .major-list {
+    margin: 30px 0px;
+}
+
+.school-major .major-list .major-title {
+
+}
+
+.school-subject ul, .country_major ul, .main_major ul, .king_major ul, .major-list ul {
+    display: flex;
+    justify-content: flex-start;
+    border: 1px #ececec solid;
+}
+
+.major-list ul {
+    border-bottom: none;
+}
+
+.major-list ul:last-child {
+    border-bottom: 1px #ececec solid;
+}
+
+.school-subject ul li, .country_major ul li, .main_major ul li, .king_major ul li, .major-list ul li {
+    padding: 10px;
+    text-align: left;
+}
+
+.school-subject ul li:first-child, .country_major ul li:first-child, .main_major ul li:first-child, .king_major ul li:first-child, .major-list ul li:first-child {
+    width: 200px;
+    border-right: 1px #ececec solid;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.school-subject ul li span, .country_major ul li span, .main_major ul li span, .king_major ul li span, .major-list ul li span {
+    padding-right: 20px;
+    line-height: 36px;
+}
+

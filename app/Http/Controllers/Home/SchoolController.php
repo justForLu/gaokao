@@ -135,9 +135,9 @@ class SchoolController extends BaseController
         }
         $temp_arr = [];
         if($tag_arr){
-            foreach ($tag_arr as $id){
-                if(isset($tag_list[$id]) && !empty($tag_list[$id])){
-                    $temp_arr[] = $tag_list[$id];
+            foreach ($tag_arr as $tag_id){
+                if(isset($tag_list[$tag_id]) && !empty($tag_list[$tag_id])){
+                    $temp_arr[] = $tag_list[$tag_id];
                 }
             }
         }
@@ -165,23 +165,32 @@ class SchoolController extends BaseController
                 foreach ($major_list as $v){
                     //学科评估
                     if($v['grade'] == MajorEnum::ONE){
-                        $subject[MajorEnum::ONE] += 1;
+                        $subject[MajorEnum::ONE]['num'] = isset($subject[MajorEnum::ONE]['num']) ? $subject[MajorEnum::ONE]['num'] + 1 : 1;
+                        $subject[MajorEnum::ONE]['name'] = 'A+学科';
                     }elseif ($v['grade'] == MajorEnum::TWO){
-                        $subject[MajorEnum::TWO] += 1;
+                        $subject[MajorEnum::TWO]['num'] = isset($subject[MajorEnum::TWO]['num']) ? $subject[MajorEnum::TWO]['num'] + 1 : 1;
+                        $subject[MajorEnum::TWO]['name'] = 'A学科';
                     }elseif ($v['grade'] == MajorEnum::THREE){
-                        $subject[MajorEnum::THREE] += 1;
+                        $subject[MajorEnum::THREE]['num'] = isset($subject[MajorEnum::THREE]['num']) ? $subject[MajorEnum::THREE]['num'] + 1 : 1;
+                        $subject[MajorEnum::THREE]['name'] = 'A-学科';
                     }elseif ($v['grade'] == MajorEnum::FOUR){
-                        $subject[MajorEnum::FOUR] += 1;
+                        $subject[MajorEnum::FOUR]['num'] = isset($subject[MajorEnum::FOUR]['num']) ? $subject[MajorEnum::FOUR]['num'] + 1 : 1;
+                        $subject[MajorEnum::FOUR]['name'] = 'B+学科';
                     }elseif ($v['grade'] == MajorEnum::FIVE){
-                        $subject[MajorEnum::FIVE] += 1;
+                        $subject[MajorEnum::FIVE]['num'] = isset($subject[MajorEnum::FIVE]['num']) ? $subject[MajorEnum::FIVE]['num'] + 1 : 1;
+                        $subject[MajorEnum::FIVE]['name'] = 'B学科';
                     }elseif ($v['grade'] == MajorEnum::SIX){
-                        $subject[MajorEnum::SIX] += 1;
+                        $subject[MajorEnum::SIX]['num'] = isset($subject[MajorEnum::SIX]['num']) ? $subject[MajorEnum::SIX]['num'] + 1 : 1;
+                        $subject[MajorEnum::SIX]['name'] = 'B-学科';
                     }elseif ($v['grade'] == MajorEnum::SEVEN){
-                        $subject[MajorEnum::SEVEN] += 1;
+                        $subject[MajorEnum::SEVEN]['num'] = isset($subject[MajorEnum::SEVEN]['num']) ? $subject[MajorEnum::SEVEN]['num'] + 1 : 1;
+                        $subject[MajorEnum::SEVEN]['name'] = 'C+学科';
                     }elseif ($v['grade'] == MajorEnum::EIGHT){
-                        $subject[MajorEnum::EIGHT] += 1;
+                        $subject[MajorEnum::EIGHT]['num'] = isset($subject[MajorEnum::EIGHT]['num']) ? $subject[MajorEnum::EIGHT]['num'] + 1 : 1;
+                        $subject[MajorEnum::EIGHT]['name'] = 'C学科';
                     }elseif ($v['grade'] == MajorEnum::NINE){
-                        $subject[MajorEnum::NINE] += 1;
+                        $subject[MajorEnum::NINE]['num'] = isset($subject[MajorEnum::NINE]['num']) ? $subject[MajorEnum::NINE]['num'] + 1 : 1;
+                        $subject[MajorEnum::NINE]['name'] = 'C-学科';
                     }
                     //国家特色专业
                     if($v['type'] == MajorTypeEnum::COUNTRY){

@@ -37,7 +37,8 @@
                         <ul id="sto_contab">
                             <li @if($nav == 'desc') class="active" @endif><a href="{{url("/home/school/detail/".$data->id.".html?nav=desc")}}">学校简介</a></li>
                             <li @if($nav == 'major') class="active" @endif><a href="{{url("/home/school/detail/".$data->id.".html?nav=major")}}">开设专业</a></li>
-                            <li @if($nav == 'line') class="active" @endif><a href="{{url("/home/school/detail/".$data->id.".html?nav=line")}}">录取分数</a></li>
+                            <li @if($nav == 'province') class="active" @endif><a href="{{url("/home/school/detail/".$data->id.".html?nav=province")}}">各省分数线</a></li>
+                            <li @if($nav == 'line') class="active" @endif><a href="{{url("/home/school/detail/".$data->id.".html?nav=line")}}">专业分数线</a></li>
                         </ul>
                         <span class="nums"></span>
                     </div>
@@ -47,7 +48,81 @@
                         </div>
                     </div>
                     <div class="school_main_con" @if($nav == 'major') style="display: block;" @else style="display: none;" @endif>
-                        <div class="school-major"></div>
+                        <div class="school-major">
+                            @if(isset($subject) &&!empty($subject))
+                                <div class="school-subject">
+                                    <ul>
+                                        <li>学科评估</li>
+                                        <li>
+                                            @foreach($subject as $v)
+                                                <span>{{$v['name']}}（{{$v['num']}}）</span>
+                                            @endforeach
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(isset($country_major) &&!empty($country_major))
+                                <div class="country_major">
+                                    <ul>
+                                        <li>国家特色专业</li>
+                                        <li>
+                                            @foreach($country_major as $v)
+                                                <span>{{$v}}</span>
+                                            @endforeach
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(isset($main_major) &&!empty($main_major))
+                                <div class="main_major">
+                                    <ul>
+                                        <li>重点学科专业</li>
+                                        <li>
+                                            @foreach($main_major as $v)
+                                                <span>{{$v}}）</span>
+                                            @endforeach
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(isset($king_major) &&!empty($king_major))
+                                <div class="king_major">
+                                    <ul>
+                                        <li>本校王牌专业</li>
+                                        <li>
+                                            @foreach($king_major as $v)
+                                                <span>{{$v}}）</span>
+                                            @endforeach
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(isset($major) &&!empty($major))
+                                <div class="major-list">
+                                    <ul class="major-title">
+                                        <li>类别</li>
+                                        <li>专业名称</li>
+                                    </ul>
+                                    @foreach($major as $v)
+                                        <ul>
+                                            <li>{{$v['category_name']}}</li>
+                                            <li>
+                                                @if(!empty($v['arr']))
+                                                    @foreach($v['arr'] as $val)
+                                                        <span>{{$val['name']}}</span>
+                                                    @endforeach
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="school_main_con" @if($nav == 'province') style="display: block;" @else style="display: none;" @endif>
+                        <div class="school-major-line">
+
+                        </div>
                     </div>
                     <div class="school_main_con" @if($nav == 'line') style="display: block;" @else style="display: none;" @endif>
                         <div class="school-major-line">
@@ -78,14 +153,6 @@
 @section('scripts')
     <script src="{{asset("/assets/home/js/fac.js")}}"></script>
     <script src="{{asset("/assets/home/js/push.js")}}"></script>
-    <script>
-        var select_item = function (i) {
-            $("#sto_contab li").removeClass();
-            $("#sto_contab li").eq(i).addClass("active");
-            $(".school_main_con").css("display","none");
-            $(".school_main_con").eq(i).css("display","block");
-        };
-    </script>
 @endsection
 
 
