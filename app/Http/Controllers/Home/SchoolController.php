@@ -2,6 +2,10 @@
 namespace App\Http\Controllers\Home;
 
 use App\Enums\BasicEnum;
+use App\Enums\MajorEnum;
+use App\Enums\MajorTypeEnum;
+use App\Models\Common\Category;
+use App\Models\Common\Major;
 use App\Repositories\Home\SchoolRepository as School;
 use App\Repositories\Home\CityRepository as City;
 use App\Repositories\Home\TagRepository as Tag;
@@ -100,15 +104,106 @@ class SchoolController extends BaseController
     /**
      * 高校详情页
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Bosnadev\Repositories\Exceptions\RepositoryException
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function detail($id)
+    public function detail($id,Request $request)
     {
+        $params = $request->all();
+        $nav = $params['nav'] ?? 'desc';
         //高校信息
         $data = $this->school->find($id);
+        $data->content = htmlspecialchars_decode($data->content);
+        //高校省市
+        $region_id = array_diff([$data->province,$data->city,$data->area],[0]);
+        $region_list = [];
+        if($region_id){
+            $region_list = \App\Models\Common\City::whereIn('id',$region_id)->pluck('title','id');
+        }
+        $province_name = $region_list[$data->province] ?? '';
+        if(in_array($data->province,[1,24,26,31])){
+            $city_name = $region_list[$data->area] ?? '';
+        }else{
+            $city_name = $region_list[$data->city] ?? '';
+        }
+        $data->region = $province_name.$city_name;
+        //高校标签
+        $tag_arr = array_diff(explode(',',$data->tag),['']);
+        $tag_list = [];
+        if($tag_arr){
+            $tag_list = \App\Models\Common\Tag::whereIn('id',$tag_arr)->pluck('name','id');
+        }
+        $temp_arr = [];
+        if($tag_arr){
+            foreach ($tag_arr as $id){
+                if(isset($tag_list[$id]) && !empty($tag_list[$id])){
+                    $temp_arr[] = $tag_list[$id];
+                }
+            }
+        }
+        $data->tag_arr = $temp_arr;
+        //热门高校
+        $where3['status'] = BasicEnum::ACTIVE;
+        $where3['limit'] = 10;
+        $field3 = ['id','name'];
+        $school_hot = $this->school->getAllList($where3,$field3);
+        //高校专业
+        $subject = [];  //学科评估
+        $country_major = [];    //国家特色专业
+        $main_major = [];   //重点学科
+        $king_major = [];   //本校王牌专业
+        $major = [];    //按分类的专业列表
+        if($nav == 'major'){
+            $major_list = Major::where('school_id',$id)->orderBy('sort','DESC')->get()->toArray();
+            if(!empty($major_list)){
+                //学科分类
+                $category_id = array_unique(array_column($major_list,'category_id'));
+                $category_list = [];
+                if($category_id){
+                    $category_list = Category::whereIn('id',$category_id)->pluck('name','id');
+                }
+                foreach ($major_list as $v){
+                    //学科评估
+                    if($v['grade'] == MajorEnum::ONE){
+                        $subject[MajorEnum::ONE] += 1;
+                    }elseif ($v['grade'] == MajorEnum::TWO){
+                        $subject[MajorEnum::TWO] += 1;
+                    }elseif ($v['grade'] == MajorEnum::THREE){
+                        $subject[MajorEnum::THREE] += 1;
+                    }elseif ($v['grade'] == MajorEnum::FOUR){
+                        $subject[MajorEnum::FOUR] += 1;
+                    }elseif ($v['grade'] == MajorEnum::FIVE){
+                        $subject[MajorEnum::FIVE] += 1;
+                    }elseif ($v['grade'] == MajorEnum::SIX){
+                        $subject[MajorEnum::SIX] += 1;
+                    }elseif ($v['grade'] == MajorEnum::SEVEN){
+                        $subject[MajorEnum::SEVEN] += 1;
+                    }elseif ($v['grade'] == MajorEnum::EIGHT){
+                        $subject[MajorEnum::EIGHT] += 1;
+                    }elseif ($v['grade'] == MajorEnum::NINE){
+                        $subject[MajorEnum::NINE] += 1;
+                    }
+                    //国家特色专业
+                    if($v['type'] == MajorTypeEnum::COUNTRY){
+                        $country_major[] = $v['name'];
+                    }
+                    //重点学科
+                    if($v['type'] == MajorTypeEnum::IMPORTANT){
+                        $main_major[] = $v['name'];
+                    }
+                    //本校王牌专业
+                    if($v['type'] == MajorTypeEnum::TRUMP){
+                        $king_major[] = $v['name'];
+                    }
+                    //专业列表
+                    $major[$v['category_id']]['arr'][] = ['id' => $v['id'],'name' => $v['name']];
+                    $major[$v['category_id']]['category_name'] = $category_list[$v['category_id']] ?? '';
+                }
+            }
+        }
 
-        return view('home.school.detail',compact('data'));
+        return view('home.school.detail',compact('data','nav','subject','country_major','main_major',
+            'major','king_major','school_hot'));
     }
 
 }

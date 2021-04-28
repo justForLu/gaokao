@@ -56,10 +56,10 @@
                 </ul>
             </div>
         @else
-            <div class="head_login">
-                <a class="btns hover" href="{{url("/home/login")}}" target="_blank" rel="nofollow">登录</a>
-                <a class="btns" href="{{url("/home/register")}}" target="_blank" rel="nofollow">注册</a>
-            </div>
+{{--            <div class="head_login">--}}
+{{--                <a class="btns hover" href="{{url("/home/login")}}" target="_blank" rel="nofollow">登录</a>--}}
+{{--                <a class="btns" href="{{url("/home/register")}}" target="_blank" rel="nofollow">注册</a>--}}
+{{--            </div>--}}
         @endif
     </div>
 </div>

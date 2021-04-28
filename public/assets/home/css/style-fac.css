@@ -2484,8 +2484,15 @@ h3.title2 .line {
 }
 
 /*  高校详情  */
+.school_top {
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, #1ea115 , #ffe10c);
+}
 .school_logo_box {
     min-height: 200px;
+    float: left;
 }
 
 .school_logo_box .school_log {
@@ -2493,9 +2500,50 @@ h3.title2 .line {
 }
 
 .school_logo_box .school_log img {
-
+    width: 150px;
+    height: 150px;
+    margin-top: 25px;
+    border-radius: 15px;
 }
 
 .school_dec_box {
+    float: left;
+    margin-left: 35px;
+    color: #fff;
+    text-align: left;
+}
 
+.school_dec_box h1 {
+    padding-bottom: 10px;
+}
+
+.school_dec_box div {
+    overflow: hidden;
+    padding: 8px 0px;
+}
+
+.school_dec_box div span {
+    padding: 3px 8px;
+    display: block;
+    float: left;
+    margin-right: 20px;
+    border: 1px #ececec solid;
+    border-radius: 15px;
+}
+
+.school_dec_box p {
+    padding: 3px 0px;
+}
+
+.school_main_con {
+    min-height: 150px;
+    padding: 20px 10px;
+}
+
+.school_main_con .school-content {
+    text-align: left;
+}
+
+.school_main_con .school-content img {
+    padding: 10px;
 }

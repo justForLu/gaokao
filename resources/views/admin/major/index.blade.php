@@ -154,7 +154,7 @@
                                     layer.msg(msg);
                                 }
                             }
-                        })
+                        });
                         layer.close(index); //关闭弹层
                     });
                 } else if(obj.event === 'edit'){
@@ -163,7 +163,7 @@
                         type: 2,
                         title: '编辑高校专业',
                         content: 'major/'+id+'/edit',
-                        area: ['550px', '600px'],
+                        area: ['800px', '600px'],
                         btn: ['确定', '取消'],
                         yes: function(index, layero){
                             var iframeWindow = window['layui-layer-iframe'+ index],
@@ -173,7 +173,6 @@
                             //监听提交
                             iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
                                 var field = data.field; //获取提交的字段
-
                                 //提交数据
                                 $.ajax({
                                     url: 'major/'+field.id,
