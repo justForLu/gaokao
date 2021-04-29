@@ -149,6 +149,27 @@ class SchoolController extends BaseController
         $where3['limit'] = 10;
         $field3 = ['id','name'];
         $school_hot = $this->school->getAllList($where3,$field3);
+        //省录取分数线默认数据
+        $province_province = $params['province_province'] ?? 18;    //默认内蒙古
+        $province_year = $params['province_year'] ?? (date('Y') - 1);
+        $province_science = $params['province_science'] ?? 1;   //默认理科
+        $province_count = 0;
+        //各专业录取分数线默认数据
+        $line_province = $params['province_province'] ?? 18;    //默认内蒙古
+        $line_year = $params['province_year'] ?? (date('Y') - 1);
+        $line_science = $params['province_science'] ?? 1;   //默认理科
+        //查找该校拥有的批次
+        $batch_list = MajorLine::where('school_id',$id)->orderBy('batch','ASC')->pluck('batch');
+        $batch = [];
+        if(!empty($batch_list)){
+            $batch_arr = ['1' => '提前批','2' => '本科一批','3' => '本科二批','4' => '本科三批','5' => '大专批'];
+            foreach ($batch_list as $b_v){
+                if(in_array($b_v,[1,2,3,4,5])){
+                    $batch[$b_v] = ['id' => $b_v,'name' => $batch_arr[$b_v]];
+                }
+            }
+        }
+        $line_count = 0;
         //高校专业
         $subject = [];  //学科评估
         $country_major = [];    //国家特色专业
@@ -220,20 +241,6 @@ class SchoolController extends BaseController
                 ->where('year',$province_year)->where('science',$province_science)->count();
 
         }elseif ($nav == 'line'){
-            $line_province = $params['province_province'] ?? 18;    //默认内蒙古
-            $line_year = $params['province_year'] ?? (date('Y') - 1);
-            $line_science = $params['province_science'] ?? 1;   //默认理科
-            //查找该校拥有的批次
-            $batch_list = MajorLine::where('school_id',$id)->orderBy('batch','ASC')->pluck('batch');
-            $batch = [];
-            if(!empty($batch_list)){
-                $batch_arr = ['1' => '提前批','2' => '本科一批','3' => '本科二批','4' => '本科三批','5' => '大专批'];
-                foreach ($batch_list as $b_v){
-                    if(in_array($b_v,[1,2,3,4,5])){
-                        $batch[$b_v] = ['id' => $b_v,'name' => $batch_arr[$b_v]];
-                    }
-                }
-            }
             //各专业录取总数
             $line_count = EnterLine::where('school_id',$id)->where('province',$line_province)
                 ->where('year',$line_year)->where('science',$line_science)->count();

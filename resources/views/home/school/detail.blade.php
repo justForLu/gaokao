@@ -134,7 +134,7 @@
                                         @endif
                                     </div>
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="test-laydate-type-year" placeholder="yyyy">
+                                        <input type="text" class="layui-input" id="province-laydate-year" placeholder="yyyy">
                                     </div>
                                     <div class="layui-input-inline">
                                         <select id="science" lay-filter="score_science">
@@ -175,7 +175,7 @@
                                         @endif
                                     </div>
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="test-laydate-type-year" placeholder="yyyy">
+                                        <input type="text" class="layui-input" id="line-laydate-year" placeholder="yyyy">
                                     </div>
                                     <div class="layui-input-inline">
                                         <select id="science" lay-filter="score_science">
@@ -232,11 +232,19 @@
                 laydate = layui.laydate,
                 laypage = layui.laypage;
 
+            laydate.render({
+                elem: '#province-laydate-year'
+                ,type: 'year'
+            });
+            laydate.render({
+                elem: '#line-laydate-year'
+                ,type: 'year'
+            });
             //省录取线分页
             var province_province = "{{$params['province_province'] ?? 18}}";
             var province_year = "{{$params['province_year'] ?? 0}}";
             var province_science = "{{$params['province_science'] ?? 0}}";
-            var province_count = "{{$count}}";
+            var province_count = "{{$province_count ?? 0}}";
             var province_url = "{{url('/home/article/index.html?category_id=')}}";
             var province_curr = "{{$params['page'] ?? 1}}";
             laypage.render({
@@ -259,7 +267,7 @@
             var line_year = "{{$params['line_year'] ?? 0}}";
             var line_science = "{{$params['line_science'] ?? 0}}";
             var line_batch = "{{$params['line_batch'] ?? 0}}";
-            var line_count = "{{$count}}";
+            var line_count = "{{$line_count ?? 0}}";
             var line_url = "{{url('/home/article/index.html?category_id=')}}";
             var line_curr = "{{$params['page'] ?? 1}}";
             laypage.render({

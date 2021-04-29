@@ -41,7 +41,7 @@
                 <a href="{{url("/home/article/index.html")}}" @if($menu == 'Article') class="cur" @endif>专业解读<i class="ic_up"></i></a>
             </li>
             <li>
-                <a href="{{url("/home/about/index.html")}}" @if($menu == 'About') class="cur" @endif>关于我们<i class="ic_up"></i></a>
+                <a href="{{url("/home/about/index.html")}}" @if($menu == 'About') class="cur" @endif>关于中夏教育<i class="ic_up"></i></a>
             </li>
         </ul>
         @if(isset($userInfo) && $userInfo)
@@ -56,10 +56,7 @@
                 </ul>
             </div>
         @else
-{{--            <div class="head_login">--}}
-{{--                <a class="btns hover" href="{{url("/home/login")}}" target="_blank" rel="nofollow">登录</a>--}}
-{{--                <a class="btns" href="{{url("/home/register")}}" target="_blank" rel="nofollow">注册</a>--}}
-{{--            </div>--}}
+
         @endif
     </div>
 </div>
