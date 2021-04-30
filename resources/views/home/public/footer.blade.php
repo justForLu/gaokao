@@ -4,10 +4,11 @@
             <li>
                 <a class="titles" rel="nofollow">中夏教育</a>
                 <p style="padding-top: 30px;">
-                    <a href="" rel="nofollow">首页</a>
-                    <a href="" rel="nofollow">查高校</a>
-                    <a href="" rel="nofollow">查录取分数</a>
-                    <a href="" rel="nofollow">专业解读</a>
+                    <a href="{{url("/home/index.html")}}" rel="nofollow">首页</a>
+                    <a href="{{url("/home/school/index.html")}}" rel="nofollow">查高校</a>
+                    <a href="{{url("/home/score/index.html")}}" rel="nofollow">历年分数线</a>
+                    <a href="{{url("/home/article/index.html")}}" rel="nofollow">专业解读</a>
+                    <a href="{{url("/home/about/index.html")}}" rel="nofollow">关于中夏教育</a>
                 </p>
             </li>
             <li>
@@ -56,5 +57,10 @@
         <a href="javascript:void(0);" class="tool_btn" rel="nofollow">
             <i class="ic_tool_mark"></i>
         </a>
+        <span class="marks">
+            <img src="{{asset("/assets/home/images/app-ewm.png")}}" width="150px" height="150px" alt="中夏教育微信号"/>
+            <p>中夏教育微信号</p>
+            <i class="ic_right"></i>
+        </span>
     </div>
 </div>

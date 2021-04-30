@@ -15,7 +15,7 @@
 <div class="head wrap">
     <div class="section clearfix">
         <div class="logo">
-            <a href="{{url("/home/index.html")}}" title="工立方">
+            <a href="{{url("/home/index.html")}}" title="中夏教育">
                 <img src="{{asset("/assets/home/images/logo.png")}}">
             </a>
         </div>

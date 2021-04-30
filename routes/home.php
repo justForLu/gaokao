@@ -29,27 +29,19 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function (){
     Route::get('/logout', 'LoginController@logout');
     //首页
     Route::get('/index.html', 'IndexController@index');
-    //专业解读
-    Route::get('/article/index.html', 'ArticleController@index');
-    Route::get('/article/detail/{id}.html', 'ArticleController@detail');
     //查高校
     Route::any('/school/index.html', 'SchoolController@index');
     Route::get('/school/detail/{id}.html', 'SchoolController@detail');
     //查分数线
     Route::get('/score/index.html', 'ScoreController@index');
     Route::get('/score/get_list', 'ScoreController@getList');
-
-    Route::get('/join/index.html', 'JoinController@index');
-    Route::post('/enroll/sign_up','EnrollController@sign_up');
-    Route::post('/question/ask','QuestionController@ask');
-
-    Route::get('/smsCode', 'ImageController@smsCode');
-    Route::get('/get_city_list', 'CityController@get_city_list');
-    Route::get('/changeCity', 'CityController@changeCity');
-    Route::post('/file/uploadPic','FileController@uploadPic');
-    Route::post('/file/uploadFile','FileController@uploadFile');
-
-    Route::get('/ejectMap/{longitude}/{latitude}/{address}.html', 'EjectController@ejectMap');
+    //专业解读
+    Route::get('/article/index.html', 'ArticleController@index');
+    Route::get('/article/detail/{id}.html', 'ArticleController@detail');
+    //关于中夏教育
+    Route::get('/about/index.html', 'AboutController@index');
+    //反馈
+    Route::post('/feedback','FeedbackController@feedback');
 
     Route::group(['middleware' => ['home.auth']], function(){
         //个人中心

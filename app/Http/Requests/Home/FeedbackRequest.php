@@ -24,6 +24,8 @@ class FeedbackRequest extends Request
     public function rules()
     {
         return [
+            'name' => 'required|min:2|max:6',
+            'content' => 'required|min:10|max:500'
         ];
     }
 
@@ -33,6 +35,12 @@ class FeedbackRequest extends Request
     public function messages()
     {
         return  [
+            'name.required' => '请输入姓名',
+            'name.min' => '姓名最少2个字',
+            'name.max' => '姓名最多6个字',
+            'content.required' => '请输入内容',
+            'content.min' => '内容最少10个字',
+            'content.max' => '内容最多500字',
         ];
     }
 

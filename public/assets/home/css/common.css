@@ -606,6 +606,30 @@ to{left:-180px;opacity:1}
 	margin: 0px auto;
 	margin-top: 50px;
 }
+.about-feedback {
+    width: 1200px;
+    margin: 0px auto;
+    padding-top: 60px;
+}
+.about-feedback .feedback-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 110px;
+    padding-bottom: 40px;
+    color: #1ea115;
+}
+.about-feedback .layui-input-inline {
+    width: 500px !important;
+}
+
+.about-feedback .feedback-submit {
+    margin-left: 110px;
+    padding: 5px 20px;
+    background-color: #1ea115;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+}
 
 
 
