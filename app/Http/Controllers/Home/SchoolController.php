@@ -2,8 +2,10 @@
 namespace App\Http\Controllers\Home;
 
 use App\Enums\BasicEnum;
+use App\Enums\BatchEnum;
 use App\Enums\MajorEnum;
 use App\Enums\MajorTypeEnum;
+use App\Enums\ScienceEnum;
 use App\Models\Common\Category;
 use App\Models\Common\EnterLine;
 use App\Models\Common\Major;
@@ -149,27 +151,32 @@ class SchoolController extends BaseController
         $where3['limit'] = 10;
         $field3 = ['id','name'];
         $school_hot = $this->school->getAllList($where3,$field3);
+        //省份
+        $where1['parent'] = 0;
+        $province = $this->city->getCityList($where1);
+        //年份
+        $the_year = date('Y');
+        $year_list = [];
+        for ($i = 0; $i <=10; $i++){
+            $year_list[] = $the_year - $i;
+        }
         //省录取分数线默认数据
         $province_province = $params['province_province'] ?? 18;    //默认内蒙古
         $province_year = $params['province_year'] ?? (date('Y') - 1);
         $province_science = $params['province_science'] ?? 1;   //默认理科
+        $province_curr = $params['province_curr'] ?? 1;   //当前页
         $province_count = 0;
+        $province_line_list = [];
         //各专业录取分数线默认数据
-        $line_province = $params['province_province'] ?? 18;    //默认内蒙古
-        $line_year = $params['province_year'] ?? (date('Y') - 1);
-        $line_science = $params['province_science'] ?? 1;   //默认理科
+        $line_province = $params['line_province'] ?? 18;    //默认内蒙古
+        $line_year = $params['line_year'] ?? (date('Y') - 1);
+        $line_science = $params['line_science'] ?? 1;   //默认理科
+        $line_batch = $params['line_batch'] ?? 0;   //批次
+        $line_curr = $params['line_curr'] ?? 1;   //当前页
         //查找该校拥有的批次
-        $batch_list = MajorLine::where('school_id',$id)->orderBy('batch','ASC')->pluck('batch');
         $batch = [];
-        if(!empty($batch_list)){
-            $batch_arr = ['1' => '提前批','2' => '本科一批','3' => '本科二批','4' => '本科三批','5' => '大专批'];
-            foreach ($batch_list as $b_v){
-                if(in_array($b_v,[1,2,3,4,5])){
-                    $batch[$b_v] = ['id' => $b_v,'name' => $batch_arr[$b_v]];
-                }
-            }
-        }
         $line_count = 0;
+        $major_line_list = [];
         //高校专业
         $subject = [];  //学科评估
         $country_major = [];    //国家特色专业
@@ -233,22 +240,61 @@ class SchoolController extends BaseController
                 }
             }
         }elseif ($nav == 'province'){
-            $province_province = $params['province_province'] ?? 18;    //默认内蒙古
-            $province_year = $params['province_year'] ?? (date('Y') - 1);
-            $province_science = $params['province_science'] ?? 1;   //默认理科
             //各省录取分数线总数
             $province_count = EnterLine::where('school_id',$id)->where('province',$province_province)
                 ->where('year',$province_year)->where('science',$province_science)->count();
+            //省录取分数线数据
+            $offset1 = ($province_curr - 1)*10;
+            $province_line_list = EnterLine::where('school_id',$id)->where('province',$province_province)
+                ->where('year',$province_year)->where('science',$province_science)
+                ->offset($offset1)->limit(10)->get();
+            if(!empty($province_line_list)){
+                foreach ($province_line_list as &$p_val){
+                    $p_val['batch_name'] = BatchEnum::getDesc($p_val['batch']);
+                    $p_val['science_name'] = ScienceEnum::getDesc($p_val['science_name']);
+                }
+            }
 
         }elseif ($nav == 'line'){
+            //查找该校拥有的批次
+            $batch_list = MajorLine::where('school_id',$id)->orderBy('batch','ASC')->pluck('batch');
+            if(!empty($batch_list)){
+                $batch_arr = ['1' => '提前批','2' => '本科一批','3' => '本科二批','4' => '本科三批','5' => '大专批'];
+                foreach ($batch_list as $b_v){
+                    if(in_array($b_v,[1,2,3,4,5])){
+                        $batch[$b_v] = ['id' => $b_v,'name' => $batch_arr[$b_v]];
+                    }
+                }
+            }
+            if($line_batch == 0){
+                $batchFirst = current($batch);
+                $line_batch = $batchFirst['id'];
+            }
             //各专业录取总数
-            $line_count = EnterLine::where('school_id',$id)->where('province',$line_province)
-                ->where('year',$line_year)->where('science',$line_science)->count();
+            $line_count = MajorLine::where('school_id',$id)->where('province',$line_province)
+                ->where('year',$line_year)->where('science',$line_science)->where('batch',$line_batch)->count();
+            $offset2 = ($line_curr - 1)*10;
+            $major_line_list = MajorLine::where('school_id',$id)->where('province',$line_province)
+                ->where('year',$line_year)->where('science',$line_science)->where('batch',$line_batch)
+                ->offset($offset2)->limit(10)->get()->toArray();
+            if(!empty($major_line_list)){
+                //专业名称
+                $major_ids = array_diff(array_unique(array_column($major_line_list,'major_id')),[0]);
+                $majorList = [];
+                if($major_ids){
+                    $majorList = Major::whereIn('id',$major_ids)->pluck('name','id');
+                }
+                foreach ($major_line_list as &$m_val){
+                    $m_val['major_name'] = $majorList[$m_val['major_id']] ?? '';
+                    $m_val['batch_name'] = BatchEnum::getDesc($m_val['batch']);
+                }
+            }
         }
 
         return view('home.school.detail',compact('data','nav','subject','country_major','main_major',
-            'major','king_major','school_hot','province_province','province_year','province_science','province_count',
-            'line_province','line_year','line_science','line_count','batch'));
+            'major','king_major','school_hot','province','year_list','province_province','province_year','province_science',
+            'province_count','province_line_list','line_province','line_year','line_science','line_batch','line_count',
+            'major_line_list','batch'));
     }
 
 }

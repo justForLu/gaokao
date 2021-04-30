@@ -2459,6 +2459,7 @@ h3.title2 .line {
     background-color: #eee;
     padding: 15px 0px;
     border-bottom: 1px #ececec solid;
+    border-radius: 3px;
 }
 
 .score-title li {
@@ -2607,3 +2608,68 @@ h3.title2 .line {
     line-height: 36px;
 }
 
+.school-province-line {
+    min-height: 350px;
+}
+
+.school-province-line .province-line-title {
+    overflow: hidden;
+    font-size: 18px;
+    background-color: #eee;
+    padding: 15px 0px;
+    border-bottom: 1px #ececec solid;
+    border-radius: 3px;
+}
+
+.school-province-line .province-line-title li {
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
+.school-province-line .province-line-box {
+
+}
+
+.school-province-line .province-line-box ul {
+    overflow: hidden;
+    padding: 15px 0px;
+    border-bottom: 1px #ececec solid;
+}
+
+.school-province-line .province-line-box li {
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
+.school-major-line {
+    min-height: 350px;
+}
+
+.school-major-line .major-line-title {
+    overflow: hidden;
+    font-size: 18px;
+    background-color: #eee;
+    padding: 15px 0px;
+    border-bottom: 1px #ececec solid;
+    border-radius: 3px;
+}
+
+.school-major-line .major-line-title li {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.school-major-line .major-line-box ul{
+    overflow: hidden;
+    padding: 15px 0px;
+    border-bottom: 1px #ececec solid;
+}
+
+.school-major-line .major-line-box li {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
