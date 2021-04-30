@@ -31,7 +31,7 @@
     <div class="copyright">
         <div class="section">
             Copyright © 2016 中夏教育 版权所有
-            <a href="http://beian.miit.gov.cn/" ref="nofollow" target="_blank">蒙ICP备16088888号-2</a></div>
+            <a href="http://beian.miit.gov.cn/" ref="nofollow" target="_blank" style="color: #999;">蒙ICP备16088888号-2</a></div>
     </div>
 </div>
 <div class="fix_tool fix_tool_index" id="fix_tool">
