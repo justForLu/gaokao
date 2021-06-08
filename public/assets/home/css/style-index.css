@@ -39,6 +39,7 @@
 }
 .tjyj-box .tjyj {
     padding-top: 40px;
+    margin-top: 40px;
 }
 .tjyj-box .tjyj .title img {
     width: 850px;
@@ -300,43 +301,60 @@
     width: 212px;
     height: 157px
 }
-/*  平台价值    */
+/*  师资力量    */
 .ptjz {
     width: 100%;
-    height: 490px;
+    height: auto;
+    overflow: hidden;
     color: #ffffff;
-    background: url("../images/bg_index.png") no-repeat;
+    background: url("../images/bg_index.png") repeat;
     background-size: 100%;
     margin: 60px 0px;
-}
-.ptjz .ptjz-title {
     padding: 20px 0px;
 }
-.ptjz .ptjz-title h2 span {
-    display: block;
-    margin: 0px auto;
-    width: 46px;
-    height: 1px;
-    background-color: #fff;
-    margin-top: 10px;
-}
-.ptjz .jz-box {
-    width: 705px;
-    margin: 0px auto;
-}
-.ptjz .jz-box .jz-item {
-    width: 320px;
-    height: 165px;
-    background: url(../images/img_index_jz.png) no-repeat;
-    background-size: 320px 165px;
+.ptjz .item {
     float: left;
-    margin: 15px;
+    overflow: hidden;
+    width: 50%;
+    padding-top: 20px;
 }
-.ptjz .jz-box .jz-item .jz-dsc {
-    width: 170px;
-    height: 80px;
-    margin-left: 75px;
-    margin-top: 43px;
-    background-color: #04AF65;
-    opacity: 0.8;
+.ptjz .item .item-img {
+
+}
+.ptjz .item .item-img img {
+    width: 320px;
+    height: 320px;
+}
+.ptjz .item .item-body {
+    width: 320px;
+    margin: 0px auto;
+}
+.ptjz .item .item-body .teacher-name {
+    padding: 10px 0px;
+    font-size: 24px;
+}
+.ptjz .item .item-body .teacher-desc {
+    line-height: 22px;
+    text-align: left;
+    height: 88px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+/*  中夏掠影  */
+.zxly {
+    overflow: hidden;
+    margin: 50px 0px;
+}
+.zxly .item {
+    width: 50%;
+    float: left;
+}
+.zxly .item .item-img {
+    padding: 10px;
+}
+.zxly .item .item-img img {
+    width: 100%;
+    height: auto;
 }

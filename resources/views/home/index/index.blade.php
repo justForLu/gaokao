@@ -19,24 +19,6 @@
 
     <div class="section">
         <div class="tjyj-box">
-            <div class="tjgb">
-                <div>
-                    <img src="{{asset('/assets/home/images/laba.png')}}">
-                    <div class="new-ruzhi">
-                        <p>最新消息：李XX刚刚咨询过</p>
-                        <p>最新消息：王XX刚刚咨询过</p>
-                        <p>最新消息：赵XX刚刚咨询过</p>
-                        <p>最新消息：钱XX刚刚咨询过</p>
-                        <p>最新消息：孙XX刚刚咨询过</p>
-                        <p>最新消息：周XX刚刚咨询过</p>
-                        <p>最新消息：吴XX刚刚咨询过</p>
-                        <p>最新消息：郑XX刚刚咨询过</p>
-                        <p>最新消息：张XX刚刚咨询过</p>
-                        <p>最新消息：武XX刚刚咨询过</p>
-                        <p>最新消息：李XX刚刚咨询过</p>
-                    </div>
-                </div>
-            </div>
             <div class="tjyj">
                 <div class="title">
                     <img src="{{asset('/assets/home/images/index-rebate.png')}}">
@@ -84,17 +66,84 @@
             </div>
         </div>
         <div class="ptjz">
-
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/teacher1.jpeg')}}" alt="师资力量">
+                </div>
+                <div class="item-body">
+                    <div class="teacher-name">韩超</div>
+                    <div class="teacher-desc">
+                        韩超老师毕业于北京师范大学，在校期间荣获多次国家奖学金，实力强大。并且韩超老师为人热情，乐于助人，对待学生非常用心。
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/teacher1.jpeg')}}" alt="师资力量">
+                </div>
+                <div class="item-body">
+                    <div class="teacher-name">韩超</div>
+                    <div class="teacher-desc">
+                        韩超老师毕业于北京师范大学，在校期间荣获多次国家奖学金，实力强大。并且韩超老师为人热情，乐于助人，对待学生非常用心。
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/teacher1.jpeg')}}" alt="师资力量">
+                </div>
+                <div class="item-body">
+                    <div class="teacher-name">韩超</div>
+                    <div class="teacher-desc">
+                        韩超老师毕业于北京师范大学，在校期间荣获多次国家奖学金，实力强大。并且韩超老师为人热情，乐于助人，对待学生非常用心。
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/teacher1.jpeg')}}" alt="师资力量">
+                </div>
+                <div class="item-body">
+                    <div class="teacher-name">韩超</div>
+                    <div class="teacher-desc">
+                        韩超老师毕业于北京师范大学，在校期间荣获多次国家奖学金，实力强大。并且韩超老师为人热情，乐于助人，对待学生非常用心。
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="ii_list ii_store">
+        <div class="ii_list">
             <div class="ii_head">
                 <h2 class="ii_tit">
                     <em>中夏</em>掠影
                 </h2>
             </div>
-            <ul class="ii_cont">
-
-            </ul>
+        </div>
+        <div class="zxly">
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/team1.jpeg')}}" alt="中夏掠影">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/team2.jpeg')}}" alt="中夏掠影">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/team3.jpeg')}}" alt="中夏掠影">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/team4.jpeg')}}" alt="中夏掠影">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-img">
+                    <img src="{{asset('/assets/home/images/team5.jpeg')}}" alt="中夏掠影">
+                </div>
+            </div>
         </div>
     </div>
 @endsection
