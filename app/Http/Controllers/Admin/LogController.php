@@ -49,6 +49,7 @@ class LogController extends BaseController
         if($list){
             foreach ($list as &$v){
                 $v->username = $v->manager->username ?? '';
+                $v['create_time'] = date('Y-m-d H:i:s',$v['create_time']);
             }
         }
 
